@@ -2,7 +2,7 @@ package pl.polsl.gawron.marcel.rplace.tests;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import pl.polsl.gawron.marcel.rplace.entities.Color;
+import pl.polsl.gawron.marcel.rplace.models.Color;
 import pl.polsl.gawron.marcel.rplace.models.Image;
 
 import java.util.Random;

@@ -1,4 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.entities;
+package pl.polsl.gawron.marcel.rplace.models;
 
 import java.time.LocalDateTime;
 

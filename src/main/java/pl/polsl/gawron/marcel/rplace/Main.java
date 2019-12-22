@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace;
 
 import pl.polsl.gawron.marcel.rplace.controllers.ImageController;
-import pl.polsl.gawron.marcel.rplace.entities.Color;
+import pl.polsl.gawron.marcel.rplace.models.Color;
 import pl.polsl.gawron.marcel.rplace.models.Image;
 import pl.polsl.gawron.marcel.rplace.utils.ArgumentParser;
 

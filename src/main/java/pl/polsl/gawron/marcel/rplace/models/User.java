@@ -1,6 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.entities;
-
-import pl.polsl.gawron.marcel.rplace.entities.HistoryEntry;
+package pl.polsl.gawron.marcel.rplace.models;
 
 import java.util.List;
 import java.util.Random;
