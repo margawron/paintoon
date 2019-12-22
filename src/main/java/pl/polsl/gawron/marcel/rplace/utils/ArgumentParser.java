@@ -47,7 +47,7 @@ public class ArgumentParser {
     private void extractPortNumberFromArguments() throws ArgumentParsingException {
         Short port = null;
         for (int i = 0; i < arguments.length; i++) {
-            if (arguments[i].equals(Constants.PORT_NUMBER_COMMAND_FLAG) && i + 1 < arguments.length) {
+            if (arguments[i].equals(Constants.Strings.PORT_NUMBER_COMMAND_FLAG) && i + 1 < arguments.length) {
                 try {
                     port = Short.parseShort(arguments[i + 1]);
                     config.put("port", port.toString());
