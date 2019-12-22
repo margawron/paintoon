@@ -22,12 +22,7 @@ public class PixelHistory {
      * Default constructor
      *
      */
-    public PixelHistory(int xPos, int yPos) {
-        this.x = xPos;
-        this.y = yPos;
-        this.currentlyModifiedBy = Constants.OBJECTS.TEST_USER;
-        this.timeOfLastModification = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-    }
+    public PixelHistory() {}
 
 
 }

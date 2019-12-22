@@ -44,7 +44,7 @@ public class ImageView {
 
     /**
      * Saves image as png file with provided filename
-     * Debug only
+     * Debug only/Deprecated
      *
      * @param filename name of a saved image
      */
@@ -60,7 +60,7 @@ public class ImageView {
 
     /**
      * Saves image as png file with provided filename
-     * Debug only
+     * Debug only/Deprecated
      *
      * @param filename name of a saved image
      * @param image    buffered image object of a image
