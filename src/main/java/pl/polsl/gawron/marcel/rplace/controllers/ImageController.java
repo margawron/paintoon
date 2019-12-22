@@ -44,7 +44,7 @@ public class ImageController {
      * @param blue  blue component of a pixel
      */
     public void setPixel(int xPos, int yPos, byte red, byte green, byte blue) {
-        image.setPixel(xPos, yPos, red, green, blue);
+        image.setPixel(xPos, yPos, new Color(red,green,blue));
     }
 
     /**
@@ -56,7 +56,7 @@ public class ImageController {
      * @param color compounded pixel components into Color class
      */
     public void setPixel(int xPos, int yPos, Color color) {
-        image.setPixel(xPos, yPos, color.getRed(), color.getGreen(), color.getBlue());
+        image.setPixel(xPos, yPos, color);
     }
 
     /**
@@ -69,7 +69,7 @@ public class ImageController {
      * @param color compounded pixel components into Color class
      */
     public void setPixelAndUpdate(int xPos, int yPos, Color color) {
-        image.setPixel(xPos, yPos, color.getRed(), color.getGreen(), color.getBlue());
+        image.setPixel(xPos, yPos, color);
         updateBuffer();
     }
 
