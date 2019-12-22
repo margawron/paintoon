@@ -7,6 +7,7 @@ package pl.polsl.gawron.marcel.rplace.models;
  * @version 1.0
  */
 public class Color {
+
     private byte red;
     private byte green;
     private byte blue;
@@ -15,23 +16,24 @@ public class Color {
      * Default constructor
      * sets color to white
      */
-    public Color(){
+    public Color() {
         // Necessary casts
         // despite the value -128 still fits
         // byte primitive (0b1111_1111)
-        this.red = (byte)-128;
-        this.green = (byte)-128;
-        this.blue = (byte)-128;
+        this.red = (byte) -128;
+        this.green = (byte) -128;
+        this.blue = (byte) -128;
     }
 
     /**
      * Constructs color object with provided values
      * <b>Values are casted to a byte to avoid constant casting</b>
-     * @param red red component
+     *
+     * @param red   red component
      * @param green green component
-     * @param blue blue component
+     * @param blue  blue component
      */
-    public Color(int red, int green, int blue){
+    public Color(int red, int green, int blue) {
         this.red = (byte) red;
         this.green = (byte) green;
         this.blue = (byte) blue;
@@ -39,11 +41,12 @@ public class Color {
 
     /**
      * Group setter for all the components
-     * @param red red component
+     *
+     * @param red   red component
      * @param green green component
-     * @param blue blue component
+     * @param blue  blue component
      */
-    public void setColor(int red, int green, int blue){
+    public void setColor(int red, int green, int blue) {
         this.red = (byte) red;
         this.green = (byte) green;
         this.blue = (byte) blue;
@@ -51,9 +54,10 @@ public class Color {
 
     /**
      * Getter for color
+     *
      * @return RGB 3 sized array with color components
      */
-    public byte[] getColor(){
+    public byte[] getColor() {
         byte[] rgb = new byte[3];
         rgb[0] = red;
         rgb[1] = green;
@@ -63,6 +67,7 @@ public class Color {
 
     /**
      * Getter for singular color component
+     *
      * @return red component
      */
     public byte getRed() {
@@ -70,23 +75,8 @@ public class Color {
     }
 
     /**
-     * Getter for singular color component
-     * @return green component
-     */
-    public byte getGreen(){
-        return green;
-    }
-
-    /**
-     * Getter for singular color component
-     * @return blue component
-     */
-    public byte getBlue(){
-        return blue;
-    }
-
-    /**
      * Setter for singular color component
+     *
      * @param red new red component value
      */
     public void setRed(byte red) {
@@ -94,7 +84,17 @@ public class Color {
     }
 
     /**
+     * Getter for singular color component
+     *
+     * @return green component
+     */
+    public byte getGreen() {
+        return green;
+    }
+
+    /**
      * Setter for singular color component
+     *
      * @param green new green component value
      */
     public void setGreen(byte green) {
@@ -102,7 +102,17 @@ public class Color {
     }
 
     /**
+     * Getter for singular color component
+     *
+     * @return blue component
+     */
+    public byte getBlue() {
+        return blue;
+    }
+
+    /**
      * Setter for singular color component
+     *
      * @param blue new blue component value
      */
     public void setBlue(byte blue) {

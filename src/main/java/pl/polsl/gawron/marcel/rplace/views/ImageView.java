@@ -19,10 +19,12 @@ import java.io.IOException;
 public class ImageView {
 
     private BufferedImage bufferedImage;
+
     /**
      * Default constructor
      */
-    public ImageView(){}
+    public ImageView() {
+    }
 
     /**
      * Convert raw array to image
@@ -31,7 +33,7 @@ public class ImageView {
      */
     public BufferedImage fromByteArrayToBufferedImage(Image image) {
         bufferedImage = new BufferedImage(image.getSize(), image.getSize(), BufferedImage.TYPE_3BYTE_BGR);
-        bufferedImage.setData(Raster.createRaster(bufferedImage.getSampleModel(), new DataBufferByte(image.getBitmap(), 3*image.getSize()*image.getSize()), new Point()));
+        bufferedImage.setData(Raster.createRaster(bufferedImage.getSampleModel(), new DataBufferByte(image.getBitmap(), 3 * image.getSize() * image.getSize()), new Point()));
 
         return bufferedImage;
     }
@@ -43,14 +45,15 @@ public class ImageView {
     /**
      * Saves image as png file with provided filename
      * Debug only
+     *
      * @param filename name of a saved image
      */
     @Deprecated
-    public void saveAsImage(String filename){
-        File file = new File(filename+ ".png");
+    public void saveAsImage(String filename) {
+        File file = new File(filename + ".png");
         try {
             ImageIO.write(bufferedImage, "png", file);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -58,15 +61,16 @@ public class ImageView {
     /**
      * Saves image as png file with provided filename
      * Debug only
+     *
      * @param filename name of a saved image
-     * @param image buffered image object of a image
+     * @param image    buffered image object of a image
      */
     @Deprecated
-    public void saveAsImage(String filename, BufferedImage image){
-        File file = new File(filename+ ".png");
+    public void saveAsImage(String filename, BufferedImage image) {
+        File file = new File(filename + ".png");
         try {
             ImageIO.write(image, "png", file);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

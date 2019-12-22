@@ -18,7 +18,7 @@ public class Pixel {
 
     /**
      * Default constructor
-     *
+     * <p>
      * Sets pixel values to 255 (unsigned)
      * so they become white
      */
@@ -32,9 +32,10 @@ public class Pixel {
 
     /**
      * Setter for pixel color values
-     * @param red red component of a pixel
+     *
+     * @param red   red component of a pixel
      * @param green green component of a pixel
-     * @param blue blue component of a pixel
+     * @param blue  blue component of a pixel
      */
     public void setPixelColor(byte red, byte green, byte blue) {
         componentRed = red;
@@ -45,6 +46,7 @@ public class Pixel {
     /**
      * Returns RGB array of pixel colors
      * array is size of 3 and colors - from 0 to 2 are RGB
+     *
      * @return pixel color components 0 - R, 1 - G, 2 - B
      */
     public byte[] getPixelColor() {
@@ -57,6 +59,7 @@ public class Pixel {
 
     /**
      * Get latest user who modified the pixel
+     *
      * @return user who was the latest to modify the pixel
      */
     public User getCurrentlyModifiedBy() {
@@ -65,6 +68,7 @@ public class Pixel {
 
     /**
      * Set the new user who modified the pixel
+     *
      * @param user new user who modified the pixel
      */
     public void setCurrentlyModifiedBy(User user) {
@@ -73,6 +77,7 @@ public class Pixel {
 
     /**
      * Getter for time of last modification
+     *
      * @return time of last modification
      */
     public Calendar getTimeOfLastModification() {
@@ -81,6 +86,7 @@ public class Pixel {
 
     /**
      * Setter for the time of last modification
+     *
      * @param time new time of last modification
      */
     public void setTimeOfLastModification(Calendar time) {

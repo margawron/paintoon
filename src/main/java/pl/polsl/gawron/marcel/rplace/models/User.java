@@ -12,6 +12,6 @@ public class User {
     private String password;
     //private List<Pixel>
 
-    public User(){
+    public User() {
     }
 }
