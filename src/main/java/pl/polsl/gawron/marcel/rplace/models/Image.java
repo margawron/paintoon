@@ -13,7 +13,7 @@ import java.util.List;
 public class Image {
     private byte[] bitmap;
     private int size;
-    //private List<Pixel> history;
+    private List<PixelHistory> history;
     /**
      * Default constructor
      * Creates bitmap 1000*1000*3 (BGR)
@@ -34,6 +34,9 @@ public class Image {
      * @param size
      */
     public Image(int size) {
+        if(size <= 0){
+            throw new NegativeArraySizeException();
+        }
         bitmap = new byte[3 * size * size];
         for (int i = 0; i < bitmap.length; i++) {
             bitmap[i] = (byte) 0b11111111;
@@ -48,15 +51,14 @@ public class Image {
      *
      * @param x     x coordinate of a pixel
      * @param y     y coordinate of a pixel
-     * @param red   red component of a pixel
-     * @param green green component of a pixel
-     * @param blue  blue component of a pixel
+     * @param color compounded color components
      */
-    public void setPixel(int x, int y, byte red, byte green, byte blue) {
+    public void setPixel(int x, int y, Color color) {
         int index = 3 * (x + size * y);
-        this.bitmap[index] = blue;
-        this.bitmap[index + 1] = green;
-        this.bitmap[index + 2] = red;
+        for(var component: color){
+            bitmap[index] = component;
+            ++index;
+        }
     }
 
     /**
@@ -75,5 +77,21 @@ public class Image {
      */
     public byte[] getBitmap() {
         return bitmap;
+    }
+
+    /**
+     * Gets color of a single pixel
+     * @param x horizontal positon of a pixel
+     * @param y vertical position of a pixel
+     * @return color components of a pixel
+     */
+    public Color getPixelColor(int x, int y){
+        Color color = new Color();
+        int index= 3 * (x + size*y);
+        // BGR pixel component memory layout
+        color.setBlue(bitmap[index]);
+        color.setGreen(bitmap[index+1]);
+        color.setRed(bitmap[index+2]);
+        return color;
     }
 }

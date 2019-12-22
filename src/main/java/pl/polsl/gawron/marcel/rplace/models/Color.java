@@ -1,16 +1,20 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
+import java.util.Iterator;
+
 /**
  * POJO for storing single color
  *
  * @author Marcel Gawron
  * @version 1.0
  */
-public class Color {
+public class Color implements Iterable<Byte>, Iterator<Byte> {
 
     private byte red;
     private byte green;
     private byte blue;
+    private int index;
+
 
     /**
      * Default constructor
@@ -117,5 +121,46 @@ public class Color {
      */
     public void setBlue(byte blue) {
         this.blue = blue;
+    }
+
+    /**
+     * Returns iterator on color components
+     * implements {@link Iterable#iterator()} method
+     * @return iterator on the Color object
+     */
+    @Override
+    public Iterator<Byte> iterator() {
+        index = 0;
+        return this;
+    }
+
+    /**
+     * Checks if iterator has next object
+     *  implements {@link Iterator#hasNext()} method
+     * @return true if iterator has something pull next, false otherwise
+     */
+    @Override
+    public boolean hasNext() {
+        return index < 3;
+    }
+
+    /**
+     * Gets following color components via iterator
+     * implements {@link Iterator#next()} method
+     * @return following color components -> BLUE, GREEN, RED (BGR)
+     */
+    @Override
+    public Byte next() {
+        switch (index++){
+            case 0:
+                return blue;
+            case 1:
+                return green;
+            case 2:
+                return red;
+            default:
+                return null;
+
+        }
     }
 }
