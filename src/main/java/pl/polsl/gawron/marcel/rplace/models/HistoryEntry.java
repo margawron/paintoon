@@ -31,7 +31,7 @@ public class HistoryEntry {
 
     /**
      * Setter for horizontal position of pixel
-     * @param x horizontal positon of pixel
+     * @param x horizontal position of pixel
      */
     public void setX(int x) {
         this.x = x;
