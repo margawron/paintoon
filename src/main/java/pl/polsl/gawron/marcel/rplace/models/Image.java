@@ -1,9 +1,11 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class storing image created by user
- * <p>
- * Bitmap is stored in BGR memory layout (Blue,Green,Red)
+ * <p>Bitmap is stored in BGR memory layout (Blue,Green,Red)</p>
  *
  * @author Marcel Gawron
  * @version 1.0
@@ -11,8 +13,7 @@ package pl.polsl.gawron.marcel.rplace.models;
 public class Image {
     private byte[] bitmap;
     private int size;
-    //private Pixel[]
-
+    //private List<Pixel> history;
     /**
      * Default constructor
      * Creates bitmap 1000*1000*3 (BGR)
@@ -23,6 +24,7 @@ public class Image {
             bitmap[i] = (byte) 0b11111111;
         }
         size = 1000;
+        //history = new ArrayList<>();
     }
 
     /**
@@ -37,6 +39,7 @@ public class Image {
             bitmap[i] = (byte) 0b11111111;
         }
         this.size = size;
+        //history = new ArrayList<>();
     }
 
     /**
