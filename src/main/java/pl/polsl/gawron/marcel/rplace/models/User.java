@@ -13,7 +13,7 @@ public class User {
     private Long id;
     private String name;
     private String password;
-    private List<PixelHistory> singleUserHistory;
+    private List<HistoryEntry> singleUserHistory;
 
     /**
      * Default class constructor

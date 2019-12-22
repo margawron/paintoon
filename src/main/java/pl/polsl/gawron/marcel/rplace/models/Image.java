@@ -1,6 +1,5 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ import java.util.List;
 public class Image {
     private byte[] bitmap;
     private int size;
-    private List<PixelHistory> history;
+    private List<HistoryEntry> history;
     /**
      * Default constructor
      * Creates bitmap 1000*1000*3 (BGR)
