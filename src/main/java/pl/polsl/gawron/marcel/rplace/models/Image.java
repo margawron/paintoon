@@ -1,5 +1,8 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
+import pl.polsl.gawron.marcel.rplace.entities.Color;
+import pl.polsl.gawron.marcel.rplace.entities.HistoryEntry;
+
 import java.util.List;
 
 /**

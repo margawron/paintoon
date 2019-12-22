@@ -1,6 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.utils;
 
-import pl.polsl.gawron.marcel.rplace.models.User;
+import pl.polsl.gawron.marcel.rplace.entities.User;
 
 /**
  * Constants used in program
