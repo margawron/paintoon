@@ -5,11 +5,10 @@ package pl.polsl.gawron.marcel.rplace.protocol;
  */
 public enum PacketType {
     /**
-     * Client-side protocol responses
+     * Client-side protocol requests
      **/
     REQUEST_REGISTER,
     REQUEST_LOGIN,
-    REQUEST_IMAGE_BYTE_ARRAY_SIZE,
     REQUEST_IMAGE_BYTE_ARRAY,
     REQUEST_SET_PIXEL,
     REQUEST_PIXEL_HISTORY,
@@ -18,7 +17,6 @@ public enum PacketType {
      **/
     RESPONSE_REGISTER,
     RESPONSE_LOGIN,
-    RESPONSE_IMAGE_BYTE_ARRAY_SIZE,
     RESPONSE_IMAGE_BYTE_ARRAY,
     RESPONSE_SET_PIXEL,
     RESPONSE_PIXEL_HISTORY,
