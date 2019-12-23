@@ -15,6 +15,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Getter for a password property
+     *
      * @return password of a user
      */
     public String getPassword() {
@@ -23,6 +24,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Setter for a password property
+     *
      * @param password new user password
      */
     public void setPassword(String password) {
@@ -31,6 +33,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Getter for a name property
+     *
      * @return username
      */
     public String getName() {
@@ -39,6 +42,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Setter for a name property
+     *
      * @param name new name
      */
     public void setName(String name) {
@@ -48,6 +52,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Serializes classes to JSON
+     *
      * @return JSON class representation
      */
     @Override
@@ -58,6 +63,7 @@ public class RequestLogin implements PacketBody {
 
     /**
      * Deserializes class from JSON
+     *
      * @param json JSON representation
      * @return class object
      */

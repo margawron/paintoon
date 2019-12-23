@@ -11,25 +11,25 @@ public class ServerService implements Closeable {
     private BufferedReader input;
     private PrintWriter output;
 
-    public ServerService(Socket socket) throws IOException{
+    public ServerService(Socket socket) throws IOException {
         this.socket = socket;
         output = new PrintWriter(new BufferedWriter(
-                new OutputStreamWriter(socket.getOutputStream())),true);
+                new OutputStreamWriter(socket.getOutputStream())), true);
         input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
     }
 
-    public void respond(ProtocolController controller){
+    public void respond(ProtocolController controller) {
         try {
-            while (true){
-                controller.processRequest(input,output);
+            while (true) {
+                controller.processRequest(input, output);
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         } finally {
-            try{
+            try {
                 socket.close();
-            } catch (IOException e){
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -37,7 +37,7 @@ public class ServerService implements Closeable {
 
     @Override
     public void close() throws IOException {
-        if(socket != null){
+        if (socket != null) {
             socket.close();
         }
     }

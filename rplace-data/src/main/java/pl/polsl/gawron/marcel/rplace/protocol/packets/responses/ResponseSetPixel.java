@@ -14,6 +14,7 @@ public class ResponseSetPixel implements PacketBody {
 
     /**
      * Getter for checking if request was accepted
+     *
      * @return if true request was accepted
      */
     public boolean isRequestAccepted() {
@@ -22,6 +23,7 @@ public class ResponseSetPixel implements PacketBody {
 
     /**
      * Setter for setting if request was accepted
+     *
      * @param requestAccepted was request proper
      */
     public void setRequestAccepted(boolean requestAccepted) {
@@ -30,6 +32,7 @@ public class ResponseSetPixel implements PacketBody {
 
     /**
      * Getter for error message
+     *
      * @return human readable error message
      */
     public String getErrorMessage() {
@@ -38,6 +41,7 @@ public class ResponseSetPixel implements PacketBody {
 
     /**
      * Setter for error message
+     *
      * @param errorMessage human readable error message
      */
     public void setErrorMessage(String errorMessage) {
@@ -46,16 +50,18 @@ public class ResponseSetPixel implements PacketBody {
 
     /**
      * Serializes class to JSON
+     *
      * @return JSON class representation
      */
     @Override
     public String serialize() {
         Gson gson = new Gson();
-        return gson.toJson(this,ResponseSetPixel.class);
+        return gson.toJson(this, ResponseSetPixel.class);
     }
 
     /**
      * Deserializes class from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */

@@ -1,7 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Random;
 

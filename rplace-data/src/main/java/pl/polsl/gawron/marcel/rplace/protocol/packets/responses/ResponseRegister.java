@@ -14,6 +14,7 @@ public class ResponseRegister implements PacketBody {
 
     /**
      * Did registration went successfully
+     *
      * @return did registration went successfully
      */
     public boolean isOk() {
@@ -22,12 +23,13 @@ public class ResponseRegister implements PacketBody {
 
     /**
      * Serializes class to JSON
+     *
      * @return JSON class representation
      */
     @Override
     public String serialize() {
         Gson gson = new Gson();
-        return gson.toJson(this,ResponseRegister.class);
+        return gson.toJson(this, ResponseRegister.class);
     }
 
     @Override

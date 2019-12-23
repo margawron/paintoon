@@ -1,11 +1,9 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
 import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -19,6 +17,7 @@ public class ResponsePixelHistory implements PacketBody {
 
     /**
      * Getter for history entry list
+     *
      * @return list with history entry objects
      */
     public List<HistoryEntry> getHistoryEntryList() {
@@ -27,6 +26,7 @@ public class ResponsePixelHistory implements PacketBody {
 
     /**
      * Setter for history entry list
+     *
      * @param historyEntryList new list of history entry objects
      */
     public void setHistoryEntryList(List<HistoryEntry> historyEntryList) {
@@ -35,22 +35,24 @@ public class ResponsePixelHistory implements PacketBody {
 
     /**
      * Serializes class to JSON
+     *
      * @return JSON class representation
      */
     @Override
     public String serialize() {
         Gson gson = new Gson();
-        return gson.toJson(this,ResponsePixelHistory.class);
+        return gson.toJson(this, ResponsePixelHistory.class);
     }
 
     /**
      * Deserializes class from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */
     @Override
     public PacketBody deserialize(String json) {
         Gson gson = new Gson();
-        return gson.fromJson(json,ResponsePixelHistory.class);
+        return gson.fromJson(json, ResponsePixelHistory.class);
     }
 }

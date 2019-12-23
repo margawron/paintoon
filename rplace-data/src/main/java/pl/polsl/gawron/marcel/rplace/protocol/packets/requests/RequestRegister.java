@@ -15,6 +15,7 @@ public class RequestRegister implements PacketBody {
 
     /**
      * Getter for the name of the user
+     *
      * @return name of the user
      */
     public String getName() {
@@ -23,6 +24,7 @@ public class RequestRegister implements PacketBody {
 
     /**
      * Setter for the name of the user
+     *
      * @param name new name of the user
      */
     public void setName(String name) {
@@ -31,6 +33,7 @@ public class RequestRegister implements PacketBody {
 
     /**
      * Getter for the password of the user
+     *
      * @return password of the user
      */
     public String getPassword() {
@@ -39,6 +42,7 @@ public class RequestRegister implements PacketBody {
 
     /**
      * Setter for the password of the user
+     *
      * @param password password of the user
      */
     public void setPassword(String password) {
@@ -47,16 +51,18 @@ public class RequestRegister implements PacketBody {
 
     /**
      * Serializes class to JSON
+     *
      * @return JSON class representation
      */
     @Override
     public String serialize() {
         Gson gson = new Gson();
-        return gson.toJson(this,RequestRegister.class);
+        return gson.toJson(this, RequestRegister.class);
     }
 
     /**
      * Deserializes class from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */

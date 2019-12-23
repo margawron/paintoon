@@ -17,6 +17,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Getter of a hash returned by server
+     *
      * @return hash from server
      */
     public String getHash() {
@@ -25,6 +26,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Setter for a hash to be returned to client
+     *
      * @param hash hash to send to client
      */
     public void setHash(String hash) {
@@ -33,6 +35,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Getter for expiry date of a hash
+     *
      * @return expiry date of hash in GMT
      */
     public ZonedDateTime getHashExpiryGMT() {
@@ -41,6 +44,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Setter for expiry date of a hash
+     *
      * @param hashExpiryGMT expiry date of a hash
      */
     public void setHashExpiryGMT(ZonedDateTime hashExpiryGMT) {
@@ -49,6 +53,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Serializes class to JSON
+     *
      * @return JSON class representation
      */
     @Override
@@ -59,6 +64,7 @@ public class ResponseLogin implements PacketBody {
 
     /**
      * Deserializes class from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */

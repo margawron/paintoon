@@ -15,6 +15,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Setter for which youngest pixel should history start
+     *
      * @return youngest pixel position in history registry
      */
     public int getFromYoungestPixelNumber() {
@@ -23,6 +24,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Getter for which youngest pixel should sent history start
+     *
      * @param fromYoungestPixelNumber youngest pixel position in history registry
      */
     public void setFromYoungestPixelNumber(int fromYoungestPixelNumber) {
@@ -31,6 +33,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Getter for which oldest pixel should sent history end
+     *
      * @return oldest pixel position in history registry
      */
     public int getToOldestPixelNumber() {
@@ -39,6 +42,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Setter for which oldest pixel should sent history end
+     *
      * @param toOldestPixelNumber oldest pixel position in history registry
      */
     public void setToOldestPixelNumber(int toOldestPixelNumber) {
@@ -47,6 +51,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Serialize class object to JSON
+     *
      * @return JSON class representation
      */
     @Override
@@ -57,6 +62,7 @@ public class RequestPixelHistory implements PacketBody {
 
     /**
      * Deserialize class from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */

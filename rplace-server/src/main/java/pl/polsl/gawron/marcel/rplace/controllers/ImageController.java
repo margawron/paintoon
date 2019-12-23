@@ -96,6 +96,7 @@ public class ImageController {
 
     /**
      * Updates and returns BufferedImage of a ImageView
+     *
      * @return current image
      */
     public BufferedImage getBufferedImage() {

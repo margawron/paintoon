@@ -21,6 +21,7 @@ public class ResponseImageByteArray implements PacketBody {
     /**
      * Get image byte array
      * need to be converted to BufferedImage
+     *
      * @return image in byte array form
      */
     public byte[] getBitmapByteArray() {
@@ -38,6 +39,7 @@ public class ResponseImageByteArray implements PacketBody {
 
     /**
      * Getter for a size of square image
+     *
      * @return size of one side from square image
      */
     public int getSize() {
@@ -46,9 +48,10 @@ public class ResponseImageByteArray implements PacketBody {
 
     /**
      * Get BufferedImage directly from byte array
+     *
      * @return image stored in BufferedImage object
      */
-    public BufferedImage getBufferedImage(){
+    public BufferedImage getBufferedImage() {
         BufferedImage bufferedImage = new BufferedImage(size, size, BufferedImage.TYPE_3BYTE_BGR);
         bufferedImage.setData(Raster.createRaster(bufferedImage.getSampleModel(), new DataBufferByte(bitmapByteArray, 3 * size * size), new Point()));
         return bufferedImage;
@@ -56,6 +59,7 @@ public class ResponseImageByteArray implements PacketBody {
 
     /**
      * Serializes class object to JSON
+     *
      * @return JSON class representation
      */
     @Override
@@ -66,12 +70,13 @@ public class ResponseImageByteArray implements PacketBody {
 
     /**
      * Deserializes class object from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */
     @Override
     public PacketBody deserialize(String json) {
         Gson gson = new Gson();
-        return gson.fromJson(json,ResponseImageByteArray.class);
+        return gson.fromJson(json, ResponseImageByteArray.class);
     }
 }

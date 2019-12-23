@@ -16,22 +16,24 @@ public class RequestImageByteArray implements PacketBody {
 
     /**
      * Serializes class to be sent
+     *
      * @return Serialized class as JSON
      */
     @Override
-    public String serialize(){
+    public String serialize() {
         Gson gson = new Gson();
-        return gson.toJson(this,RequestImageByteArray.class);
+        return gson.toJson(this, RequestImageByteArray.class);
     }
 
     /**
      * Deserializes received class
+     *
      * @param json JSON object representation
      * @return class object
      */
     @Override
     public RequestImageByteArray deserialize(String json) {
         Gson gson = new Gson();
-        return gson.fromJson(json,RequestImageByteArray.class);
+        return gson.fromJson(json, RequestImageByteArray.class);
     }
 }

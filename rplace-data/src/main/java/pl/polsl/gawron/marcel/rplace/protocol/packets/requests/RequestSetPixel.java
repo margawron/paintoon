@@ -18,6 +18,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Getter for horizontal position
+     *
      * @return horizontal position
      */
     public int getxPos() {
@@ -26,6 +27,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Setter for horizontal position
+     *
      * @param xPos horizontal position
      */
     public void setxPos(int xPos) {
@@ -34,6 +36,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Getter for vertical position
+     *
      * @return vertical position
      */
     public int getyPos() {
@@ -42,6 +45,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Setter for vertical position
+     *
      * @param yPos vertical position
      */
     public void setyPos(int yPos) {
@@ -50,6 +54,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Getter for color of a pixel
+     *
      * @return pixel color
      */
     public Color getColor() {
@@ -58,6 +63,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Setter for color of a pixel
+     *
      * @param color new pixel color
      */
     public void setColor(Color color) {
@@ -66,6 +72,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Getter for user hash
+     *
      * @return user hash code
      */
     public String getUserHash() {
@@ -74,6 +81,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Setter for user hash
+     *
      * @param userHash new user hash code
      */
     public void setUserHash(String userHash) {
@@ -82,6 +90,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Serializes class object to JSON
+     *
      * @return JSON class representation
      */
     @Override
@@ -92,6 +101,7 @@ public class RequestSetPixel implements PacketBody {
 
     /**
      * Deserializes class object from JSON
+     *
      * @param json JSON class representation
      * @return class object
      */
