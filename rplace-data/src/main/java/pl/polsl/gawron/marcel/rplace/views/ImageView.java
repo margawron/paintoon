@@ -1,5 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.views;
 
+import pl.polsl.gawron.marcel.rplace.models.Image;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,8 +9,6 @@ import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
-
-import pl.polsl.gawron.marcel.rplace.models.Image;
 
 /**
  * Class for representing Image as Bitmap
