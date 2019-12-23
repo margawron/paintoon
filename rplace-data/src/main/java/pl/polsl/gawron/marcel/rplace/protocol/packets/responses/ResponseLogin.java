@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 import java.time.ZonedDateTime;
 
@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponseLogin implements PacketBody {
+public class ResponseLogin implements Serializable {
     private String hash;
     private ZonedDateTime hashExpiryGMT;
 
@@ -66,10 +66,9 @@ public class ResponseLogin implements PacketBody {
      * Deserializes class from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static ResponseLogin deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseLogin.class);
     }

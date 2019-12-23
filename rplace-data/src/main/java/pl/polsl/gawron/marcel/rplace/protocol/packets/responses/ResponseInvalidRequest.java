@@ -1,13 +1,30 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponseInvalidRequest implements PacketBody {
+public class ResponseInvalidRequest implements Serializable {
+    private String message;
+
+    /**
+     * Getter for error message
+     * @return message from server
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * Setter for error message
+     * @param message message to send
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     /**
      * Serializes class to be sent
@@ -24,10 +41,9 @@ public class ResponseInvalidRequest implements PacketBody {
      * Deserializes received class
      *
      * @param json JSON object representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public ResponseInvalidRequest deserialize(String json) {
+    public static ResponseInvalidRequest deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseInvalidRequest.class);
     }

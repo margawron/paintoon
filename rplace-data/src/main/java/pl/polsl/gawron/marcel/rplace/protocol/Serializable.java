@@ -1,8 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.protocol;
 
-public interface PacketBody {
+public interface Serializable {
 
     String serialize();
-
-    PacketBody deserialize(String json);
 }

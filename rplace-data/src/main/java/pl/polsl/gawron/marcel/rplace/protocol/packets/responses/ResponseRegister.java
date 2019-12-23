@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of register response
@@ -9,7 +9,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponseRegister implements PacketBody {
+public class ResponseRegister implements Serializable {
     private boolean isOk;
 
     /**
@@ -32,8 +32,12 @@ public class ResponseRegister implements PacketBody {
         return gson.toJson(this, ResponseRegister.class);
     }
 
-    @Override
-    public PacketBody deserialize(String json) {
+    /**
+     * Deserializes class from JSON
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponseRegister deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseRegister.class);
     }

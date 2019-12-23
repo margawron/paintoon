@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of login request packet
@@ -9,7 +9,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RequestLogin implements PacketBody {
+public class RequestLogin implements Serializable {
     private String name;
     private String password;
 
@@ -65,10 +65,9 @@ public class RequestLogin implements PacketBody {
      * Deserializes class from JSON
      *
      * @param json JSON representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static RequestLogin deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestLogin.class);
     }

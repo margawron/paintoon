@@ -3,6 +3,8 @@ package pl.polsl.gawron.marcel.rplace.tests;
 import org.junit.jupiter.api.Test;
 import pl.polsl.gawron.marcel.rplace.models.Color;
 import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
+import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestImageByteArray;
+import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestPixelHistory;
 import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponsePixelHistory;
 
 import java.time.Instant;
@@ -18,6 +20,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.0
  */
 public class PacketTests {
+
+    @Test
+    public void RequestImageByteArraySerialization() {
+        /**
+         * Given
+         */
+        RequestImageByteArray request = new RequestImageByteArray();
+        /**
+         * When
+         */
+        String serialized = request.serialize();
+        // Then
+        assertEquals("{}", serialized, "Serialized RequestImageByteArray should be equal to \"{}\"");
+    }
 
     /**
      * Contains a lists

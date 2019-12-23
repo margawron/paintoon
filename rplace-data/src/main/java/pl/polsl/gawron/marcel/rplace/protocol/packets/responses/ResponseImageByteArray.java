@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,7 +14,7 @@ import java.awt.image.Raster;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponseImageByteArray implements PacketBody {
+public class ResponseImageByteArray implements Serializable {
     private byte[] bitmapByteArray;
     private int size;
 
@@ -72,10 +72,9 @@ public class ResponseImageByteArray implements PacketBody {
      * Deserializes class object from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static ResponseImageByteArray deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseImageByteArray.class);
     }

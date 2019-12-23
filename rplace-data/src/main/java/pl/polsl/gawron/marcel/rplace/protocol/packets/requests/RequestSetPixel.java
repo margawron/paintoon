@@ -2,7 +2,7 @@ package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
 import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of set pixel request packet
@@ -10,7 +10,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RequestSetPixel implements PacketBody {
+public class RequestSetPixel implements Serializable {
     private int xPos;
     private int yPos;
     private Color color;
@@ -103,10 +103,9 @@ public class RequestSetPixel implements PacketBody {
      * Deserializes class object from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static RequestSetPixel deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestSetPixel.class);
     }

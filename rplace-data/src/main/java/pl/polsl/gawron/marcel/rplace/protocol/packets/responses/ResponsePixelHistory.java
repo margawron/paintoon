@@ -2,7 +2,7 @@ package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
 import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponsePixelHistory implements PacketBody {
+public class ResponsePixelHistory implements Serializable {
     private List<HistoryEntry> historyEntryList;
 
     /**
@@ -48,10 +48,9 @@ public class ResponsePixelHistory implements PacketBody {
      * Deserializes class from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static ResponsePixelHistory deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponsePixelHistory.class);
     }

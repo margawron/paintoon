@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of pixel history request packet
@@ -9,7 +9,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RequestPixelHistory implements PacketBody {
+public class RequestPixelHistory implements Serializable {
     private int fromYoungestPixelNumber;
     private int toOldestPixelNumber;
 
@@ -64,10 +64,9 @@ public class RequestPixelHistory implements PacketBody {
      * Deserialize class from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static RequestPixelHistory deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestPixelHistory.class);
     }

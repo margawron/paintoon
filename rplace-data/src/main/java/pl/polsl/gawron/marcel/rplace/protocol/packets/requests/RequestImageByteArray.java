@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of a image byte array request
@@ -9,7 +9,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RequestImageByteArray implements PacketBody {
+public class RequestImageByteArray implements Serializable {
     /**
      *  Body not needed
      */
@@ -29,10 +29,9 @@ public class RequestImageByteArray implements PacketBody {
      * Deserializes received class
      *
      * @param json JSON object representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public RequestImageByteArray deserialize(String json) {
+    public static RequestImageByteArray deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestImageByteArray.class);
     }

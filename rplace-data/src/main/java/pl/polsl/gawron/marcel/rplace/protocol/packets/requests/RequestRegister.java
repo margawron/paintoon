@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * Representation of register request packet
@@ -9,7 +9,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RequestRegister implements PacketBody {
+public class RequestRegister implements Serializable {
     private String name;
     private String password;
 
@@ -64,10 +64,9 @@ public class RequestRegister implements PacketBody {
      * Deserializes class from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static RequestRegister deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestRegister.class);
     }

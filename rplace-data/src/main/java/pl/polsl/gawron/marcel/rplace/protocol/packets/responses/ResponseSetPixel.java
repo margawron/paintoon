@@ -1,13 +1,13 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketBody;
+import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
  * @author Marcel Gawron
  * @version 1.0
  */
-public class ResponseSetPixel implements PacketBody {
+public class ResponseSetPixel implements Serializable {
 
     private boolean requestAccepted;
     private String errorMessage;
@@ -63,10 +63,9 @@ public class ResponseSetPixel implements PacketBody {
      * Deserializes class from JSON
      *
      * @param json JSON class representation
-     * @return class object
+     * @return class instance
      */
-    @Override
-    public PacketBody deserialize(String json) {
+    public static ResponseSetPixel deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseSetPixel.class);
     }
