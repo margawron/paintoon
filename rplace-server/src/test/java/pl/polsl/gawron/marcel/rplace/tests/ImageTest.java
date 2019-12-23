@@ -6,7 +6,8 @@ import pl.polsl.gawron.marcel.rplace.models.Image;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImageTest {
 

@@ -1,8 +1,9 @@
 package pl.polsl.gawron.marcel.rplace.tests;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import pl.polsl.gawron.marcel.rplace.models.Color;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ColorTest {
 
