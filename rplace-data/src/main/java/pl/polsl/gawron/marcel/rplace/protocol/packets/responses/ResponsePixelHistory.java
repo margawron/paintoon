@@ -50,7 +50,7 @@ public class ResponsePixelHistory implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponsePixelHistory deserialize(String json) {
+    public static ResponsePixelHistory deserialize(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponsePixelHistory.class);
     }

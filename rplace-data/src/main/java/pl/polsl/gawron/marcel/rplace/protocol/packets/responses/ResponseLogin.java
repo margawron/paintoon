@@ -68,7 +68,7 @@ public class ResponseLogin implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponseLogin deserialize(String json) {
+    public static ResponseLogin deserialize(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseLogin.class);
     }

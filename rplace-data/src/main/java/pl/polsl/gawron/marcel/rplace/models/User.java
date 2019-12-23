@@ -18,6 +18,7 @@ public class User {
     private LocalDateTime hashExpiryServerTime;
     private List<HistoryEntry> userPixelModificationHistory;
 
+
     /**
      * Default class constructor
      * randomizes Id
@@ -90,6 +91,38 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * Getter for user login hash
+     * @return user hash
+     */
+    public String getHash() {
+        return hash;
+    }
+
+    /**
+     * Setter for user hash
+     * @param hash user hash
+     */
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    /**
+     * Getter for user hash expiry date
+     * @return user hash expiry date
+     */
+    public LocalDateTime getHashExpiryServerTime() {
+        return hashExpiryServerTime;
+    }
+
+    /**
+     * Setter for user hash expiry date
+     * @param hashExpiryServerTime user hash expiry date
+     */
+    public void setHashExpiryServerTime(LocalDateTime hashExpiryServerTime) {
+        this.hashExpiryServerTime = hashExpiryServerTime;
     }
 
     /**

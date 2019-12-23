@@ -10,15 +10,24 @@ import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
  * @version 1.0
  */
 public class ResponseRegister implements Serializable {
-    private boolean isOk;
+    private boolean registrationSuccessful;
 
     /**
      * Did registration went successfully
      *
      * @return did registration went successfully
      */
-    public boolean isOk() {
-        return isOk;
+    public boolean isRegistrationSuccessful() {
+        return registrationSuccessful;
+    }
+
+    /**
+     * Sets if registration went successfully
+     *
+     * @param registrationSuccessful
+     */
+    public void setRegistrationSuccessful(boolean registrationSuccessful){
+        this.registrationSuccessful = registrationSuccessful;
     }
 
     /**
@@ -37,7 +46,7 @@ public class ResponseRegister implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponseRegister deserialize(String json) {
+    public static ResponseRegister deserialize(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseRegister.class);
     }

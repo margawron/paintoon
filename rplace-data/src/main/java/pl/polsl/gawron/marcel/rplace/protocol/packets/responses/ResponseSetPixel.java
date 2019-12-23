@@ -65,7 +65,7 @@ public class ResponseSetPixel implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponseSetPixel deserialize(String json) {
+    public static ResponseSetPixel deserialize(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseSetPixel.class);
     }
