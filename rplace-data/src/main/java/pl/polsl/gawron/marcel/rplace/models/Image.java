@@ -1,5 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class Image {
             bitmap[i] = (byte) 0b11111111;
         }
         size = 1000;
-        //history = new ArrayList<>();
+        history = new ArrayList<>();
     }
 
     /**
@@ -42,7 +43,7 @@ public class Image {
             bitmap[i] = (byte) 0b11111111;
         }
         this.size = size;
-        //history = new ArrayList<>();
+        history = new ArrayList<>();
     }
 
     /**
