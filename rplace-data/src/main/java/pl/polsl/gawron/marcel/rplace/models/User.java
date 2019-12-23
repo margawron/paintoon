@@ -1,5 +1,7 @@
 package pl.polsl.gawron.marcel.rplace.models;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -13,6 +15,8 @@ public class User {
     private Long id;
     private String name;
     private String password;
+    private String hash;
+    private LocalDateTime hashExpiryServerTime;
     private List<HistoryEntry> userPixelModificationHistory;
 
     /**
