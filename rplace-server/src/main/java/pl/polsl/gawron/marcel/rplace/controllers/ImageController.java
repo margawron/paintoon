@@ -4,6 +4,8 @@ import pl.polsl.gawron.marcel.rplace.models.Color;
 import pl.polsl.gawron.marcel.rplace.models.Image;
 import pl.polsl.gawron.marcel.rplace.views.ImageView;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Controller for a bitmap
  *
@@ -90,5 +92,13 @@ public class ImageController {
     public void saveAsFile(String filename) {
         updateBuffer();
         imageView.saveAsImage(filename);
+    }
+
+    /**
+     * Updates and returns BufferedImage of a ImageView
+     * @return current image
+     */
+    public BufferedImage getBufferedImage() {
+        return imageView.fromByteArrayToBufferedImage(image);
     }
 }
