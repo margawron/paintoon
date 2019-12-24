@@ -1,14 +1,12 @@
 package pl.polsl.gawron.marcel.rplace.controllers;
 
+import pl.polsl.gawron.marcel.rplace.handlers.PacketHandler;
 import pl.polsl.gawron.marcel.rplace.models.Image;
-import pl.polsl.gawron.marcel.rplace.models.User;
 import pl.polsl.gawron.marcel.rplace.views.ImageView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Server-side networking controller
@@ -21,24 +19,86 @@ public class ProtocolController {
     // Data
     private ImageView imageView;
     private Image image;
-    private List<User> users;
+    private PacketHandler dispatcher;
 
 
+    /**
+     * Default constructor of Protocol controller
+     */
     public ProtocolController() {
         this.image = new Image(100);
         this.imageView = new ImageView();
-        imageView.fromByteArrayToBufferedImage(image);
-        users = new ArrayList<>(20);
+        this.imageView.fromByteArrayToBufferedImage(image);
+        this.dispatcher = new PacketHandler(this);
     }
 
+    /**
+     * Main request processing function
+     * @param input input reader
+     * @param output output printer
+     * @throws IOException can be thrown by {@link BufferedReader#readLine()}
+     */
     public void processRequest(BufferedReader input, PrintWriter output) throws IOException {
         String inputString = input.readLine();
-        parseInput(inputString);
+        String outputString = parseAndDispatchInput(inputString);
+        output.println(outputString);
     }
 
-    private void parseInput(String input) {
+    /**
+     * Divides input via space between the packet type code and packet body
+     * @param input full input from client
+     * @return server response
+     */
+    private String parseAndDispatchInput(String input) {
         String[] split = input.split(" ", 2);
-
+        return dispatcher.dispatchPacket(split);
     }
 
+    /**
+     * Getter for imageView property
+     * @return imageView property
+     */
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    /**
+     * Setter for imageView property
+     * @param imageView new imageView property
+     */
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    /**
+     * Getter for image property
+     * @return image property
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * Setter for image property
+     * @param image new image property
+     */
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    /**
+     * Getter for dispatcher property
+     * @return dispatcher property
+     */
+    public PacketHandler getDispatcher() {
+        return dispatcher;
+    }
+
+    /**
+     * Setter for dispatcher property
+     * @param dispatcher new dispatcher property
+     */
+    public void setDispatcher(PacketHandler dispatcher) {
+        this.dispatcher = dispatcher;
+    }
 }

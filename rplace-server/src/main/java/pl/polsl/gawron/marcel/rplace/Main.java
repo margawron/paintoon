@@ -34,7 +34,7 @@ public class Main implements Closeable {
             Main server = new Main();
             server.startServer();
         } catch (IOException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
