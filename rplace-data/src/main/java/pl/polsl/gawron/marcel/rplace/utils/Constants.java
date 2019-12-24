@@ -30,4 +30,8 @@ public class Constants {
         public static final User TEST_USER = new User(Strings.TEST_USER_NAME.getName());
     }
 
+    public static final int MINUTES_TO_WAIT_AFTER_SET_PIXEL = 10;
+    public static final int MAX_PIXEL_HISTORY_LENGTH = 20;
+
+
 }

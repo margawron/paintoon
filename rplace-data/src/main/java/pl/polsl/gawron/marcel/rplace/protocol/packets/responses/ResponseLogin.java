@@ -3,7 +3,7 @@ package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
 import com.google.gson.Gson;
 import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 /**
  * Representation of login response packet
@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
  */
 public class ResponseLogin implements Serializable {
     private String hash;
-    private ZonedDateTime hashExpiryGMT;
+    private LocalDateTime hashExpiryServerTime;
 
     /**
      * Getter of a hash returned by server
@@ -38,17 +38,17 @@ public class ResponseLogin implements Serializable {
      *
      * @return expiry date of hash in GMT
      */
-    public ZonedDateTime getHashExpiryGMT() {
-        return hashExpiryGMT;
+    public LocalDateTime getHashExpiryServerTime() {
+        return hashExpiryServerTime;
     }
 
     /**
      * Setter for expiry date of a hash
      *
-     * @param hashExpiryGMT expiry date of a hash
+     * @param hashExpiryServerTime expiry date of a hash
      */
-    public void setHashExpiryGMT(ZonedDateTime hashExpiryGMT) {
-        this.hashExpiryGMT = hashExpiryGMT;
+    public void setHashExpiryServerTime(LocalDateTime hashExpiryServerTime) {
+        this.hashExpiryServerTime = hashExpiryServerTime;
     }
 
     /**

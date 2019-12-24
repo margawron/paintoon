@@ -11,9 +11,10 @@ import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
  * @version 1.0
  */
 public class RequestSetPixel implements Serializable {
-    private int xPos;
-    private int yPos;
+    private Integer xPos;
+    private Integer yPos;
     private Color color;
+    private String userName;
     private String userHash;
 
     /**
@@ -21,7 +22,7 @@ public class RequestSetPixel implements Serializable {
      *
      * @return horizontal position
      */
-    public int getxPos() {
+    public Integer getxPos() {
         return xPos;
     }
 
@@ -30,7 +31,7 @@ public class RequestSetPixel implements Serializable {
      *
      * @param xPos horizontal position
      */
-    public void setxPos(int xPos) {
+    public void setxPos(Integer xPos) {
         this.xPos = xPos;
     }
 
@@ -39,7 +40,7 @@ public class RequestSetPixel implements Serializable {
      *
      * @return vertical position
      */
-    public int getyPos() {
+    public Integer getyPos() {
         return yPos;
     }
 
@@ -48,7 +49,7 @@ public class RequestSetPixel implements Serializable {
      *
      * @param yPos vertical position
      */
-    public void setyPos(int yPos) {
+    public void setyPos(Integer yPos) {
         this.yPos = yPos;
     }
 
@@ -68,6 +69,23 @@ public class RequestSetPixel implements Serializable {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    /**
+     * Getter for user name
+     *
+     * @return user name
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Setter for user name
+     * @param userName new user name
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**

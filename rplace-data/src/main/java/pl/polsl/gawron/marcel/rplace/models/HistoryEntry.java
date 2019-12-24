@@ -13,7 +13,7 @@ public class HistoryEntry {
     private int y;
     private Color color;
     private User userWhoModifiedPixel;
-    private LocalDateTime timeOfLastModification;
+    private LocalDateTime timeOfModification;
 
     /**
      * Default constructor
@@ -98,16 +98,16 @@ public class HistoryEntry {
      *
      * @return time of pixel modification
      */
-    public LocalDateTime getTimeOfLastModification() {
-        return timeOfLastModification;
+    public LocalDateTime getTimeOfModification() {
+        return timeOfModification;
     }
 
     /**
      * Setter for pixel time of modification
      *
-     * @param timeOfLastModification pixel time of modification
+     * @param timeOfModification pixel time of modification
      */
-    public void setTimeOfLastModification(LocalDateTime timeOfLastModification) {
-        this.timeOfLastModification = timeOfLastModification;
+    public void setTimeOfModification(LocalDateTime timeOfModification) {
+        this.timeOfModification = timeOfModification;
     }
 }

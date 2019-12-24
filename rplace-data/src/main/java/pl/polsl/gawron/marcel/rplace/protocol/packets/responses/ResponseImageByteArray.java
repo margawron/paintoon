@@ -38,7 +38,7 @@ public class ResponseImageByteArray implements Serializable {
     }
 
     /**
-     * Getter for a size of square image
+     * Getter for a size of image (image is a square)
      *
      * @return size of one side from square image
      */
@@ -46,6 +46,13 @@ public class ResponseImageByteArray implements Serializable {
         return size;
     }
 
+    /**
+     * Setter for size of image (image is a square)
+     * @param size new size of image
+     */
+    public void setSize(int size){
+        this.size = size;
+    }
     /**
      * Get BufferedImage directly from byte array
      *

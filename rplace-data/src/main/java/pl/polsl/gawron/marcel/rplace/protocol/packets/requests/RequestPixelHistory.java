@@ -10,25 +10,25 @@ import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
  * @version 1.0
  */
 public class RequestPixelHistory implements Serializable {
-    private int fromYoungestPixelNumber;
-    private int toOldestPixelNumber;
+    private Integer toYoungestPixelNumber;
+    private Integer fromOldestPixelNumber;
 
     /**
      * Setter for which youngest pixel should history start
      *
      * @return youngest pixel position in history registry
      */
-    public int getFromYoungestPixelNumber() {
-        return fromYoungestPixelNumber;
+    public Integer getToYoungestPixelNumber() {
+        return toYoungestPixelNumber;
     }
 
     /**
      * Getter for which youngest pixel should sent history start
      *
-     * @param fromYoungestPixelNumber youngest pixel position in history registry
+     * @param toYoungestPixelNumber youngest pixel position in history registry
      */
-    public void setFromYoungestPixelNumber(int fromYoungestPixelNumber) {
-        this.fromYoungestPixelNumber = fromYoungestPixelNumber;
+    public void setToYoungestPixelNumber(Integer toYoungestPixelNumber) {
+        this.toYoungestPixelNumber = toYoungestPixelNumber;
     }
 
     /**
@@ -36,17 +36,17 @@ public class RequestPixelHistory implements Serializable {
      *
      * @return oldest pixel position in history registry
      */
-    public int getToOldestPixelNumber() {
-        return toOldestPixelNumber;
+    public Integer getFromOldestPixelNumber() {
+        return fromOldestPixelNumber;
     }
 
     /**
      * Setter for which oldest pixel should sent history end
      *
-     * @param toOldestPixelNumber oldest pixel position in history registry
+     * @param fromOldestPixelNumber oldest pixel position in history registry
      */
-    public void setToOldestPixelNumber(int toOldestPixelNumber) {
-        this.toOldestPixelNumber = toOldestPixelNumber;
+    public void setFromOldestPixelNumber(Integer fromOldestPixelNumber) {
+        this.fromOldestPixelNumber = fromOldestPixelNumber;
     }
 
     /**
