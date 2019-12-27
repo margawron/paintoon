@@ -10,6 +10,7 @@ import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Properties;
 
 /**
  * Handles connection to the server
@@ -27,13 +28,20 @@ public class ConnectionHandler {
 
     /**
      * Default constructor
-     *
-     * @param host address of a host to connect to
-     * @param port port of a host to connect to
+     * loads port and address value from properties file
      */
-    public ConnectionHandler(String host, int port) {
-        this.port = port;
-        this.host = host;
+    public ConnectionHandler() {
+        Properties properties = new Properties();
+
+        String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        try (FileInputStream out = new FileInputStream(path + File.separator +"config.properties")) {
+            properties.load(out);
+            this.host = properties.getProperty("connection.address");
+            this.port = Integer.parseInt(properties.getProperty("connection.port"));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
     }
 
     /**

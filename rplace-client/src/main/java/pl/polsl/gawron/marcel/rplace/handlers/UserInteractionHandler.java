@@ -14,6 +14,7 @@ import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -45,8 +46,7 @@ public class UserInteractionHandler {
      * Runs main program loop
      */
     public void run() {
-        int port = getServerPort();
-        ConnectionHandler connectionHandler = new ConnectionHandler("localhost", port);
+        ConnectionHandler connectionHandler = new ConnectionHandler();
         connectionHandler.connect();
 
         registration(connectionHandler);
@@ -213,27 +213,6 @@ public class UserInteractionHandler {
             component = sc.nextInt();
         }
         return component;
-    }
-
-
-    /**
-     * Setups base for socket connection
-     *
-     * @return port number to be used for socket to connect
-     */
-    private int getServerPort() {
-        ArgumentParser argumentParser = new ArgumentParser(args);
-        argumentParser.parse();
-        argumentParser.printConfig();
-        Map<String, String> config = argumentParser.getConfig();
-        Integer port = null;
-        try {
-            port = Integer.parseInt(config.get("port"));
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-            System.exit(-1);
-        }
-        return port;
     }
 
     /**
