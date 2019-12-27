@@ -2,6 +2,8 @@ package pl.polsl.gawron.marcel.rplace.controllers;
 
 import pl.polsl.gawron.marcel.rplace.handlers.PacketHandler;
 import pl.polsl.gawron.marcel.rplace.models.Image;
+import pl.polsl.gawron.marcel.rplace.protocol.PacketType;
+import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseInvalidRequest;
 import pl.polsl.gawron.marcel.rplace.views.ImageView;
 
 import java.io.BufferedReader;
@@ -49,7 +51,10 @@ public class ProtocolController {
      * @param input full input from client
      * @return server response
      */
-    private String parseAndDispatchInput(String input) {
+    private String parseAndDispatchInput(String input) throws IOException{
+        if(input == null) {
+            throw new IOException("Client disconnected");
+        }
         String[] split = input.split(" ", 2);
         return dispatcher.dispatchPacket(split);
     }
