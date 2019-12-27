@@ -144,7 +144,7 @@ public class PacketHandler {
         ResponseRegister response = new ResponseRegister();
         response.setRegistrationSuccessful(wasAdded);
 
-        stringBuilder.append(PacketType.RESPONSE_REGISTER);
+        stringBuilder.append(PacketType.RESPONSE_REGISTER.getValue());
         stringBuilder.append(" ");
         stringBuilder.append(response.serialize());
 
@@ -240,7 +240,7 @@ public class PacketHandler {
         if(user == null){
             return handleInvalidRequest("User not found");
         }
-        if(!user.getHash().equals(request.getUserHash())){
+        if(!user.getToken().equals(request.getUserHash())){
             return handleInvalidRequest("User not logged in");
         }
         Instant now = Instant.now();
