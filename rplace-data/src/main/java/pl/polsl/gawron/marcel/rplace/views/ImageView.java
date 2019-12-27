@@ -29,6 +29,7 @@ public class ImageView {
     /**
      * Convert raw array to image
      *
+     * @param image image object holding image byte array
      * @return image created by users
      */
     public BufferedImage fromByteArrayToBufferedImage(Image image) {
@@ -38,6 +39,11 @@ public class ImageView {
         return bufferedImage;
     }
 
+    /**
+     * Getter for image
+     *
+     * @return returns BufferedImage object
+     */
     public BufferedImage getImage() {
         return bufferedImage;
     }

@@ -16,6 +16,17 @@ public class ResponsePixelHistory implements Serializable {
     private List<HistoryEntry> historyEntryList;
 
     /**
+     * Deserializes class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponsePixelHistory deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponsePixelHistory.class);
+    }
+
+    /**
      * Getter for history entry list
      *
      * @return list with history entry objects
@@ -42,16 +53,5 @@ public class ResponsePixelHistory implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponsePixelHistory.class);
-    }
-
-    /**
-     * Deserializes class from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static ResponsePixelHistory deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponsePixelHistory.class);
     }
 }

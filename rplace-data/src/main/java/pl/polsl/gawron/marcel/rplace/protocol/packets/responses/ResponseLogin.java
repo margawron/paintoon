@@ -16,6 +16,17 @@ public class ResponseLogin implements Serializable {
     private LocalDateTime tokenExpiryServerTime;
 
     /**
+     * Deserializes class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponseLogin deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponseLogin.class);
+    }
+
+    /**
      * Getter of a hash returned by server
      *
      * @return hash from server
@@ -60,16 +71,5 @@ public class ResponseLogin implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponseLogin.class);
-    }
-
-    /**
-     * Deserializes class from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static ResponseLogin deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponseLogin.class);
     }
 }

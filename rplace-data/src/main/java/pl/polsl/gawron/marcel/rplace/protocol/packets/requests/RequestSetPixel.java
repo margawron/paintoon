@@ -15,7 +15,18 @@ public class RequestSetPixel implements Serializable {
     private Integer yPos;
     private Color color;
     private String userName;
-    private String userHash;
+    private String userToken;
+
+    /**
+     * Deserializes class object from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static RequestSetPixel deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, RequestSetPixel.class);
+    }
 
     /**
      * Getter for horizontal position
@@ -82,6 +93,7 @@ public class RequestSetPixel implements Serializable {
 
     /**
      * Setter for user name
+     *
      * @param userName new user name
      */
     public void setUserName(String userName) {
@@ -93,17 +105,17 @@ public class RequestSetPixel implements Serializable {
      *
      * @return user hash code
      */
-    public String getUserHash() {
-        return userHash;
+    public String getUserToken() {
+        return userToken;
     }
 
     /**
      * Setter for user hash
      *
-     * @param userHash new user hash code
+     * @param userToken new user hash code
      */
-    public void setUserHash(String userHash) {
-        this.userHash = userHash;
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     /**
@@ -115,16 +127,5 @@ public class RequestSetPixel implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, RequestSetPixel.class);
-    }
-
-    /**
-     * Deserializes class object from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static RequestSetPixel deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, RequestSetPixel.class);
     }
 }

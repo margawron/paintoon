@@ -2,8 +2,6 @@ package pl.polsl.gawron.marcel.rplace.controllers;
 
 import pl.polsl.gawron.marcel.rplace.handlers.PacketHandler;
 import pl.polsl.gawron.marcel.rplace.models.Image;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketType;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseInvalidRequest;
 import pl.polsl.gawron.marcel.rplace.views.ImageView;
 
 import java.io.BufferedReader;
@@ -36,7 +34,8 @@ public class ProtocolController {
 
     /**
      * Main request processing function
-     * @param input input reader
+     *
+     * @param input  input reader
      * @param output output printer
      * @throws IOException can be thrown by {@link BufferedReader#readLine()}
      */
@@ -48,11 +47,14 @@ public class ProtocolController {
 
     /**
      * Divides input via space between the packet type code and packet body
+     *
      * @param input full input from client
      * @return server response
+     *
+     * @throws IOException when user disconnects
      */
-    private String parseAndDispatchInput(String input) throws IOException{
-        if(input == null) {
+    private String parseAndDispatchInput(String input) throws IOException {
+        if (input == null) {
             throw new IOException("Client disconnected");
         }
         String[] split = input.split(" ", 2);
@@ -61,6 +63,7 @@ public class ProtocolController {
 
     /**
      * Getter for imageView property
+     *
      * @return imageView property
      */
     public ImageView getImageView() {
@@ -69,6 +72,7 @@ public class ProtocolController {
 
     /**
      * Setter for imageView property
+     *
      * @param imageView new imageView property
      */
     public void setImageView(ImageView imageView) {
@@ -77,6 +81,7 @@ public class ProtocolController {
 
     /**
      * Getter for image property
+     *
      * @return image property
      */
     public Image getImage() {
@@ -85,6 +90,7 @@ public class ProtocolController {
 
     /**
      * Setter for image property
+     *
      * @param image new image property
      */
     public void setImage(Image image) {
@@ -93,6 +99,7 @@ public class ProtocolController {
 
     /**
      * Getter for dispatcher property
+     *
      * @return dispatcher property
      */
     public PacketHandler getDispatcher() {
@@ -101,6 +108,7 @@ public class ProtocolController {
 
     /**
      * Setter for dispatcher property
+     *
      * @param dispatcher new dispatcher property
      */
     public void setDispatcher(PacketHandler dispatcher) {

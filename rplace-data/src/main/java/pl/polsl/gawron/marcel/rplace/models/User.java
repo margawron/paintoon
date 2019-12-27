@@ -95,6 +95,7 @@ public class User {
 
     /**
      * Getter for user login hash
+     *
      * @return user hash
      */
     public String getToken() {
@@ -103,6 +104,7 @@ public class User {
 
     /**
      * Setter for user hash
+     *
      * @param token user hash
      */
     public void setToken(String token) {
@@ -111,6 +113,7 @@ public class User {
 
     /**
      * Getter for user hash expiry date
+     *
      * @return user hash expiry date
      */
     public LocalDateTime getTokenExpiryServerTime() {
@@ -119,6 +122,7 @@ public class User {
 
     /**
      * Setter for user hash expiry date
+     *
      * @param tokenExpiryServerTime user hash expiry date
      */
     public void setTokenExpiryServerTime(LocalDateTime tokenExpiryServerTime) {

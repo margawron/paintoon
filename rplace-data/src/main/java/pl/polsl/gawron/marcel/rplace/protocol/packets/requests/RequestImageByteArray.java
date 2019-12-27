@@ -1,7 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
 
 /**
@@ -16,17 +15,6 @@ public class RequestImageByteArray implements Serializable {
      */
 
     /**
-     * Serializes class to be sent
-     *
-     * @return Serialized class as JSON
-     */
-    @Override
-    public String serialize() {
-        Gson gson = new Gson();
-        return gson.toJson(this, RequestImageByteArray.class);
-    }
-
-    /**
      * Deserializes received class
      *
      * @param json JSON object representation
@@ -35,5 +23,16 @@ public class RequestImageByteArray implements Serializable {
     public static RequestImageByteArray deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestImageByteArray.class);
+    }
+
+    /**
+     * Serializes class to be sent
+     *
+     * @return Serialized class as JSON
+     */
+    @Override
+    public String serialize() {
+        Gson gson = new Gson();
+        return gson.toJson(this, RequestImageByteArray.class);
     }
 }

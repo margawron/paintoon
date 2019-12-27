@@ -13,7 +13,18 @@ public class ResponseRegister implements Serializable {
     private boolean registrationSuccessful;
 
     /**
-     * Did registration went successfully
+     * Deserializes class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponseRegister deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponseRegister.class);
+    }
+
+    /**
+     * Getter for the flag if registration went successfully
      *
      * @return did registration went successfully
      */
@@ -22,11 +33,11 @@ public class ResponseRegister implements Serializable {
     }
 
     /**
-     * Sets if registration went successfully
+     * Setter for the flag if registration went successfully
      *
-     * @param registrationSuccessful
+     * @param registrationSuccessful did registration went successfully
      */
-    public void setRegistrationSuccessful(boolean registrationSuccessful){
+    public void setRegistrationSuccessful(boolean registrationSuccessful) {
         this.registrationSuccessful = registrationSuccessful;
     }
 
@@ -39,15 +50,5 @@ public class ResponseRegister implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponseRegister.class);
-    }
-
-    /**
-     * Deserializes class from JSON
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static ResponseRegister deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponseRegister.class);
     }
 }

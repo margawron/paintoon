@@ -13,6 +13,7 @@ import pl.polsl.gawron.marcel.rplace.utils.Constants;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +30,12 @@ public class PacketHandler {
     private UserRepository userRepository;
     private HistoryEntryRepository historyEntryRepository;
     private ProtocolController protocolController;
+
     public PacketHandler() {
         this.userRepository = new UserRepository();
     }
 
-    public PacketHandler(ProtocolController controller){
+    public PacketHandler(ProtocolController controller) {
         this.userRepository = new UserRepository();
         this.historyEntryRepository = new HistoryEntryRepository();
         this.protocolController = controller;
@@ -52,28 +54,35 @@ public class PacketHandler {
             return responseStringBuilder.toString();
         }
         Integer packetCode = getPacketId(responseStringBuilder, splittedInput);
-        if(packetCode == null){
+        if (packetCode == null) {
             return responseStringBuilder.toString();
         }
         PacketType receivedPacketType = PacketType.fromInteger(packetCode);
         String packetBody = getPacketBody(splittedInput);
-        if(packetBody == null){
+        if (packetBody == null) {
             return handleInvalidRequest("No body");
         }
-        switch (receivedPacketType){
-            case REQUEST_REGISTER: return handleRegisterRequest(packetBody);
-            case REQUEST_LOGIN: return handleLoginRequest( packetBody);
-            case REQUEST_IMAGE_BYTE_ARRAY: return handleImageByteArrayRequest( packetBody);
-            case REQUEST_SET_PIXEL: return handleSetPixelRequest( packetBody);
-            case REQUEST_PIXEL_HISTORY: return handlePixelHistoryRequest(packetBody);
-            default: return handleInvalidRequest("Invalid request");
+        switch (receivedPacketType) {
+            case REQUEST_REGISTER:
+                return handleRegisterRequest(packetBody);
+            case REQUEST_LOGIN:
+                return handleLoginRequest(packetBody);
+            case REQUEST_IMAGE_BYTE_ARRAY:
+                return handleImageByteArrayRequest(packetBody);
+            case REQUEST_SET_PIXEL:
+                return handleSetPixelRequest(packetBody);
+            case REQUEST_PIXEL_HISTORY:
+                return handlePixelHistoryRequest(packetBody);
+            default:
+                return handleInvalidRequest("Invalid request");
         }
     }
 
     /**
      * Checks if packet is empty, if so outputs {@link PacketType#INVALID_REQUEST}
+     *
      * @param responseStringBuilder output StringBuilder
-     * @param length length of input array
+     * @param length                length of input array
      * @return true if input array is not empty
      */
     private boolean isInputLengthValid(StringBuilder responseStringBuilder, int length) {
@@ -90,15 +99,16 @@ public class PacketHandler {
 
     /**
      * Parses packet type code or outputs {@link PacketType#INVALID_REQUEST}
+     *
      * @param responseStringBuilder output StringBuilder
-     * @param strings input array
+     * @param strings               input array
      * @return packet code or null if packet code is invalid
      */
-    private Integer getPacketId(StringBuilder responseStringBuilder, String[] strings){
+    private Integer getPacketId(StringBuilder responseStringBuilder, String[] strings) {
         Integer packetCode = null;
-        try{
+        try {
             packetCode = Integer.parseInt(strings[0]);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             responseStringBuilder.append(PacketType.INVALID_REQUEST.getValue());
             ResponseInvalidRequest invalidRequest = new ResponseInvalidRequest();
             invalidRequest.setMessage("Invalid packet code");
@@ -110,6 +120,7 @@ public class PacketHandler {
 
     /**
      * Selects string from array which contains packet body
+     *
      * @param strings input array of strings
      * @return packet body string
      */
@@ -119,10 +130,11 @@ public class PacketHandler {
 
     /**
      * Handles register requests packet
+     *
      * @param packet string with packet body to parse
      * @return serialized packet to send to client
      */
-    private String handleRegisterRequest(String packet){
+    private String handleRegisterRequest(String packet) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println("Received register request");
@@ -130,13 +142,13 @@ public class PacketHandler {
         RequestRegister request = null;
         try {
             request = RequestRegister.deserialize(packet);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to parse register request packet");
         }
-        if(request == null){
+        if (request == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        if(request.getName() == null || request.getPassword() == null){
+        if (request.getName() == null || request.getPassword() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
         boolean wasAdded = userRepository.addUser(request.getName(), request.getPassword());
@@ -151,7 +163,13 @@ public class PacketHandler {
         return stringBuilder.toString();
     }
 
-    private String handleLoginRequest(String packet){
+    /**
+     * Handles login requests
+     *
+     * @param packet packet sent by the client
+     * @return response string
+     */
+    private String handleLoginRequest(String packet) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println("Received login request");
@@ -159,22 +177,22 @@ public class PacketHandler {
         RequestLogin request = null;
         try {
             request = RequestLogin.deserialize(packet);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to parse login request packet");
         }
-        if(request == null){
+        if (request == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        if(request.getName() == null || request.getPassword() == null){
+        if (request.getName() == null || request.getPassword() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
         User user = userRepository.findUser(request.getName());
-        if(user == null){
+        if (user == null) {
             return handleInvalidRequest("User with that name does not exist");
         }
 
         ResponseLogin response = new ResponseLogin();
-        if(!user.getPassword().equals(request.getPassword())){
+        if (!user.getPassword().equals(request.getPassword())) {
             return handleInvalidRequest("Invalid password");
         }
         String hash = RandomStringUtils.randomAlphanumeric(20);
@@ -182,7 +200,7 @@ public class PacketHandler {
         response.setToken(hash);
 
         Instant now = Instant.now();
-        LocalDateTime expiryDate = LocalDateTime.from(now).plusWeeks(1);
+        LocalDateTime expiryDate = LocalDateTime.ofInstant(now, ZoneOffset.UTC).plusWeeks(1);
         user.setTokenExpiryServerTime(expiryDate);
         response.setTokenExpiryServerTime(expiryDate);
 
@@ -192,18 +210,24 @@ public class PacketHandler {
         return stringBuilder.toString();
     }
 
-    private String handleImageByteArrayRequest( String packet){
+    /**
+     * Handles requests for server-side image
+     *
+     * @param packet client request
+     * @return response string
+     */
+    private String handleImageByteArrayRequest(String packet) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println("Received image byte array request");
 
         RequestImageByteArray request = null;
-        try{
+        try {
             request = RequestImageByteArray.deserialize(packet);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to parse image byte array request");
         }
-        if(request == null){
+        if (request == null) {
             return handleInvalidRequest("Invalid packet body");
         }
 
@@ -217,7 +241,13 @@ public class PacketHandler {
         return stringBuilder.toString();
     }
 
-    private String handleSetPixelRequest(String packet){
+    /**
+     * Handles set pixel requests
+     *
+     * @param packet client request
+     * @return response string
+     */
+    private String handleSetPixelRequest(String packet) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println("Received set pixel request");
@@ -225,26 +255,26 @@ public class PacketHandler {
         RequestSetPixel request = null;
         try {
             request = RequestSetPixel.deserialize(packet);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to parse set pixel request");
         }
-        if(request == null){
+        if (request == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        if(request.getxPos() == null || request.getyPos() == null || request.getColor() == null ||
-                request.getUserHash() == null || request.getUserName() == null){
+        if (request.getxPos() == null || request.getyPos() == null || request.getColor() == null ||
+                request.getUserToken() == null || request.getUserName() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
         User user = userRepository.findUser(request.getUserName());
-        if(user == null){
+        if (user == null) {
             return handleInvalidRequest("User not found");
         }
-        if(!user.getToken().equals(request.getUserHash())){
+        if (!user.getToken().equals(request.getUserToken())) {
             return handleInvalidRequest("User not logged in");
         }
         Instant now = Instant.now();
-        LocalDateTime currentDate = LocalDateTime.from(now);
-        if(currentDate.isAfter(user.getTokenExpiryServerTime())){
+        LocalDateTime currentDate = LocalDateTime.ofInstant(now, ZoneOffset.UTC);
+        if (currentDate.isAfter(user.getTokenExpiryServerTime())) {
             return handleInvalidRequest("Hash has expired");
         }
         LocalDateTime timeOfLastModification = null;
@@ -252,15 +282,19 @@ public class PacketHandler {
 
         ResponseSetPixel response = new ResponseSetPixel();
 
-        if(!userHistory.isEmpty()){
-            timeOfLastModification = userHistory.get(userHistory.size()-1).getTimeOfModification();
-            if(!timeOfLastModification.plusMinutes(Constants.MINUTES_TO_WAIT_AFTER_SET_PIXEL).isAfter(currentDate)){
-                response.setErrorMessage("You need to wait "+ Constants.MINUTES_TO_WAIT_AFTER_SET_PIXEL +" minutes after pixel change.");
+        if (!userHistory.isEmpty()) {
+            timeOfLastModification = userHistory.get(userHistory.size() - 1).getTimeOfModification();
+            LocalDateTime canModifyAfter = timeOfLastModification.plusMinutes(Constants.MINUTES_TO_WAIT_AFTER_SET_PIXEL);
+            if (canModifyAfter.isAfter(currentDate)) {
+                response.setErrorMessage("You need to wait " + Constants.MINUTES_TO_WAIT_AFTER_SET_PIXEL + " minutes after pixel change.");
                 response.setRequestAccepted(false);
-                return response.toString();
+                stringBuilder.append(PacketType.RESPONSE_SET_PIXEL.getValue());
+                stringBuilder.append(" ");
+                stringBuilder.append(response.serialize());
+                return stringBuilder.toString();
             }
         }
-        protocolController.getImage().setPixel(request.getxPos(),request.getyPos(),request.getColor());
+        protocolController.getImage().setPixel(request.getxPos(), request.getyPos(), request.getColor());
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setX(request.getxPos());
         historyEntry.setY(request.getyPos());
@@ -280,7 +314,13 @@ public class PacketHandler {
         return stringBuilder.toString();
     }
 
-    private String handlePixelHistoryRequest(String packet){
+    /**
+     * Handles pixel history requests
+     *
+     * @param packet client request
+     * @return response body
+     */
+    private String handlePixelHistoryRequest(String packet) {
         StringBuilder stringBuilder = new StringBuilder();
 
         System.out.println("Received pixel history request");
@@ -288,29 +328,29 @@ public class PacketHandler {
         RequestPixelHistory request = null;
         try {
             request = RequestPixelHistory.deserialize(packet);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to parse pixel history request");
         }
-        if(request == null){
+        if (request == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        if(request.getToYoungestPixelNumber() == null || request.getFromOldestPixelNumber() == null){
+        if (request.getToYoungestPixelNumber() == null || request.getFromOldestPixelNumber() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        if(request.getToYoungestPixelNumber() < 0 || request.getFromOldestPixelNumber() < 0){
+        if (request.getToYoungestPixelNumber() < 0 || request.getFromOldestPixelNumber() < 0) {
             return handleInvalidRequest("Ranges cannot be negative");
         }
-        if(request.getToYoungestPixelNumber()<=request.getFromOldestPixelNumber()){
+        if (request.getToYoungestPixelNumber() <= request.getFromOldestPixelNumber()) {
             return handleInvalidRequest("You messed up the order of values. Oldest are 1,2,3 ... youngest are  ...n-2,n-1,n");
         }
-        if(request.getFromOldestPixelNumber() - request.getToYoungestPixelNumber() > Constants.MAX_PIXEL_HISTORY_LENGTH){
+        if (request.getFromOldestPixelNumber() - request.getToYoungestPixelNumber() > Constants.MAX_PIXEL_HISTORY_LENGTH) {
             return handleInvalidRequest("To large range of pixel history");
         }
         ResponsePixelHistory response = new ResponsePixelHistory();
         List<HistoryEntry> historyList = new ArrayList<>();
-        for(int i = request.getFromOldestPixelNumber(); i < request.getToYoungestPixelNumber(); i++){
+        for (int i = request.getFromOldestPixelNumber(); i < request.getToYoungestPixelNumber(); i++) {
             HistoryEntry historyEntry = historyEntryRepository.getHistoryEntry(i);
-            if(historyEntry != null){
+            if (historyEntry != null) {
                 historyList.add(historyEntry);
             }
         }
@@ -323,7 +363,13 @@ public class PacketHandler {
         return stringBuilder.toString();
     }
 
-    private String handleInvalidRequest(String message){
+    /**
+     * Handles requests that are invalid
+     *
+     * @param message message to send to client
+     * @return response body
+     */
+    private String handleInvalidRequest(String message) {
         StringBuilder responseStringBuilder = new StringBuilder();
 
         System.out.println("Received invalid request");

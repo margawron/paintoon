@@ -14,6 +14,17 @@ public class RequestPixelHistory implements Serializable {
     private Integer fromOldestPixelNumber;
 
     /**
+     * Deserialize class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static RequestPixelHistory deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, RequestPixelHistory.class);
+    }
+
+    /**
      * Setter for which youngest pixel should history start
      *
      * @return youngest pixel position in history registry
@@ -58,16 +69,5 @@ public class RequestPixelHistory implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, RequestPixelHistory.class);
-    }
-
-    /**
-     * Deserialize class from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static RequestPixelHistory deserialize(String json)  {
-        Gson gson = new Gson();
-        return gson.fromJson(json, RequestPixelHistory.class);
     }
 }

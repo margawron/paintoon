@@ -18,7 +18,7 @@ public class ArgumentParser {
     /**
      * Creates an argument parser
      *
-     * @param args
+     * @param args arguments forwarded from command line
      */
     public ArgumentParser(String[] args) {
         arguments = args;

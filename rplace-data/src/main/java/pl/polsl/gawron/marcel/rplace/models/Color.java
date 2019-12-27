@@ -150,7 +150,7 @@ public class Color implements Iterable<Byte>, Iterator<Byte> {
      * Gets following color components via iterator
      * implements {@link Iterator#next()} method
      *
-     * @return following color components -> BLUE, GREEN, RED (BGR)
+     * @return following color components in the order BLUE, GREEN, RED (BGR)
      */
     @Override
     public Byte next() {

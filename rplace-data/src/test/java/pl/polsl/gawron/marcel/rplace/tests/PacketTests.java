@@ -72,7 +72,7 @@ public class PacketTests {
         ResponsePixelHistory deserialized = null;
         try {
             deserialized = (ResponsePixelHistory) response.deserialize(serialized);
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         /**
          * Then

@@ -17,11 +17,7 @@ import java.util.Map;
  * @version 1.0
  */
 public class Main implements Closeable {
-    /**
-     * Main class of server application
-     *
-     * @param args
-     */
+
     // Network
     private int port = 9876;
     private ServerSocket serverSocket;
@@ -36,6 +32,7 @@ public class Main implements Closeable {
 
     /**
      * Main function of a program
+     *
      * @param args arguments passed from command line during start of a program
      */
     public static void main(String[] args) {
@@ -54,6 +51,7 @@ public class Main implements Closeable {
 
     /**
      * Starts listening on a socket
+     *
      * @throws IOException thrown when socket could not be opened
      */
     public void startServer() throws IOException {
@@ -71,6 +69,7 @@ public class Main implements Closeable {
 
     /**
      * Invoked when server is shut down
+     *
      * @throws IOException could throw when socket is in use
      */
     @Override
@@ -82,6 +81,7 @@ public class Main implements Closeable {
 
     /**
      * Getter for a port
+     *
      * @return number of a port that server should listen on
      */
     public int getPort() {
@@ -90,6 +90,7 @@ public class Main implements Closeable {
 
     /**
      * Setter for a prot
+     *
      * @param port number of a port that sever should listen on
      */
     public void setPort(int port) {

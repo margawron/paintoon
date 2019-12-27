@@ -32,7 +32,7 @@ public class Image {
      * Parametrized constructor
      * creates bitmap size*size*3 (BGR)
      *
-     * @param size
+     * @param size size of the image
      */
     public Image(int size) {
         if (size <= 0) {

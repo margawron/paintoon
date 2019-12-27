@@ -11,7 +11,19 @@ public class ResponseInvalidRequest implements Serializable {
     private String message;
 
     /**
+     * Deserializes received class
+     *
+     * @param json JSON object representation
+     * @return class instance
+     */
+    public static ResponseInvalidRequest deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponseInvalidRequest.class);
+    }
+
+    /**
      * Getter for error message
+     *
      * @return message from server
      */
     public String getMessage() {
@@ -20,6 +32,7 @@ public class ResponseInvalidRequest implements Serializable {
 
     /**
      * Setter for error message
+     *
      * @param message message to send
      */
     public void setMessage(String message) {
@@ -35,16 +48,5 @@ public class ResponseInvalidRequest implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponseInvalidRequest.class);
-    }
-
-    /**
-     * Deserializes received class
-     *
-     * @param json JSON object representation
-     * @return class instance
-     */
-    public static ResponseInvalidRequest deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponseInvalidRequest.class);
     }
 }

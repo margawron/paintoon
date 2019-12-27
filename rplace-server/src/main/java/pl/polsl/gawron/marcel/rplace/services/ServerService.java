@@ -21,8 +21,9 @@ public class ServerService implements Closeable {
      * Default constructor
      * Assigns a socket
      * makes PrintWriter output and BufferedReader input
+     *
      * @param socket socket made by ServerSocket
-     * @throws IOException
+     * @throws IOException thrown when output and input cannot be created
      */
     public ServerService(Socket socket) throws IOException {
         this.socket = socket;
@@ -34,11 +35,12 @@ public class ServerService implements Closeable {
 
     /**
      * Invokes controller to process a request
+     *
      * @param controller controller to be invoked
      */
     public void respond(ProtocolController controller) {
         try {
-            while(true) {
+            while (true) {
                 controller.processRequest(input, output);
             }
         } catch (IOException e) {
@@ -52,7 +54,8 @@ public class ServerService implements Closeable {
 
     /**
      * Needs to be implemented for Closeable interface
-     * @throws IOException
+     *
+     * @throws IOException throws when socket is in use
      */
     @Override
     public void close() throws IOException {

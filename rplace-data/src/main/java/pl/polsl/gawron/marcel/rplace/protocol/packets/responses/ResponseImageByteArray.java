@@ -19,6 +19,17 @@ public class ResponseImageByteArray implements Serializable {
     private int size;
 
     /**
+     * Deserializes class object from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponseImageByteArray deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponseImageByteArray.class);
+    }
+
+    /**
      * Get image byte array
      * need to be converted to BufferedImage
      *
@@ -48,11 +59,13 @@ public class ResponseImageByteArray implements Serializable {
 
     /**
      * Setter for size of image (image is a square)
+     *
      * @param size new size of image
      */
-    public void setSize(int size){
+    public void setSize(int size) {
         this.size = size;
     }
+
     /**
      * Get BufferedImage directly from byte array
      *
@@ -73,16 +86,5 @@ public class ResponseImageByteArray implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponseImageByteArray.class);
-    }
-
-    /**
-     * Deserializes class object from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static ResponseImageByteArray deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponseImageByteArray.class);
     }
 }

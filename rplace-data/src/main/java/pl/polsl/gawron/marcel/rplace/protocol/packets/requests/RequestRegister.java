@@ -14,6 +14,17 @@ public class RequestRegister implements Serializable {
     private String password;
 
     /**
+     * Deserializes class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static RequestRegister deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, RequestRegister.class);
+    }
+
+    /**
      * Getter for the name of the user
      *
      * @return name of the user
@@ -58,16 +69,5 @@ public class RequestRegister implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, RequestRegister.class);
-    }
-
-    /**
-     * Deserializes class from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static RequestRegister deserialize(String json){
-        Gson gson = new Gson();
-        return gson.fromJson(json, RequestRegister.class);
     }
 }

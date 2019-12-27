@@ -13,6 +13,17 @@ public class ResponseSetPixel implements Serializable {
     private String errorMessage;
 
     /**
+     * Deserializes class from JSON
+     *
+     * @param json JSON class representation
+     * @return class instance
+     */
+    public static ResponseSetPixel deserialize(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ResponseSetPixel.class);
+    }
+
+    /**
      * Getter for checking if request was accepted
      *
      * @return if true request was accepted
@@ -57,16 +68,5 @@ public class ResponseSetPixel implements Serializable {
     public String serialize() {
         Gson gson = new Gson();
         return gson.toJson(this, ResponseSetPixel.class);
-    }
-
-    /**
-     * Deserializes class from JSON
-     *
-     * @param json JSON class representation
-     * @return class instance
-     */
-    public static ResponseSetPixel deserialize(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ResponseSetPixel.class);
     }
 }
