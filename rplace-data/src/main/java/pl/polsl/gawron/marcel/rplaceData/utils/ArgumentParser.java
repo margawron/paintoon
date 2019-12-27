@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace.utils;
+package pl.polsl.gawron.marcel.rplaceData.utils;
 
-import pl.polsl.gawron.marcel.rplace.exceptions.ArgumentParsingException;
+import pl.polsl.gawron.marcel.rplaceData.exceptions.ArgumentParsingException;
 
 import java.util.*;
 

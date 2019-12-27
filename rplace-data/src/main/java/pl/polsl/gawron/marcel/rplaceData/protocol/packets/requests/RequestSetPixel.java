@@ -1,8 +1,8 @@
-package pl.polsl.gawron.marcel.rplace.protocol.packets.requests;
+package pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.protocol.Serializable;
 
 /**
  * Representation of set pixel request packet

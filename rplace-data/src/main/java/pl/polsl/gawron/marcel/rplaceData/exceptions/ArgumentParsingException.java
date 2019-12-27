@@ -1,4 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.exceptions;
+package pl.polsl.gawron.marcel.rplaceData.exceptions;
 
 /**
  * Exceptions thrown when arguments do not conform to program specification

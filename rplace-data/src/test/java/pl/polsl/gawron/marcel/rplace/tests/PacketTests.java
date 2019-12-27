@@ -1,10 +1,10 @@
 package pl.polsl.gawron.marcel.rplace.tests;
 
 import org.junit.jupiter.api.Test;
-import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestImageByteArray;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponsePixelHistory;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestImageByteArray;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponsePixelHistory;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

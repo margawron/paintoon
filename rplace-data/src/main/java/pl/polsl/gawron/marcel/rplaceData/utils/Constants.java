@@ -1,4 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.utils;
+package pl.polsl.gawron.marcel.rplaceData.utils;
 
 /**
  * pl.polsl.gawron.marcel.rplace.utils.Constants used in program

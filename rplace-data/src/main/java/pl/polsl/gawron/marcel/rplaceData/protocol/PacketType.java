@@ -1,4 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.protocol;
+package pl.polsl.gawron.marcel.rplaceData.protocol;
 
 /**
  * Message type enum

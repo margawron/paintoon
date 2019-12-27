@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace.views;
+package pl.polsl.gawron.marcel.rplaceData.views;
 
-import pl.polsl.gawron.marcel.rplace.models.Image;
+import pl.polsl.gawron.marcel.rplaceData.models.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

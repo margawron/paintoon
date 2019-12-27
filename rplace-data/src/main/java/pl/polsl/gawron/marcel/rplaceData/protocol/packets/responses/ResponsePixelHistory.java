@@ -1,8 +1,8 @@
-package pl.polsl.gawron.marcel.rplace.protocol.packets.responses;
+package pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses;
 
 import com.google.gson.Gson;
-import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
-import pl.polsl.gawron.marcel.rplace.protocol.Serializable;
+import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
+import pl.polsl.gawron.marcel.rplaceData.protocol.Serializable;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pl.polsl.gawron.marcel.rplace.models;
+package pl.polsl.gawron.marcel.rplaceData.models;
 
 import java.util.ArrayList;
 import java.util.List;
