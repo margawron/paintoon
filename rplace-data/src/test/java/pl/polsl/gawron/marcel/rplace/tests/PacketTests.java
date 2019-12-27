@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author Marcel Gawron
@@ -68,10 +69,15 @@ public class PacketTests {
          * When
          */
         String serialized = response.serialize();
-        ResponsePixelHistory deserialized = (ResponsePixelHistory) response.deserialize(serialized);
+        ResponsePixelHistory deserialized = null;
+        try {
+            deserialized = (ResponsePixelHistory) response.deserialize(serialized);
+        } catch (Exception e){
+        }
         /**
          * Then
          */
+        assertNotNull(deserialized, "Deserialized data should not be empty");
         assertEquals(response.getHistoryEntryList().get(0).getX(), deserialized.getHistoryEntryList().get(0).getX(), "Elements of array should be equal (x coordinate)");
         assertEquals(response.getHistoryEntryList().get(0).getY(), deserialized.getHistoryEntryList().get(0).getY(), "Elements of array should be equal (y coordinate)");
         assertEquals(response.getHistoryEntryList().get(0).getUserWhoModifiedPixel(), deserialized.getHistoryEntryList().get(0).getUserWhoModifiedPixel(), "Elements of array should be equal (user ID coordinate)");

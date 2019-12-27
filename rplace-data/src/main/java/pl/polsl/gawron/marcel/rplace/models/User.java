@@ -14,8 +14,8 @@ public class User {
     private Long id;
     private String name;
     private String password;
-    private String hash;
-    private LocalDateTime hashExpiryServerTime;
+    private String token;
+    private LocalDateTime tokenExpiryServerTime;
     private List<HistoryEntry> userPixelModificationHistory;
 
 
@@ -97,32 +97,32 @@ public class User {
      * Getter for user login hash
      * @return user hash
      */
-    public String getHash() {
-        return hash;
+    public String getToken() {
+        return token;
     }
 
     /**
      * Setter for user hash
-     * @param hash user hash
+     * @param token user hash
      */
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     /**
      * Getter for user hash expiry date
      * @return user hash expiry date
      */
-    public LocalDateTime getHashExpiryServerTime() {
-        return hashExpiryServerTime;
+    public LocalDateTime getTokenExpiryServerTime() {
+        return tokenExpiryServerTime;
     }
 
     /**
      * Setter for user hash expiry date
-     * @param hashExpiryServerTime user hash expiry date
+     * @param tokenExpiryServerTime user hash expiry date
      */
-    public void setHashExpiryServerTime(LocalDateTime hashExpiryServerTime) {
-        this.hashExpiryServerTime = hashExpiryServerTime;
+    public void setTokenExpiryServerTime(LocalDateTime tokenExpiryServerTime) {
+        this.tokenExpiryServerTime = tokenExpiryServerTime;
     }
 
     /**

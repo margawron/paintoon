@@ -69,7 +69,7 @@ public class ArgumentParser {
         Short port = null;
         while (port == null) {
             try {
-                System.out.println("Please, enter port number on which server should listen:");
+                System.out.println("Please, enter port number on which application should work:");
                 port = sc.nextShort();
             } catch (InputMismatchException e) {
                 System.out.println("Port number is not valid, please try again");

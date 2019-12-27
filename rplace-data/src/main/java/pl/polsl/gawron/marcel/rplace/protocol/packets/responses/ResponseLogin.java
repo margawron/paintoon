@@ -12,25 +12,25 @@ import java.time.LocalDateTime;
  * @version 1.0
  */
 public class ResponseLogin implements Serializable {
-    private String hash;
-    private LocalDateTime hashExpiryServerTime;
+    private String token;
+    private LocalDateTime tokenExpiryServerTime;
 
     /**
      * Getter of a hash returned by server
      *
      * @return hash from server
      */
-    public String getHash() {
-        return hash;
+    public String getToken() {
+        return token;
     }
 
     /**
      * Setter for a hash to be returned to client
      *
-     * @param hash hash to send to client
+     * @param token hash to send to client
      */
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     /**
@@ -38,17 +38,17 @@ public class ResponseLogin implements Serializable {
      *
      * @return expiry date of hash in GMT
      */
-    public LocalDateTime getHashExpiryServerTime() {
-        return hashExpiryServerTime;
+    public LocalDateTime getTokenExpiryServerTime() {
+        return tokenExpiryServerTime;
     }
 
     /**
      * Setter for expiry date of a hash
      *
-     * @param hashExpiryServerTime expiry date of a hash
+     * @param tokenExpiryServerTime expiry date of a hash
      */
-    public void setHashExpiryServerTime(LocalDateTime hashExpiryServerTime) {
-        this.hashExpiryServerTime = hashExpiryServerTime;
+    public void setTokenExpiryServerTime(LocalDateTime tokenExpiryServerTime) {
+        this.tokenExpiryServerTime = tokenExpiryServerTime;
     }
 
     /**
