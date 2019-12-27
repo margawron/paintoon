@@ -31,15 +31,15 @@ public class UserRepository {
      * @return true if user was added to database
      */
     public boolean addUser(String name, String password){
-        if(findUser(name) == null){
+        if(findUser(name) != null){
             return false;
         } else {
             User newUser = new User();
-            newUser.setId(users.size() + 1L);
+            newUser.setId((long)users.size());
             newUser.setName(name);
             newUser.setPassword(password);
-            newUser.setHash(null);
-            newUser.setHashExpiryServerTime(null);
+            newUser.setToken(null);
+            newUser.setTokenExpiryServerTime(null);
             newUser.setUserPixelModificationHistory(new ArrayList<>(10));
             users.add(newUser);
             return true;

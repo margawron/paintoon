@@ -178,14 +178,13 @@ public class PacketHandler {
             return handleInvalidRequest("Invalid password");
         }
         String hash = RandomStringUtils.randomAlphanumeric(20);
-        user.setHash(hash);
-        response.setHash(hash);
+        user.setToken(hash);
+        response.setToken(hash);
 
         Instant now = Instant.now();
-        LocalDateTime expiryDate = LocalDateTime.from(now);
-        expiryDate.plusWeeks(1);
-        user.setHashExpiryServerTime(expiryDate);
-        response.setHashExpiryServerTime(expiryDate);
+        LocalDateTime expiryDate = LocalDateTime.from(now).plusWeeks(1);
+        user.setTokenExpiryServerTime(expiryDate);
+        response.setTokenExpiryServerTime(expiryDate);
 
         stringBuilder.append(PacketType.RESPONSE_LOGIN.getValue());
         stringBuilder.append(" ");
@@ -245,7 +244,7 @@ public class PacketHandler {
         }
         Instant now = Instant.now();
         LocalDateTime currentDate = LocalDateTime.from(now);
-        if(currentDate.isAfter(user.getHashExpiryServerTime())){
+        if(currentDate.isAfter(user.getTokenExpiryServerTime())){
             return handleInvalidRequest("Hash has expired");
         }
         LocalDateTime timeOfLastModification = null;
