@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace.repositories;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories;
 
-import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
+import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 
 import java.util.HashMap;
 import java.util.Map;

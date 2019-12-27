@@ -1,10 +1,9 @@
-package pl.polsl.gawron.marcel.rplace.handlers;
+package pl.polsl.gawron.marcel.rplaceClient.handlers;
 
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseImageByteArray;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseLogin;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseRegister;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.ResponseSetPixel;
-import pl.polsl.gawron.marcel.rplace.utils.ArgumentParser;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponseImageByteArray;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponseLogin;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponseRegister;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponseSetPixel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,8 +12,6 @@ import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -214,6 +211,7 @@ public class UserInteractionHandler {
         }
         return component;
     }
+
 
     /**
      * Asks users if they are registered

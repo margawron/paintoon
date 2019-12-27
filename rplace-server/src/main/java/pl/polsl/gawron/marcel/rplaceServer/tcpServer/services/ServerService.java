@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace.services;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer.services;
 
-import pl.polsl.gawron.marcel.rplace.controllers.ProtocolController;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
 
 import java.io.*;
 import java.net.Socket;

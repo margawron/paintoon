@@ -1,12 +1,12 @@
-package pl.polsl.gawron.marcel.rplace.handlers;
+package pl.polsl.gawron.marcel.rplaceClient.handlers;
 
-import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketType;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestImageByteArray;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestLogin;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestRegister;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.RequestSetPixel;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.*;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.protocol.PacketType;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestImageByteArray;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestLogin;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestRegister;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestSetPixel;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.*;
 
 import java.io.*;
 import java.net.Socket;

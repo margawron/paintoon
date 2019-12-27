@@ -1,8 +1,8 @@
-package pl.polsl.gawron.marcel.rplace;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer;
 
-import pl.polsl.gawron.marcel.rplace.controllers.ProtocolController;
-import pl.polsl.gawron.marcel.rplace.services.ServerService;
-import pl.polsl.gawron.marcel.rplace.utils.ArgumentParser;
+import org.springframework.stereotype.Component;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.services.ServerService;
 
 import java.io.Closeable;
 import java.io.File;
@@ -10,18 +10,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Map;
 import java.util.Properties;
 
 /**
- * Main class of a program
+ * TCP server class
  *
  * @author Marcel Gawron
  * @version 1.0
  */
-public class Main implements Closeable {
-
+@Component
+public class TCPServer extends Thread implements Closeable {
     // Network
+    private Thread thread;
     private int port;
     private ServerSocket serverSocket;
     private ProtocolController protocolController;
@@ -29,26 +29,26 @@ public class Main implements Closeable {
     /**
      * Default constructor
      */
-    public Main() {
+    public TCPServer() {
         protocolController = new ProtocolController();
+        this.thread = new Thread(this);
+        this.thread.start();
     }
 
     /**
-     * Main function of a program
-     * Loads src/main/java/resources/config.properties, sets port of the server
-     * and starts the server
-     * @param args arguments passed from command line during start of a program
+     * Run TCP server
      */
-    public static void main(String[] args) {
+    @Override
+    public void run(){
+        System.out.println("TCP Server starting ...");
         try {
-            Main server = new Main();
             Properties properties = new Properties();
             String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
             try(FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
                 properties.load(inputStream);
-                server.setPort(Integer.parseInt(properties.getProperty("serv.port")));
+                this.port = Integer.parseInt(properties.getProperty("serv.port"));
             }
-            server.startServer();
+            startServer();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -82,23 +82,5 @@ public class Main implements Closeable {
         if (serverSocket != null) {
             serverSocket.close();
         }
-    }
-
-    /**
-     * Getter for a port
-     *
-     * @return number of a port that server should listen on
-     */
-    public int getPort() {
-        return port;
-    }
-
-    /**
-     * Setter for a prot
-     *
-     * @param port number of a port that sever should listen on
-     */
-    public void setPort(int port) {
-        this.port = port;
     }
 }

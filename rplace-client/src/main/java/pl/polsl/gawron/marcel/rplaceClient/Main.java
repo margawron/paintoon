@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace;
+package pl.polsl.gawron.marcel.rplaceClient;
 
-import pl.polsl.gawron.marcel.rplace.handlers.UserInteractionHandler;
+import pl.polsl.gawron.marcel.rplaceClient.handlers.UserInteractionHandler;
 
 /**
  * Client side main function

@@ -1,8 +1,8 @@
 package pl.polsl.gawron.marcel.rplace.tests;
 
 import org.junit.jupiter.api.Test;
-import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.models.Image;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.models.Image;
 
 import java.util.Random;
 

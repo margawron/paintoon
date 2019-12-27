@@ -1,8 +1,8 @@
-package pl.polsl.gawron.marcel.rplace.controllers;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers;
 
-import pl.polsl.gawron.marcel.rplace.models.Color;
-import pl.polsl.gawron.marcel.rplace.models.Image;
-import pl.polsl.gawron.marcel.rplace.views.ImageView;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.models.Image;
+import pl.polsl.gawron.marcel.rplaceData.views.ImageView;
 
 import java.awt.image.BufferedImage;
 

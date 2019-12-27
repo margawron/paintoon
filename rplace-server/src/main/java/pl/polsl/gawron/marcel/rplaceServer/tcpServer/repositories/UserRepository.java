@@ -1,6 +1,6 @@
-package pl.polsl.gawron.marcel.rplace.repositories;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories;
 
-import pl.polsl.gawron.marcel.rplace.models.User;
+import pl.polsl.gawron.marcel.rplaceData.models.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;

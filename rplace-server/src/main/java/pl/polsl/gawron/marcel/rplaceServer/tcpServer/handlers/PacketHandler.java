@@ -1,15 +1,15 @@
-package pl.polsl.gawron.marcel.rplace.handlers;
+package pl.polsl.gawron.marcel.rplaceServer.tcpServer.handlers;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import pl.polsl.gawron.marcel.rplace.controllers.ProtocolController;
-import pl.polsl.gawron.marcel.rplace.models.HistoryEntry;
-import pl.polsl.gawron.marcel.rplace.models.User;
-import pl.polsl.gawron.marcel.rplace.protocol.PacketType;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.requests.*;
-import pl.polsl.gawron.marcel.rplace.protocol.packets.responses.*;
-import pl.polsl.gawron.marcel.rplace.repositories.HistoryEntryRepository;
-import pl.polsl.gawron.marcel.rplace.repositories.UserRepository;
-import pl.polsl.gawron.marcel.rplace.utils.Constants;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.*;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.*;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
+import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
+import pl.polsl.gawron.marcel.rplaceData.models.User;
+import pl.polsl.gawron.marcel.rplaceData.protocol.PacketType;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories.HistoryEntryRepository;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories.UserRepository;
+import pl.polsl.gawron.marcel.rplaceData.utils.Constants;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
