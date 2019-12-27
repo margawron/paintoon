@@ -57,6 +57,9 @@ public class ProtocolController {
         if (input == null) {
             throw new IOException("Client disconnected");
         }
+        if(input.contains("HELP")){
+            return "Program makes use of custom protocol but if you want to get server-side image just type \"2 {}\"";
+        }
         String[] split = input.split(" ", 2);
         return dispatcher.dispatchPacket(split);
     }

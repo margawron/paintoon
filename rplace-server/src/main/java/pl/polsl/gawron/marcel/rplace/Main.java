@@ -5,10 +5,13 @@ import pl.polsl.gawron.marcel.rplace.services.ServerService;
 import pl.polsl.gawron.marcel.rplace.utils.ArgumentParser;
 
 import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Main class of a program
@@ -19,7 +22,7 @@ import java.util.Map;
 public class Main implements Closeable {
 
     // Network
-    private int port = 9876;
+    private int port;
     private ServerSocket serverSocket;
     private ProtocolController protocolController;
 
@@ -32,17 +35,19 @@ public class Main implements Closeable {
 
     /**
      * Main function of a program
-     *
+     * Loads src/main/java/resources/config.properties, sets port of the server
+     * and starts the server
      * @param args arguments passed from command line during start of a program
      */
     public static void main(String[] args) {
         try {
             Main server = new Main();
-            ArgumentParser argumentParser = new ArgumentParser(args);
-            Map<String, String> config = argumentParser.parse();
-            int port = Integer.parseInt(config.get("port"));
-            server.setPort(port);
-            argumentParser.printConfig();
+            Properties properties = new Properties();
+            String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+            try(FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
+                properties.load(inputStream);
+                server.setPort(Integer.parseInt(properties.getProperty("serv.port")));
+            }
             server.startServer();
         } catch (IOException e) {
             System.out.println(e.getMessage());
