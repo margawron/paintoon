@@ -66,7 +66,7 @@ public class RequestRegister implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static RequestRegister deserialize(String json) throws Exception{
+    public static RequestRegister deserialize(String json){
         Gson gson = new Gson();
         return gson.fromJson(json, RequestRegister.class);
     }

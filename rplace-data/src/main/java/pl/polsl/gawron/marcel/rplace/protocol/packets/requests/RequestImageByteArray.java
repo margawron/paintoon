@@ -32,7 +32,7 @@ public class RequestImageByteArray implements Serializable {
      * @param json JSON object representation
      * @return class instance
      */
-    public static RequestImageByteArray deserialize(String json) throws Exception {
+    public static RequestImageByteArray deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestImageByteArray.class);
     }

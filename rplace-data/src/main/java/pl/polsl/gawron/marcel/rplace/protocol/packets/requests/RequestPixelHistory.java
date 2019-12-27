@@ -66,7 +66,7 @@ public class RequestPixelHistory implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static RequestPixelHistory deserialize(String json) throws Exception {
+    public static RequestPixelHistory deserialize(String json)  {
         Gson gson = new Gson();
         return gson.fromJson(json, RequestPixelHistory.class);
     }

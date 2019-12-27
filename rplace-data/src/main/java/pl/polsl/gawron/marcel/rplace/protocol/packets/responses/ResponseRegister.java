@@ -46,7 +46,7 @@ public class ResponseRegister implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponseRegister deserialize(String json) throws Exception {
+    public static ResponseRegister deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseRegister.class);
     }

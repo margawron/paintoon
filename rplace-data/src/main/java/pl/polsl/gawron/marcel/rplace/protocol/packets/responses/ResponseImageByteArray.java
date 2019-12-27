@@ -81,7 +81,7 @@ public class ResponseImageByteArray implements Serializable {
      * @param json JSON class representation
      * @return class instance
      */
-    public static ResponseImageByteArray deserialize(String json) throws Exception {
+    public static ResponseImageByteArray deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseImageByteArray.class);
     }

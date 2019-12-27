@@ -43,7 +43,7 @@ public class ResponseInvalidRequest implements Serializable {
      * @param json JSON object representation
      * @return class instance
      */
-    public static ResponseInvalidRequest deserialize(String json) throws Exception {
+    public static ResponseInvalidRequest deserialize(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, ResponseInvalidRequest.class);
     }
