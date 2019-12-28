@@ -1,6 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceServer.controllers;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Marcel Gawron
  * @version 1.0
  */
-@Repository
+@Controller
 public class HomePageController {
 
     public HomePageController(){
