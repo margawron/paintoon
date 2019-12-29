@@ -216,6 +216,7 @@ public class UserInteractionHandler {
     /**
      * Asks users if they are registered
      * sets {@link UserInteractionHandler#isRegistered} accordingly
+     *
      * @return true when user inputs that he is registered, false otherwise
      */
     private boolean askIfUserIsRegistered() {

@@ -34,7 +34,7 @@ public class ConnectionHandler {
         Properties properties = new Properties();
 
         String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        try (FileInputStream inputStream = new FileInputStream(path + File.separator +"config.properties")) {
+        try (FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
             properties.load(inputStream);
             this.host = properties.getProperty("connection.address");
             this.port = Integer.parseInt(properties.getProperty("connection.port"));

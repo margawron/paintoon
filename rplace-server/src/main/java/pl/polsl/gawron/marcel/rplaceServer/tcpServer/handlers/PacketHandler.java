@@ -1,15 +1,17 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer.handlers;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.*;
-import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.*;
-import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
 import pl.polsl.gawron.marcel.rplaceData.protocol.PacketType;
-import pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories.HistoryEntryRepository;
-import pl.polsl.gawron.marcel.rplaceServer.tcpServer.repositories.UserRepository;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.*;
+import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.*;
 import pl.polsl.gawron.marcel.rplaceData.utils.Constants;
+import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
+import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -23,6 +25,7 @@ import java.util.List;
  * @author Marcel Gawron
  * @version 1.0
  */
+@Component
 public class PacketHandler {
     /**
      * Default constructor
@@ -31,13 +34,9 @@ public class PacketHandler {
     private HistoryEntryRepository historyEntryRepository;
     private ProtocolController protocolController;
 
-    public PacketHandler() {
-        this.userRepository = new UserRepository();
-    }
-
-    public PacketHandler(ProtocolController controller) {
-        this.userRepository = new UserRepository();
-        this.historyEntryRepository = new HistoryEntryRepository();
+    public PacketHandler(UserRepository userRepository, HistoryEntryRepository historyEntryRepository, @Lazy ProtocolController controller) {
+        this.userRepository = userRepository;
+        this.historyEntryRepository = historyEntryRepository;
         this.protocolController = controller;
     }
 

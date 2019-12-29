@@ -1,6 +1,7 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer;
 
 import org.springframework.stereotype.Component;
+import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.services.ServerService;
 
@@ -29,8 +30,8 @@ public class TCPServer extends Thread implements Closeable {
     /**
      * Default constructor
      */
-    public TCPServer() {
-        protocolController = new ProtocolController();
+    public TCPServer(ProtocolController controller, Image image) {
+        protocolController = controller;
         this.thread = new Thread(this);
         this.thread.start();
     }
@@ -39,12 +40,12 @@ public class TCPServer extends Thread implements Closeable {
      * Run TCP server
      */
     @Override
-    public void run(){
+    public void run() {
         System.out.println("TCP Server starting ...");
         try {
             Properties properties = new Properties();
             String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            try(FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
+            try (FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
                 properties.load(inputStream);
                 this.port = Integer.parseInt(properties.getProperty("serv.port"));
             }

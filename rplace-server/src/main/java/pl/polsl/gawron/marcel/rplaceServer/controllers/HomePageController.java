@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomePageController {
 
-    public HomePageController(){
+    public HomePageController() {
 
     }
 
     @RequestMapping({"", "/", "index"})
-    public String homepage(Model model){
+    public String homepage(Model model) {
 
         return "homepage";
     }

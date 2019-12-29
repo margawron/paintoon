@@ -1,8 +1,8 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers;
 
-import pl.polsl.gawron.marcel.rplaceServer.tcpServer.handlers.PacketHandler;
+import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
-import pl.polsl.gawron.marcel.rplaceData.views.ImageView;
+import pl.polsl.gawron.marcel.rplaceServer.tcpServer.handlers.PacketHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,10 +14,10 @@ import java.io.PrintWriter;
  * @author Marcel Gawron
  * @version 1.0
  */
+@Component
 public class ProtocolController {
 
     // Data
-    private ImageView imageView;
     private Image image;
     private PacketHandler dispatcher;
 
@@ -25,11 +25,9 @@ public class ProtocolController {
     /**
      * Default constructor of Protocol controller
      */
-    public ProtocolController() {
-        this.image = new Image(100);
-        this.imageView = new ImageView();
-        this.imageView.fromByteArrayToBufferedImage(image);
-        this.dispatcher = new PacketHandler(this);
+    public ProtocolController(PacketHandler handler, Image image) {
+        this.image = image;
+        this.dispatcher = handler;
     }
 
     /**
@@ -50,36 +48,17 @@ public class ProtocolController {
      *
      * @param input full input from client
      * @return server response
-     *
      * @throws IOException when user disconnects
      */
     private String parseAndDispatchInput(String input) throws IOException {
         if (input == null) {
             throw new IOException("Client disconnected");
         }
-        if(input.contains("HELP")){
+        if (input.contains("HELP")) {
             return "Program makes use of custom protocol but if you want to get server-side image just type \"2 {}\"";
         }
         String[] split = input.split(" ", 2);
         return dispatcher.dispatchPacket(split);
-    }
-
-    /**
-     * Getter for imageView property
-     *
-     * @return imageView property
-     */
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    /**
-     * Setter for imageView property
-     *
-     * @param imageView new imageView property
-     */
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
     }
 
     /**
