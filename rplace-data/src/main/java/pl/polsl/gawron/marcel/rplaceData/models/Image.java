@@ -1,7 +1,7 @@
 package pl.polsl.gawron.marcel.rplaceData.models;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Arrays;
 
 /**
  * Class storing image created by user
@@ -13,20 +13,6 @@ import java.util.List;
 public class Image {
     private byte[] bitmap;
     private int size;
-    private List<HistoryEntry> history;
-
-    /**
-     * Default constructor
-     * Creates bitmap 1000*1000*3 (BGR)
-     */
-    public Image() {
-        bitmap = new byte[3 * 1000 * 1000];
-        for (int i = 0; i < bitmap.length; i++) {
-            bitmap[i] = (byte) 0b11111111;
-        }
-        size = 1000;
-        history = new ArrayList<>();
-    }
 
     /**
      * Parametrized constructor
@@ -39,11 +25,8 @@ public class Image {
             throw new NegativeArraySizeException();
         }
         bitmap = new byte[3 * size * size];
-        for (int i = 0; i < bitmap.length; i++) {
-            bitmap[i] = (byte) 0b11111111;
-        }
+        Arrays.fill(bitmap, (byte) 0b11111111);
         this.size = size;
-        history = new ArrayList<>();
     }
 
     /**
