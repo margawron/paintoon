@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.polsl.gawron.marcel.rplaceServer.models.RegistrationFormModel;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
@@ -19,10 +20,19 @@ public class RegisterController {
 
     private UserRepository userRepository;
 
+    /**
+     * Constructor for register controller
+     * @param userRepository repository handling data/database
+     */
     public RegisterController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Responds to HTTP GET requests for register page
+     * @param model model object containing attributes for rendering views
+     * @return name of the template to render
+     */
     @GetMapping("/register")
     public String sendRegisterPage(Model model) {
         model.addAttribute("formModel", new RegistrationFormModel());
@@ -30,7 +40,13 @@ public class RegisterController {
         return "register";
     }
 
-    @RequestMapping("/register")
+    /**
+     * Responds to HTTP POST requests from register page
+     * @param formModel data model of a form in a register page
+     * @param model model object containing attributes for rendering views
+     * @return name of the template to render
+     */
+    @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String userRegister(@ModelAttribute RegistrationFormModel formModel, Model model)
     {
         model.addAttribute("shouldRedirectToRegister", true); // Show register page button
