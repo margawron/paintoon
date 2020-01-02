@@ -22,7 +22,7 @@ public class RegisterController {
 
     /**
      * Constructor for register controller
-     * @param userRepository repository handling data/database
+     * @param userRepository repository handling user data/database
      */
     public RegisterController(UserRepository userRepository) {
         this.userRepository = userRepository;
