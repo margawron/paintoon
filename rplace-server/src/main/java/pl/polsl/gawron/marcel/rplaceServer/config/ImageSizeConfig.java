@@ -13,6 +13,6 @@ public class ImageSizeConfig {
 
     @Bean
     public Image setImageSize() {
-        return new Image(1000);
+        return new Image(700);
     }
 }
