@@ -9,10 +9,10 @@
     <div class="mainBlock">
         <p th:utext="${message}">Here should be displayed a message</p>
         <div class="button">
-            <form th:if="${shouldRedirectToRegister}" action="/register" type="get">
+            <form th:if="${shouldRedirectToRegister}" action="/register" method="get">
                 <input value="Go to registration page" type="submit" />
             </form>
-            <form th:if="${!shouldRedirectToRegister}" action="/login" type="get">
+            <form th:if="${!shouldRedirectToRegister}" action="/login" method="get">
                 <input value="Go to login page" type="submit" />
             </form>
         </div>
