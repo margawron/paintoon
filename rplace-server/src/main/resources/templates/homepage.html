@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>r/place continued</title>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/popper.js/popper.min.js"></script>
     <script src="/webjars/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles/homepageStyle.css" />
+    <script>
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+    </script>
 </head>
 <body>
-    <div class="container"><br/>
-        <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert"
-               aria-label="close">×</a>
-            <strong>Success!</strong> It is working as we expected.
+    <div class="container padding-top-md">
+        <div class="row">
+            <div class="col no-grow" >
+                <div class="row padding-xs padding-top-none">
+                    <div class="col padding-xs">
+                        <iframe class="registrationFrame" src="/register" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+                    </div>
+                    <div class="col fill-height padding-xs" >
+                        <iframe class="historyFrame" ></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col padding-xs ">
+                <img class="imageByteArray" src="/image" >
+            </div>
         </div>
-</div>
+    </div>
+
 </body>
 </html>
