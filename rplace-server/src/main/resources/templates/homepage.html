@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/styles/homepageStyle.css" />
     <script>
         function resizeIframe(obj) {
+            obj.style.height = 0; // <---- Dunno how it works but it does resize correctly
             obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
         }
     </script>
