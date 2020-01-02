@@ -16,6 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
+ * Controller responsible for image response
  * @author Marcel Gawron
  * @version 1.0
  */
@@ -25,11 +26,20 @@ public class ImageController {
     private Image image;
     private BufferedImage bufferedImage;
 
+    /**
+     * Default controller
+     * @param image image model to be sent to client
+     */
     public ImageController(Image image) {
         this.image = image;
         bufferedImage = new BufferedImage(image.getSize(), image.getSize(), BufferedImage.TYPE_3BYTE_BGR);
     }
 
+    /**
+     * Function responsible for responding with image file
+     * @return byte array with image
+     * @throws IOException thrown when ImageIO cant write to ByteArrayOutputStream
+     */
     @RequestMapping(value = "/image", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody
     byte[] getImage() throws IOException {
