@@ -46,7 +46,15 @@ public class LoginController {
         if(username == null || token == null){
             return "redirect:/login";
         }
+        User user = userRepository.findUser(username);
+        if(user == null){
+            return "redirect:/login";
+        }
+        if(!user.isTokenValid(token)){
+            return "redirect:/login";
+        }
 
+        model.addAttribute("username", username);
 
         return "profilePage";
     }
@@ -77,7 +85,7 @@ public class LoginController {
         if (username != null && token != null) {
             User user = userRepository.findUser(username);
             if (user != null && user.isTokenValid(token)) {
-                return "redirect:/loggedIn";
+                return "redirect:/profilePage";
             }
         }
 
@@ -122,7 +130,7 @@ public class LoginController {
 
         response.addCookie(usernameCookie);
         response.addCookie(tokenCookie);
-        return "redirect:/loggedIn";
+        return "redirect:/profilePage";
     }
 
 }
