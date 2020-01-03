@@ -1,6 +1,10 @@
 package pl.polsl.gawron.marcel.rplaceData.models;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Random;
 
@@ -109,6 +113,30 @@ public class User {
      */
     public void setToken(String token) {
         this.token = token;
+    }
+
+    /**
+     * Generates user token and sets expiry time
+     */
+    public void generateUserTokenAndSetExpiryTime() {
+        generateToken();
+        setExpiryDateWeekFromNow();
+    }
+
+    /**
+     * Generates random token
+     */
+    public void generateToken() {
+        this.token = RandomStringUtils.randomAlphanumeric(30);
+    }
+
+    /**
+     * Sets expiry date week from current time
+     */
+    public void setExpiryDateWeekFromNow() {
+        Instant now = Instant.now();
+        LocalDateTime expiryDate = LocalDateTime.ofInstant(now, ZoneOffset.UTC).plusWeeks(1);
+        this.tokenExpiryServerTime = expiryDate;
     }
 
     /**

@@ -194,14 +194,9 @@ public class PacketHandler {
         if (!user.getPassword().equals(request.getPassword())) {
             return handleInvalidRequest("Invalid password");
         }
-        String hash = RandomStringUtils.randomAlphanumeric(20);
-        user.setToken(hash);
-        response.setToken(hash);
-
-        Instant now = Instant.now();
-        LocalDateTime expiryDate = LocalDateTime.ofInstant(now, ZoneOffset.UTC).plusWeeks(1);
-        user.setTokenExpiryServerTime(expiryDate);
-        response.setTokenExpiryServerTime(expiryDate);
+        user.generateUserTokenAndSetExpiryTime();
+        response.setToken(user.getToken());
+        response.setTokenExpiryServerTime(user.getTokenExpiryServerTime());
 
         stringBuilder.append(PacketType.RESPONSE_LOGIN.getValue());
         stringBuilder.append(" ");
