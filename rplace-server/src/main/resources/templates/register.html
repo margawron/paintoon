@@ -5,14 +5,14 @@
     <title>Registration Form</title>
 </head>
 <body>
-    <form action="#" th:action="@{/register}" th:object="${formModel}" method="post">
-        <p>Username: <input type="text" th:field="*{name}"/></p>
-        <p>Password: <input type="password" th:field="*{passwordFirst}"/></p>
-        <p>Repeat password: <input type="password" th:field="*{passwordSecond}"/></p>
-        <p><input type="submit" value="Register" /></p>
-    </form>
-    <form action="/login" method="get">
-        <input type="submit" value="Go to login" />
-    </form>
+<form action="#" method="post" th:action="@{/register}" th:object="${formModel}">
+    <p>Username: <input th:field="*{name}" type="text"/></p>
+    <p>Password: <input th:field="*{passwordFirst}" type="password"/></p>
+    <p>Repeat password: <input th:field="*{passwordSecond}" type="password"/></p>
+    <p><input type="submit" value="Register"/></p>
+</form>
+<form action="/login" method="get">
+    <input type="submit" value="Go to login"/>
+</form>
 </body>
 </html>

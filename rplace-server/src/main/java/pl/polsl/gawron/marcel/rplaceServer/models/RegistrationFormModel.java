@@ -13,6 +13,7 @@ public class RegistrationFormModel {
 
     /**
      * Getter for the name
+     *
      * @return name from model
      */
     public String getName() {
@@ -21,6 +22,7 @@ public class RegistrationFormModel {
 
     /**
      * Setter for the name
+     *
      * @param name set user name
      */
     public void setName(String name) {
@@ -29,6 +31,7 @@ public class RegistrationFormModel {
 
     /**
      * Getter for the first password input value
+     *
      * @return password from first input
      */
     public String getPasswordFirst() {
@@ -37,6 +40,7 @@ public class RegistrationFormModel {
 
     /**
      * Setter for the first password
+     *
      * @param passwordFirst set first input password
      */
     public void setPasswordFirst(String passwordFirst) {
@@ -45,6 +49,7 @@ public class RegistrationFormModel {
 
     /**
      * Getter for the second password input value
+     *
      * @return password from second input
      */
     public String getPasswordSecond() {
@@ -53,6 +58,7 @@ public class RegistrationFormModel {
 
     /**
      * Setter for the second password
+     *
      * @param passwordSecond set second input password
      */
     public void setPasswordSecond(String passwordSecond) {

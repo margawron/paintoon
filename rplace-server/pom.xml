@@ -13,7 +13,7 @@
 
 
     <dependencies>
-        <!-- WEBJARS -->    
+        <!-- WEBJARS -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>

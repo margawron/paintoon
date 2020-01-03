@@ -6,16 +6,16 @@
     <link href="styles/authMessageStyle.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="mainBlock">
-        <p th:utext="${message}">Here should be displayed a message</p>
-        <div class="button">
-            <form th:if="${shouldRedirectToRegister}" action="/register" method="get">
-                <input value="Go to registration page" type="submit" />
-            </form>
-            <form th:if="${!shouldRedirectToRegister}" action="/login" method="get">
-                <input value="Go to login page" type="submit" />
-            </form>
-        </div>
+<div class="mainBlock">
+    <p th:utext="${message}">Here should be displayed a message</p>
+    <div class="button">
+        <form action="/register" method="get" th:if="${shouldRedirectToRegister}">
+            <input type="submit" value="Go to registration page"/>
+        </form>
+        <form action="/login" method="get" th:if="${!shouldRedirectToRegister}">
+            <input type="submit" value="Go to login page"/>
+        </form>
     </div>
+</div>
 </body>
 </html>
