@@ -38,17 +38,17 @@ public class LoginController {
      * @param model object containing attributes for rendering views
      * @return name of the template to render
      */
-    @RequestMapping(path = "/loggedIn", method = RequestMethod.GET)
-    public String loggedIn(Model model,
-                           @CookieValue(name = "username", required = false) String username,
-                           @CookieValue(name = "token", required = false) String token) {
+    @RequestMapping(path = "/profilePage", method = RequestMethod.GET)
+    public String profilePage(Model model,
+                              @CookieValue(name = "username", required = false) String username,
+                              @CookieValue(name = "token", required = false) String token) {
         // Check for lost souls
         if(username == null || token == null){
             return "redirect:/login";
         }
 
 
-        return "loggedInPage";
+        return "profilePage";
     }
 
     /**
