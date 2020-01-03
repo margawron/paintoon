@@ -158,11 +158,15 @@ public class User {
     }
 
     public boolean isTokenValid(String token){
+        // New user - no token
+        if(this.token == null){
+            return false;
+        }
         if(!this.token.equals(token)){
             return false;
         }
         Instant now = Instant.now();
-        LocalDateTime currentTime = LocalDateTime.from(now);
+        LocalDateTime currentTime = LocalDateTime.ofInstant(now, ZoneOffset.UTC);
         return currentTime.isBefore(this.tokenExpiryServerTime);
     }
 
