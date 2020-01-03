@@ -5,12 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
- * TODO:
- * https://dzone.com/articles/how-to-use-cookies-in-spring-boot
- */
-
-/**
  * Main web application controller
+ *
  * @author Marcel Gawron
  * @version 1.0
  */
@@ -26,6 +22,7 @@ public class HomePageController {
 
     /**
      * Function responsible for responding with homepage
+     *
      * @return name of the home page template
      */
     @RequestMapping({"", "/", "index"})

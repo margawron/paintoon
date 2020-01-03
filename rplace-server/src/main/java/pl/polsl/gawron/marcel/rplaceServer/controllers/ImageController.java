@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * Controller responsible for image response
+ *
  * @author Marcel Gawron
  * @version 1.0
  */
@@ -28,6 +29,7 @@ public class ImageController {
 
     /**
      * Default controller
+     *
      * @param image image model to be sent to client
      */
     public ImageController(Image image) {
@@ -37,6 +39,7 @@ public class ImageController {
 
     /**
      * Function responsible for responding with image file
+     *
      * @return byte array with image
      * @throws IOException thrown when ImageIO cant write to ByteArrayOutputStream
      */
