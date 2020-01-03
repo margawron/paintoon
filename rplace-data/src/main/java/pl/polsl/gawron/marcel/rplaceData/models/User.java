@@ -157,6 +157,15 @@ public class User {
         this.tokenExpiryServerTime = tokenExpiryServerTime;
     }
 
+    public boolean isTokenValid(String token){
+        if(!this.token.equals(token)){
+            return false;
+        }
+        Instant now = Instant.now();
+        LocalDateTime currentTime = LocalDateTime.from(now);
+        return currentTime.isBefore(this.tokenExpiryServerTime);
+    }
+
     /**
      * Getter of user pixel modification history
      *
