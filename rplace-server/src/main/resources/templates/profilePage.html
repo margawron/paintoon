@@ -6,6 +6,10 @@
 </head>
 <body>
 <p>Username: <span th:text="${username}"></span></p>
+<p>Is token valid:
+    <b th:if="${isTokenValid}">Yes</b>
+    <b th:if="${!isTokenValid}">No</b>
+</p>
 <p>Number of pixels set: <b>Placeholder</b></p>
 </body>
 </html>

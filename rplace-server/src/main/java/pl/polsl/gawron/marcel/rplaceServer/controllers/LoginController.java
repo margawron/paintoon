@@ -55,6 +55,7 @@ public class LoginController {
         }
 
         model.addAttribute("username", username);
+        model.addAttribute("isTokenValid", user.isTokenValid(token));
 
         return "profilePage";
     }
