@@ -1,11 +1,12 @@
 package pl.polsl.gawron.marcel.rplaceServer.controllers;
 
 import org.springframework.http.MediaType;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.polsl.gawron.marcel.rplaceData.models.Color;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
@@ -40,6 +41,7 @@ public class ImageController {
     // SentTo annotation is not enough to trigger
     // WebSocket refresh
     private SimpMessagingTemplate template;
+
     /**
      * Default controller
      *
@@ -70,8 +72,9 @@ public class ImageController {
 
     /**
      * Handles JS set pixel requests
-     * @param payload JS sent JSON payload
-     * @param request request sent from browser - user for cookies
+     *
+     * @param payload  JS sent JSON payload
+     * @param request  request sent from browser - user for cookies
      * @param response response to be sent to the client
      * @return model to be sent to the client (not used)
      * @throws Exception {@link HttpServletResponse#sendError} could throw
@@ -93,21 +96,20 @@ public class ImageController {
             }
         }
         if (username == null || token == null) {
-           response.sendError(403);
-           return null;
+            response.sendError(403);
+            return null;
         }
         User user = userRepository.findUser(username);
-        if(user == null || !user.isTokenValid(token)){
+        if (user == null || !user.isTokenValid(token)) {
             response.sendError(403);
             return null;
         }
         // TODO check if user placed a pixel in the last X minutes
-        if(payload.getX() > image.getSize() && payload.getY() > image.getSize())
-        {
+        if (payload.getX() > image.getSize() && payload.getY() > image.getSize()) {
             response.sendError(403);
             return null;
         }
-        image.setPixel(payload.getX(), payload.getY(), new Color(payload.getRed(),payload.getGreen(),payload.getBlue()));
+        image.setPixel(payload.getX(), payload.getY(), new Color(payload.getRed(), payload.getGreen(), payload.getBlue()));
         response.setStatus(200);
         Message broadcastMessage = new Message();
         broadcastMessage.setUsername(user.getName());
@@ -123,12 +125,11 @@ public class ImageController {
     /**
      * Send message by WebSocket that the pixel has changed
      *
+     * @param message message to send
      * @SendTo("/topic/broadcast") Not enough to send message automatically
      * (Not enough for Spring to know that it needs to send a message)
-     *
-     * @param message message to send
      */
-    public void fireWebSocketBroadcastEvent(Message message){
-       this.template.convertAndSend("/topic/broadcast", message);
+    public void fireWebSocketBroadcastEvent(Message message) {
+        this.template.convertAndSend("/topic/broadcast", message);
     }
 }

@@ -157,12 +157,12 @@ public class User {
         this.tokenExpiryServerTime = tokenExpiryServerTime;
     }
 
-    public boolean isTokenValid(String token){
+    public boolean isTokenValid(String token) {
         // New user - no token
-        if(this.token == null){
+        if (this.token == null) {
             return false;
         }
-        if(!this.token.equals(token)){
+        if (!this.token.equals(token)) {
             return false;
         }
         Instant now = Instant.now();

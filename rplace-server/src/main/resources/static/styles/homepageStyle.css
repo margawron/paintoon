@@ -1,5 +1,5 @@
 
-.padding-none{
+.padding-none {
     padding: 0;
 }
 
@@ -20,9 +20,11 @@
     display: inline-block;
     line-height: 0;
 }
+
 #canvas {
     image-rendering: pixelated;
 }
+
 .color-picker {
     border: 5px blueviolet dot-dot-dash;
 }

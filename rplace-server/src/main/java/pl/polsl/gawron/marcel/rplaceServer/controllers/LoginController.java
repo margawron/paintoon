@@ -43,14 +43,14 @@ public class LoginController {
                               @CookieValue(name = "username", required = false) String username,
                               @CookieValue(name = "token", required = false) String token) {
         // Check for lost souls
-        if(username == null || token == null){
+        if (username == null || token == null) {
             return "redirect:/login";
         }
         User user = userRepository.findUser(username);
-        if(user == null){
+        if (user == null) {
             return "redirect:/login";
         }
-        if(!user.isTokenValid(token)){
+        if (!user.isTokenValid(token)) {
             return "redirect:/login";
         }
 

@@ -2,6 +2,7 @@ package pl.polsl.gawron.marcel.rplaceServer.models;
 
 /**
  * Model for set pixel client request
+ *
  * @author Marcel Gawron
  * @version 1.0
  */
@@ -14,6 +15,7 @@ public class SetPixel {
 
     /**
      * Getter for the x coordinate of the pixel
+     *
      * @return x coordinate of the pixel
      */
     public int getX() {
@@ -22,6 +24,7 @@ public class SetPixel {
 
     /**
      * Setter for the x coordinate of the pixel
+     *
      * @param x coordinate of the pixel
      */
     public void setX(int x) {
@@ -30,6 +33,7 @@ public class SetPixel {
 
     /**
      * Getter for the y coordinate of the pixel
+     *
      * @return y coordinate of the pixel
      */
     public int getY() {
@@ -38,6 +42,7 @@ public class SetPixel {
 
     /**
      * Setter for the y coordinate of the pixel
+     *
      * @param y coordinate of the pixel
      */
     public void setY(int y) {
@@ -46,6 +51,7 @@ public class SetPixel {
 
     /**
      * Getter for the red component of the pixel
+     *
      * @return red compoment of the pixel
      */
     public int getRed() {
@@ -54,6 +60,7 @@ public class SetPixel {
 
     /**
      * Setter for the red component of the pixel
+     *
      * @param red component of the pixel
      */
     public void setRed(int red) {
@@ -62,6 +69,7 @@ public class SetPixel {
 
     /**
      * Getter for the red component of the pixel
+     *
      * @return green component of the pixel
      */
     public int getGreen() {
@@ -70,6 +78,7 @@ public class SetPixel {
 
     /**
      * Setter for the red component of the pixel
+     *
      * @param green component of the pixel
      */
     public void setGreen(int green) {
@@ -78,6 +87,7 @@ public class SetPixel {
 
     /**
      * Getter for the red component of the pixel
+     *
      * @return blue component of the pixel
      */
     public int getBlue() {
@@ -86,6 +96,7 @@ public class SetPixel {
 
     /**
      * Setter for the red component of the pixel
+     *
      * @param blue component of the pixel
      */
     public void setBlue(int blue) {

@@ -3,6 +3,7 @@ package pl.polsl.gawron.marcel.rplaceServer.models;
 
 /**
  * Message model for WebSocket broadcast connection
+ *
  * @author Marcel Gawron
  * @version 1.0
  */
@@ -23,6 +24,7 @@ public class Message {
 
     /**
      * Getter for the username
+     *
      * @return username
      */
     public String getUsername() {
@@ -31,6 +33,7 @@ public class Message {
 
     /**
      * Setter for the username
+     *
      * @param username new username
      */
     public void setUsername(String username) {
@@ -39,6 +42,7 @@ public class Message {
 
     /**
      * Getter for the x coordinate
+     *
      * @return x coordinate
      */
     public int getX() {
@@ -47,6 +51,7 @@ public class Message {
 
     /**
      * Setter for the x coordinate
+     *
      * @param x new x coordinate
      */
     public void setX(int x) {
@@ -55,6 +60,7 @@ public class Message {
 
     /**
      * Getter for the y coordinate
+     *
      * @return y coordinate
      */
     public int getY() {
@@ -63,6 +69,7 @@ public class Message {
 
     /**
      * Setter for the y coordinate
+     *
      * @param y new y coordinate
      */
     public void setY(int y) {
@@ -71,6 +78,7 @@ public class Message {
 
     /**
      * Getter for the red color component
+     *
      * @return red color component
      */
     public int getRed() {
@@ -79,6 +87,7 @@ public class Message {
 
     /**
      * Setter for the red color component
+     *
      * @param red new red color component
      */
     public void setRed(int red) {
@@ -87,6 +96,7 @@ public class Message {
 
     /**
      * Getter for the green color component
+     *
      * @return green color component
      */
     public int getGreen() {
@@ -95,6 +105,7 @@ public class Message {
 
     /**
      * Setter for the green color component
+     *
      * @param green new green color component
      */
     public void setGreen(int green) {
@@ -103,6 +114,7 @@ public class Message {
 
     /**
      * Getter for the blue color component
+     *
      * @return blue color component
      */
     public int getBlue() {
@@ -111,6 +123,7 @@ public class Message {
 
     /**
      * Setter for the blue color component
+     *
      * @param blue new blue color component
      */
     public void setBlue(int blue) {

@@ -16,6 +16,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
      * Sets endpoint IN STOMP created WebSocket
+     *
      * @param registry STOMP created WebSocket registry
      */
     @Override
@@ -26,6 +27,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
      * Sets HTTP endpoint for WebSocket
+     *
      * @param registry STOMP library registry
      */
     @Override
