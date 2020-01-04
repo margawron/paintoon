@@ -123,7 +123,7 @@ public class ImageController {
     }
 
     /**
-     * Send message by WebSocket that the pixel has changed
+     * Send message by WebSocket informing that the pixel has changed
      *
      * @param message message to send
      * @SendTo("/topic/broadcast") Not enough to send message automatically
