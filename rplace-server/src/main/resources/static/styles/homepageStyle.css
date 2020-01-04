@@ -1,4 +1,8 @@
 
+.padding-none{
+    padding: 0;
+}
+
 .padding-xs {
     padding: 5px;
 }
@@ -13,6 +17,14 @@
 
 .canvas {
     border: 5px aqua solid;
+    display: inline-block;
+    line-height: 0;
+}
+#canvas {
+    image-rendering: pixelated;
+}
+.color-picker {
+    border: 5px blueviolet dot-dot-dash;
 }
 
 .utilityFrame {
@@ -33,6 +45,11 @@
     flex-grow: 0;
 }
 
-.fill-height {
+.height-auto {
     height: auto;
+}
+
+.margin-0-auto {
+    display: inline-block;
+    margin: 0 auto;
 }
