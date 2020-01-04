@@ -8,12 +8,7 @@
     <script src="/webjars/popper.js/popper.min.js"></script>
     <script src="/webjars/bootstrap/bootstrap.min.js"></script>
     <link href="/styles/homepageStyle.css" rel="stylesheet"/>
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = 0; // <---- Dunno how it works but it does resize correctly
-            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-        }
-    </script>
+    <script src="scripts/homepageScript.js"></script>
 </head>
 <body>
 <div class="container padding-top-md">
@@ -30,7 +25,8 @@
             </div>
         </div>
         <div class="col padding-xs ">
-            <img class="imageByteArray" src="/image">
+            <canvas id="canvas" class="canvas"></canvas>
+            <script>initCanvas();</script>
         </div>
     </div>
 </div>
