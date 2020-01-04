@@ -43,9 +43,10 @@ public class ImageController {
     private SimpMessagingTemplate template;
 
     /**
-     * Default controller
-     *
-     * @param image image model to be sent to client
+     * Controller responsible for image manipulation
+     * @param image in memory bitmap model
+     * @param userRepository repository handling user data/database
+     * @param simpMessagingTemplate webSocket messaging template
      */
     public ImageController(Image image, UserRepository userRepository, SimpMessagingTemplate simpMessagingTemplate) {
         this.image = image;
@@ -129,8 +130,8 @@ public class ImageController {
      * Send message by WebSocket informing that the pixel has changed
      *
      * @param message message to send
-     * @SendTo("/topic/broadcast") Not enough to send message automatically
-     * (Not enough for Spring to know that it needs to send a message)
+     * // @SendTo("/topic/broadcast") Not enough to send message automatically
+     * // (Not enough for Spring to know that it needs to send a message)
      */
     public void fireWebSocketBroadcastEvent(Message message) {
         this.template.convertAndSend("/topic/broadcast", message);

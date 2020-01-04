@@ -32,10 +32,12 @@ public class LoginController {
         this.userRepository = userRepository;
     }
 
+
     /**
-     * Responds to HTTP GET requests with stats page
-     *
-     * @param model object containing attributes for rendering views
+     * Reponds to HTTP GET requests with stats page
+     * @param model in memory bitmap model
+     * @param username cookie with name of logged in user
+     * @param token cookie with token of logged in user
      * @return name of the template to render
      */
     @RequestMapping(path = "/profilePage", method = RequestMethod.GET)
@@ -64,6 +66,7 @@ public class LoginController {
      * Responds to HTTP GET requests with login page
      *
      * @param model object containing attributes for rendering views
+     * @param request request sent by client
      * @return name of the template to render
      */
     @RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -101,6 +104,7 @@ public class LoginController {
      *
      * @param formModel data model of a form in a register page
      * @param model     model object containing attributes for rendering views
+     * @param response  servlet response created by Spring context management
      * @return name of the template to render
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)

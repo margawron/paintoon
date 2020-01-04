@@ -36,6 +36,7 @@ public class RegisterController {
      * Responds to HTTP GET requests with register page
      *
      * @param model model object containing attributes for rendering views
+     * @param request request sent by user
      * @return name of the template to render
      */
     @RequestMapping(path = "/register", method = RequestMethod.GET)
