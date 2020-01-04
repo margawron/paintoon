@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
-import pl.polsl.gawron.marcel.rplaceServer.models.LoginFormModel;
+import pl.polsl.gawron.marcel.rplaceServer.models.LoginForm;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
 import javax.servlet.http.Cookie;
@@ -90,7 +90,7 @@ public class LoginController {
             }
         }
 
-        model.addAttribute("formModel", new LoginFormModel());
+        model.addAttribute("formModel", new LoginForm());
         return "login";
     }
 
@@ -102,7 +102,7 @@ public class LoginController {
      * @return name of the template to render
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String loginUser(@ModelAttribute LoginFormModel formModel, Model model, HttpServletResponse response) {
+    public String loginUser(@ModelAttribute LoginForm formModel, Model model, HttpServletResponse response) {
         int nameLength = formModel.getName().length();
         model.addAttribute("shouldRedirectToRegister", false);
         if (nameLength < 3 || nameLength > 25) {

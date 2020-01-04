@@ -5,7 +5,7 @@ package pl.polsl.gawron.marcel.rplaceServer.models;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class SetPixelModel {
+public class SetPixel {
     private int x;
     private int y;
     private int red;

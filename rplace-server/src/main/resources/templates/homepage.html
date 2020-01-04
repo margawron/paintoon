@@ -7,11 +7,16 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/popper.js/popper.min.js"></script>
     <script src="/webjars/bootstrap/bootstrap.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="webjars/stomp-websocket/stomp.min.js"></script>
     <link href="/styles/homepageStyle.css" rel="stylesheet"/>
     <script src="scripts/homepageScript.js"></script>
 </head>
 <body>
 <div class="container padding-top-md">
+    <div id="messages" class="d-flex flex-row" style="padding: 5px; height: 60px">
+
+    </div>
     <div class="row">
         <div class="col no-grow">
             <div class="row padding-xs padding-top-none">
@@ -19,14 +24,17 @@
                     <iframe class="utilityFrame" frameborder="0" onload="resizeIframe(this)" scrolling="no"
                             src="/login"></iframe>
                 </div>
-                <div class="col fill-height padding-xs">
+                <div class="col height-auto padding-xs">
                     <iframe class="historyFrame"></iframe>
                 </div>
             </div>
         </div>
-        <div class="col padding-xs ">
-            <canvas id="canvas" class="canvas"></canvas>
-            <script>initCanvas();</script>
+        <div class="col padding-none height-auto canvas">
+            <canvas id="canvas"></canvas>
+            <script>initPage();</script>
+        </div>
+        <div class="col color-picker">
+            &nbsp;Coś tam
         </div>
     </div>
 </div>

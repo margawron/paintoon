@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
-import pl.polsl.gawron.marcel.rplaceServer.models.RegistrationFormModel;
+import pl.polsl.gawron.marcel.rplaceServer.models.RegistrationForm;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
 import javax.servlet.http.Cookie;
@@ -61,7 +61,7 @@ public class RegisterController {
             }
         }
 
-        model.addAttribute("formModel", new RegistrationFormModel());
+        model.addAttribute("formModel", new RegistrationForm());
         return "register";
     }
 
@@ -73,7 +73,7 @@ public class RegisterController {
      * @return name of the template to render
      */
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public String userRegister(@ModelAttribute RegistrationFormModel formModel, Model model) {
+    public String userRegister(@ModelAttribute RegistrationForm formModel, Model model) {
         model.addAttribute("shouldRedirectToRegister", true); // Show register page button
 
         if (!formModel.getName().matches("(?!.*[.\\-_]{2,})^[a-zA-Z0-9.\\-_]{3,24}$")) {

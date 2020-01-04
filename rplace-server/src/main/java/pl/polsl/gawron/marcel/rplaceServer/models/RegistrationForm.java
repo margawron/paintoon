@@ -6,7 +6,7 @@ package pl.polsl.gawron.marcel.rplaceServer.models;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class RegistrationFormModel {
+public class RegistrationForm {
     private String name;
     private String passwordFirst;
     private String passwordSecond;

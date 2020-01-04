@@ -14,13 +14,22 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    /**
+     * Sets endpoint IN STOMP created WebSocket
+     * @param registry STOMP created WebSocket registry
+     */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/image");
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/topic", "/app");
     }
 
+    /**
+     * Sets HTTP endpoint for WebSocket
+     * @param registry STOMP library registry
+     */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket").withSockJS();
+        registry.addEndpoint("/websocket").setAllowedOrigins("*").withSockJS();
     }
 }
