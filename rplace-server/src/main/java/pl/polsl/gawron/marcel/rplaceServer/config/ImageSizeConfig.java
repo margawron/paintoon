@@ -16,7 +16,7 @@ public class ImageSizeConfig {
     /**
      * Proper constructor needs to be provided for Spring to know
      * how to construct Image model
-     * @return Image object (size of cavnas is 700x700)
+     * @return Image object (size of canvas is 700x700)
      */
     @Bean
     public Image setImageSize() {
