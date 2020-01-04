@@ -9,8 +9,8 @@
     <script src="/webjars/bootstrap/bootstrap.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/scripts/homepageScript.js"></script>
     <link href="/styles/homepageStyle.css" rel="stylesheet"/>
-    <script src="scripts/homepageScript.js"></script>
 </head>
 <body>
 <div class="container padding-top-md">
@@ -25,7 +25,9 @@
                             src="/login"></iframe>
                 </div>
                 <div class="col height-auto padding-xs">
-                    <iframe class="historyFrame"></iframe>
+                    <div id="historyFrame" class="historyFrame">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,7 +36,10 @@
             <script>initPage();</script>
         </div>
         <div class="col color-picker">
-            &nbsp;Coś tam
+            <div class="letter" >
+                R:<input id="redComponent" type="text" size="2"/><br />
+                G:<input id="greenComponent" type="text" size="2"/><br />
+                B:<input id="blueComponent" type="text" size="2"/><br />
         </div>
     </div>
 </div>

@@ -16,7 +16,8 @@
 }
 
 .canvas {
-    border: 5px aqua solid;
+    border-style: dashed;
+    border-color: black;
     display: inline-block;
     line-height: 0;
 }
@@ -26,11 +27,10 @@
 }
 
 .color-picker {
-    border: 5px blueviolet dot-dot-dash;
 }
 
 .utilityFrame {
-    border: 2px black dashed;
+    background-color: white;
     margin: 0;
     padding: 0;
     outline: 0;
@@ -38,6 +38,7 @@
 }
 
 .historyFrame {
+    background-color: white;
     position: relative;
     display: block;
     height: 100%;
@@ -54,4 +55,8 @@
 .margin-0-auto {
     display: inline-block;
     margin: 0 auto;
+}
+
+body {
+    font-family: monospace;
 }
