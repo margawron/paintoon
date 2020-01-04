@@ -87,6 +87,10 @@ public class ImageController {
         Cookie[] cookies = request.getCookies();
         String username = null;
         String token = null;
+        if(cookies == null) {
+            response.sendError(403, "Auth error!");
+            return null;
+        }
         for (var cookie : cookies) {
             if (cookie.getName().equals("username")) {
                 username = cookie.getValue();
@@ -104,7 +108,6 @@ public class ImageController {
             response.sendError(403);
             return null;
         }
-        // TODO check if user placed a pixel in the last X minutes
         if (payload.getX() > image.getSize() && payload.getY() > image.getSize()) {
             response.sendError(403);
             return null;

@@ -74,22 +74,24 @@ public class LoginController {
         Cookie[] cookies = request.getCookies();
         String username = null;
         String token = null;
-        for (var cookie : cookies) {
-            if (cookie.getName().equals("username")) {
-                username = cookie.getValue();
+        if(cookies != null)
+        {
+            for (var cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                    username = cookie.getValue();
+                }
+                if (cookie.getName().equals("token")) {
+                    token = cookie.getValue();
+                }
             }
-            if (cookie.getName().equals("token")) {
-                token = cookie.getValue();
+            // Check if user is already logged and if he is, redirect him to login page
+            if (username != null && token != null) {
+                User user = userRepository.findUser(username);
+                if (user != null && user.isTokenValid(token)) {
+                    return "redirect:/profilePage";
+                }
             }
         }
-        // Check if user is already logged and if he is, redirect him to login page
-        if (username != null && token != null) {
-            User user = userRepository.findUser(username);
-            if (user != null && user.isTokenValid(token)) {
-                return "redirect:/profilePage";
-            }
-        }
-
         model.addAttribute("formModel", new LoginForm());
         return "login";
     }
