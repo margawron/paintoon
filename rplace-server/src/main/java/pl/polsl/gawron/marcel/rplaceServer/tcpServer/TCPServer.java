@@ -1,5 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer;
 
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
@@ -17,11 +18,9 @@ import java.net.Socket;
  * @author Marcel Gawron
  * @version 1.0
  */
-@Component
 public class TCPServer extends Thread implements Closeable {
     // Network
     private Thread thread;
-    @Value("${TCPServer.port}")
     private int port;
     private ServerSocket serverSocket;
     private ProtocolController protocolController;
@@ -31,8 +30,9 @@ public class TCPServer extends Thread implements Closeable {
      * @param controller controller responsible for custom TCP protocol
      * @param image Image model
      */
-    public TCPServer(ProtocolController controller, Image image) {
+    public TCPServer(ProtocolController controller, Image image, int port) {
         protocolController = controller;
+        this.port = port;
         this.thread = new Thread(this);
         this.thread.start();
     }
@@ -42,7 +42,7 @@ public class TCPServer extends Thread implements Closeable {
      */
     @Override
     public void run() {
-        System.out.println("TCP Server starting ...");
+        System.out.println("TCP Server listening on port: " + this.port);
 
         try {
             startServer();

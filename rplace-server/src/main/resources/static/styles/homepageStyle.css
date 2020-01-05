@@ -24,6 +24,9 @@
 
 #canvas {
     image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -o-crisp-edges;
 }
 
 .color-picker {
