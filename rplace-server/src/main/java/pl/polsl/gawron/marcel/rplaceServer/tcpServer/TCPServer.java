@@ -1,17 +1,15 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.services.ServerService;
 
 import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Properties;
 
 /**
  * TCP server class
@@ -23,6 +21,7 @@ import java.util.Properties;
 public class TCPServer extends Thread implements Closeable {
     // Network
     private Thread thread;
+    @Value("${TCPServer.port}")
     private int port;
     private ServerSocket serverSocket;
     private ProtocolController protocolController;
@@ -44,13 +43,8 @@ public class TCPServer extends Thread implements Closeable {
     @Override
     public void run() {
         System.out.println("TCP Server starting ...");
+
         try {
-            Properties properties = new Properties();
-            String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            try (FileInputStream inputStream = new FileInputStream(path + File.separator + "config.properties")) {
-                properties.load(inputStream);
-                this.port = Integer.parseInt(properties.getProperty("serv.port"));
-            }
             startServer();
         } catch (IOException e) {
             System.out.println(e.getMessage());

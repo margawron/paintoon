@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Controller responsible for user login capabilities
+ *
  * @author Marcel Gawron
  * @version 1.0
  */
