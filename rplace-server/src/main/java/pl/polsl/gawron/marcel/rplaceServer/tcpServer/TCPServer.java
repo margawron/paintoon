@@ -27,6 +27,7 @@ public class TCPServer extends Thread implements Closeable {
      *
      * @param controller controller responsible for custom TCP protocol
      * @param image      Image model
+     * @param port       port on which server should listen on
      */
     public TCPServer(ProtocolController controller, Image image, int port) {
         protocolController = controller;

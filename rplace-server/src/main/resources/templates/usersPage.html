@@ -2,15 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User table printout</title>
 </head>
 <body>
-<p th:each="user : ${users}">
-    <b th:text="${user.id}"></b>
-    <b th:text="${user.name}"></b>
-    <u th:text="${user.password}"></u>
-    <i th:text="${user.token}"></i>
-    <i th:text="${user.tokenExpiryServerTime}"></i>
-</p>
+<th:block th:each="user : ${users}">
+    <p>
+        <b th:text="${user.id}"></b>
+        <b th:text="${user.name}"></b>
+        <i th:text="${user.token}"></i>
+        <i th:text="${user.tokenExpiryServerTime}"></i>
+    </p>
+</th:block>
 </body>
 </html>

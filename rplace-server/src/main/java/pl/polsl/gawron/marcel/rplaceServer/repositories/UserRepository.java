@@ -1,6 +1,9 @@
 package pl.polsl.gawron.marcel.rplaceServer.repositories;
 
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -26,17 +29,17 @@ public class UserRepository {
 
     /**
      * Default constructor
-     * Deletes old table and creates a new one
+     * @param template jdbc connection template - filled by spring context
      */
     public UserRepository(JdbcTemplate template) {
         this.template = template;
-        template.execute("DROP TABLE IF EXISTS users");
-        template.execute("CREATE TABLE users(" +
-                "id INTEGER AUTO_INCREMENT PRIMARY KEY," +
-                "name TEXT NOT NULL," +
-                "password TEXT NOT NULL," +
-                "tokenExpiryServerTime INTEGER," +
-                "token TEXT)");
+//        template.execute("DROP TABLE IF EXISTS users");
+//        template.execute("CREATE TABLE users(" +
+//                "id INTEGER AUTO_INCREMENT PRIMARY KEY," +
+//                "name TEXT NOT NULL," +
+//                "password TEXT NOT NULL," +
+//                "tokenExpiryServerTime INTEGER," +
+//                "token TEXT)");
     }
 
     /**
@@ -71,6 +74,11 @@ public class UserRepository {
         return toReturn;
     }
 
+    /**
+     * Query for user with specific id
+     * @param id id of a user to query for
+     * @return User data from database
+     */
     public User findUser(int id) {
         User toReturn;
         try {
@@ -85,10 +93,16 @@ public class UserRepository {
      * Updates user entry in the database
      *
      * @param user user entry
+     * @return true if update passed, false otherwise
      */
-    public void updateUser(User user) {
-        template.update("UPDATE users SET name = ?, password = ?, token = ?, tokenExpiryServerTime = ? WHERE id = ?",
-                user.getName(), user.getPassword(), user.getToken(), user.getTokenExpiryServerTime().atZone(ZoneId.systemDefault()).toEpochSecond(), user.getId());
+    public boolean updateUser(User user) {
+        try {
+            template.update("UPDATE users SET name = ?, password = ?, token = ?, tokenExpiryServerTime = ? WHERE id = ?",
+                    user.getName(), user.getPassword(), user.getToken(), user.getTokenExpiryServerTime().atZone(ZoneId.systemDefault()).toEpochSecond(), user.getId());
+            return true;
+        }catch (DataAccessException e){
+            return false;
+        }
     }
 
     /**

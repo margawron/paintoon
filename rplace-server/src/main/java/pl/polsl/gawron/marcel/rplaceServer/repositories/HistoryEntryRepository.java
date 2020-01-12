@@ -1,5 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceServer.repositories;
 
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -27,23 +28,25 @@ public class HistoryEntryRepository {
     private UserRepository userRepository;
 
     /**
-     * Default constructor
-     * initializes member objects
+     * Creates table for history entries
+     * @param template jdbc connection template - filled by spring context
+     * @param userRepository user database connection class - filled by spring context
      */
     public HistoryEntryRepository(JdbcTemplate template, UserRepository userRepository) {
         this.template = template;
         this.userRepository = userRepository;
-        template.execute("DROP TABLE IF EXISTS historyEntries");
-        template.execute("CREATE TABLE historyEntries(" +
-                "id INTEGER AUTO_INCREMENT PRIMARY KEY," +
-                "x INTEGER NOT NULL," +
-                "y INTEGER NOT NULL," +
-                "red INTEGER NOT NULL," +
-                "green INTEGER NOT NULL," +
-                "blue INTEGER NOT NULL," +
-                "userId INTEGER NOT NULL ," +
-                "timeOfModification INTEGER NOT NULL," +
-                "FOREIGN KEY (userId) REFERENCES users(id))");
+//        template.execute("DROP TABLE IF EXISTS historyEntries");
+//        template.execute("CREATE TABLE historyEntries(" +
+//                "id INTEGER AUTO_INCREMENT PRIMARY KEY," +
+//                "x INTEGER NOT NULL," +
+//                "y INTEGER NOT NULL," +
+//                "red INTEGER NOT NULL," +
+//                "green INTEGER NOT NULL," +
+//                "blue INTEGER NOT NULL," +
+//                "userId INTEGER NOT NULL ," +
+//                "timeOfModification INTEGER NOT NULL," +
+//                "FOREIGN KEY (userId) REFERENCES users(id) " +
+//                "ON DELETE SET NULL)");
     }
 
     /**
@@ -75,6 +78,10 @@ public class HistoryEntryRepository {
         return historyEntry;
     }
 
+    /**
+     * Gets all of the history entries in the database
+     * @return List of history entries
+     */
     public List<HistoryEntry> getHistoryEntries() {
         List<HistoryEntry> historyEntries = null;
         try {
@@ -85,6 +92,13 @@ public class HistoryEntryRepository {
         return historyEntries;
     }
 
+    /**
+     * Class implementing interface of a row mapper
+     * for HistoryEntry class
+     *
+     * @author Marcel Gawron
+     * @version 1.0
+     */
     public final class HistoryEntryRowMapper implements RowMapper<HistoryEntry> {
         @Override
         public HistoryEntry mapRow(ResultSet resultSet, int i) throws SQLException {
