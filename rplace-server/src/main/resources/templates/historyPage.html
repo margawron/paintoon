@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <th:block th:each="entry : ${historyEntries}">
+        <p>
+        <b style="color: red" th:text="${entry.color.red}"></b>
+        <b style="color: green" th:text="${entry.color.green}"></b>
+        <b style="color: blue" th:text="${entry.color.blue}"></b>
+        <i th:text="${entry.timeOfModification}"></i>
+        <u th:text="${entry.userWhoModifiedPixel.name}"></u>
+        <b th:text="${entry.x}"></b>
+        <b th:text="${entry.y}"></b>
+        </p>
+    </th:block>
+</body>
+</html>
