@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
  * @version 1.0
  */
 public class HistoryEntry {
+    private long id;
     private int x;
     private int y;
     private Color color;
@@ -19,6 +20,22 @@ public class HistoryEntry {
      * Default constructor
      */
     public HistoryEntry() {
+    }
+
+    /**
+     * Getter for id field
+     * @return id field of an object
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * Setter for the id field
+     * @param id id that should be set
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**
