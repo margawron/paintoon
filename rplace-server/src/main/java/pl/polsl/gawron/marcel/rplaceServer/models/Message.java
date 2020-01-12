@@ -1,6 +1,8 @@
 package pl.polsl.gawron.marcel.rplaceServer.models;
 
 
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
+
 /**
  * Message model for WebSocket broadcast connection
  *
@@ -128,5 +130,15 @@ public class Message {
      */
     public void setBlue(int blue) {
         this.blue = blue;
+    }
+
+    /**
+     * Sets all components of a message object with compounded color components in Color class
+     * @param color class storing compounded color components
+     */
+    public void setColor(Color color){
+        this.red = color.getRed();
+        this.green = color.getGreen();
+        this.blue = color.getBlue();
     }
 }
