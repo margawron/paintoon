@@ -8,6 +8,8 @@ import pl.polsl.gawron.marcel.rplaceData.protocol.PacketType;
 import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.*;
 import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.*;
 import pl.polsl.gawron.marcel.rplaceData.utils.Constants;
+import pl.polsl.gawron.marcel.rplaceServer.controllers.ImageController;
+import pl.polsl.gawron.marcel.rplaceServer.models.Message;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
@@ -32,11 +34,13 @@ public class PacketHandler {
     private UserRepository userRepository;
     private HistoryEntryRepository historyEntryRepository;
     private ProtocolController protocolController;
+    private ImageController imageController;
 
-    public PacketHandler(UserRepository userRepository, HistoryEntryRepository historyEntryRepository, @Lazy ProtocolController controller) {
+    public PacketHandler(UserRepository userRepository, HistoryEntryRepository historyEntryRepository, @Lazy ProtocolController controller, ImageController imageController) {
         this.userRepository = userRepository;
         this.historyEntryRepository = historyEntryRepository;
         this.protocolController = controller;
+        this.imageController = imageController;
     }
 
     /**
@@ -200,6 +204,7 @@ public class PacketHandler {
         stringBuilder.append(PacketType.RESPONSE_LOGIN.getValue());
         stringBuilder.append(" ");
         stringBuilder.append(response.serialize());
+        userRepository.updateUser(user);
         return stringBuilder.toString();
     }
 
@@ -288,6 +293,12 @@ public class PacketHandler {
             }
         }
         protocolController.getImage().setPixel(request.getxPos(), request.getyPos(), request.getColor());
+        Message message = new Message();
+        message.setUsername(user.getName());
+        message.setX(request.getxPos());
+        message.setY(request.getyPos());
+        message.setColor(request.getColor());
+        imageController.fireWebSocketBroadcastEvent(message);
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setX(request.getxPos());
         historyEntry.setY(request.getyPos());

@@ -136,7 +136,8 @@ public class LoginController {
 //        tokenCookie.setSecure(true);
         usernameCookie.setHttpOnly(true);
         tokenCookie.setHttpOnly(true);
-
+        //
+        userRepository.updateUser(user);
         response.addCookie(usernameCookie);
         response.addCookie(tokenCookie);
         return "redirect:/profilePage";

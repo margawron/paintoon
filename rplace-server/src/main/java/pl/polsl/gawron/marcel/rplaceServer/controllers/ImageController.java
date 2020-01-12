@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.polsl.gawron.marcel.rplaceData.models.Color;
+import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
 import pl.polsl.gawron.marcel.rplaceServer.models.Message;
 import pl.polsl.gawron.marcel.rplaceServer.models.SetPixel;
+import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
 import javax.imageio.ImageIO;
@@ -24,6 +26,9 @@ import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * Controller responsible for image response
@@ -37,6 +42,7 @@ public class ImageController {
     private Image image;
     private BufferedImage bufferedImage;
     private UserRepository userRepository;
+    private HistoryEntryRepository historyEntryRepository;
     // NEEDED
     // SentTo annotation is not enough to trigger
     // WebSocket refresh
@@ -48,10 +54,11 @@ public class ImageController {
      * @param userRepository repository handling user data/database
      * @param simpMessagingTemplate webSocket messaging template
      */
-    public ImageController(Image image, UserRepository userRepository, SimpMessagingTemplate simpMessagingTemplate) {
+    public ImageController(Image image, UserRepository userRepository, SimpMessagingTemplate simpMessagingTemplate, HistoryEntryRepository historyEntryRepository) {
         this.image = image;
         bufferedImage = new BufferedImage(image.getSize(), image.getSize(), BufferedImage.TYPE_3BYTE_BGR);
         this.userRepository = userRepository;
+        this.historyEntryRepository = historyEntryRepository;
         this.template = simpMessagingTemplate;
     }
 
@@ -113,6 +120,13 @@ public class ImageController {
             response.sendError(403);
             return null;
         }
+        HistoryEntry historyEntry = new HistoryEntry();
+        historyEntry.setX(payload.getX());
+        historyEntry.setY(payload.getY());
+        historyEntry.setColor(new Color(payload.getRed(), payload.getGreen(),payload.getBlue()));
+        historyEntry.setUserWhoModifiedPixel(user);
+        historyEntry.setTimeOfModification(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
+        historyEntryRepository.addHistoryEntry(historyEntry);
         image.setPixel(payload.getX(), payload.getY(), new Color(payload.getRed(), payload.getGreen(), payload.getBlue()));
         response.setStatus(200);
         Message broadcastMessage = new Message();
