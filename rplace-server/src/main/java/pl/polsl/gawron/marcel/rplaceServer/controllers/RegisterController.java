@@ -35,7 +35,7 @@ public class RegisterController {
     /**
      * Responds to HTTP GET requests with register page
      *
-     * @param model model object containing attributes for rendering views
+     * @param model   model object containing attributes for rendering views
      * @param request request sent by user
      * @return name of the template to render
      */
@@ -46,8 +46,7 @@ public class RegisterController {
         Cookie[] cookies = request.getCookies();
         String username = null;
         String token = null;
-        if(cookies != null)
-        {
+        if (cookies != null) {
             for (var cookie : cookies) {
                 if (cookie.getName().equals("username")) {
                     username = cookie.getValue();

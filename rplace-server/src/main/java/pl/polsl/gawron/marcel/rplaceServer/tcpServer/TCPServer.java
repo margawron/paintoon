@@ -1,8 +1,5 @@
 package pl.polsl.gawron.marcel.rplaceServer.tcpServer;
 
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.controllers.ProtocolController;
 import pl.polsl.gawron.marcel.rplaceServer.tcpServer.services.ServerService;
@@ -27,8 +24,9 @@ public class TCPServer extends Thread implements Closeable {
 
     /**
      * Server constructor
+     *
      * @param controller controller responsible for custom TCP protocol
-     * @param image Image model
+     * @param image      Image model
      */
     public TCPServer(ProtocolController controller, Image image, int port) {
         protocolController = controller;

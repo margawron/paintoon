@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-    <p th:each="user : ${users}">
-        <b th:text="${user.id}"></b>
-        <b th:text="${user.name}"></b>
-        <u th:text="${user.password}"></u>
-        <i th:text="${user.token}"></i>
-        <i th:text="${user.tokenExpiryServerTime}"></i>
-    </p>
+<p th:each="user : ${users}">
+    <b th:text="${user.id}"></b>
+    <b th:text="${user.name}"></b>
+    <u th:text="${user.password}"></u>
+    <i th:text="${user.token}"></i>
+    <i th:text="${user.tokenExpiryServerTime}"></i>
+</p>
 </body>
 </html>

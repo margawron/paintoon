@@ -134,9 +134,10 @@ public class Message {
 
     /**
      * Sets all components of a message object with compounded color components in Color class
+     *
      * @param color class storing compounded color components
      */
-    public void setColor(Color color){
+    public void setColor(Color color) {
         this.red = color.getRed();
         this.green = color.getGreen();
         this.blue = color.getBlue();

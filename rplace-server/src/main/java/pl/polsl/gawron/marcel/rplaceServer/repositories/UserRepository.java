@@ -50,7 +50,7 @@ public class UserRepository {
         if (findUser(name) != null) {
             return false;
         } else {
-            template.update("INSERT INTO users(name, password) VALUES (?,?)",name,password);
+            template.update("INSERT INTO users(name, password) VALUES (?,?)", name, password);
             return true;
         }
     }
@@ -64,9 +64,8 @@ public class UserRepository {
     public User findUser(String name) {
         User toReturn;
         try {
-             toReturn = template.queryForObject("Select * from users where name = ?", new Object[]{name}, new UserRowMapper());
-        }
-        catch(EmptyResultDataAccessException e){
+            toReturn = template.queryForObject("Select * from users where name = ?", new Object[]{name}, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
             toReturn = null;
         }
         return toReturn;
@@ -76,8 +75,7 @@ public class UserRepository {
         User toReturn;
         try {
             toReturn = template.queryForObject("Select * from users where id = ?", new Object[]{id}, new UserRowMapper());
-        }
-        catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             toReturn = null;
         }
         return toReturn;
@@ -85,22 +83,24 @@ public class UserRepository {
 
     /**
      * Updates user entry in the database
+     *
      * @param user user entry
      */
-    public void updateUser(User user){
+    public void updateUser(User user) {
         template.update("UPDATE users SET name = ?, password = ?, token = ?, tokenExpiryServerTime = ? WHERE id = ?",
-                user.getName(), user.getPassword(),user.getToken(), user.getTokenExpiryServerTime().atZone(ZoneId.systemDefault()).toEpochSecond(),user.getId());
+                user.getName(), user.getPassword(), user.getToken(), user.getTokenExpiryServerTime().atZone(ZoneId.systemDefault()).toEpochSecond(), user.getId());
     }
 
     /**
      * Returns list of users from database
+     *
      * @return list of users
      */
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         List<User> toReturn = null;
         try {
             toReturn = template.query("SELECT * FROM users", new UserRowMapper());
-        }catch (EmptyResultDataAccessException ignored){
+        } catch (EmptyResultDataAccessException ignored) {
         }
         return toReturn;
     }
@@ -108,20 +108,21 @@ public class UserRepository {
     /**
      * Class implementing interaface of a row mapper
      * for User class
+     *
      * @author Marcel Gawron
      * @version 1.0
      */
     public final class UserRowMapper implements RowMapper<User> {
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setPassword(resultSet.getString("password"));
-                user.setToken(resultSet.getString("token"));
-                user.setTokenExpiryServerTime(LocalDateTime.ofEpochSecond(resultSet.getInt("tokenExpiryServerTime"), 0, ZoneOffset.UTC));
-                return user;
-            }
+            User user = new User();
+            user.setId(resultSet.getLong("id"));
+            user.setName(resultSet.getString("name"));
+            user.setPassword(resultSet.getString("password"));
+            user.setToken(resultSet.getString("token"));
+            user.setTokenExpiryServerTime(LocalDateTime.ofEpochSecond(resultSet.getInt("tokenExpiryServerTime"), 0, ZoneOffset.UTC));
+            return user;
         }
     }
+}
 

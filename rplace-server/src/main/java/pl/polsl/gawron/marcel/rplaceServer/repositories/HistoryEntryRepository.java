@@ -1,6 +1,5 @@
 package pl.polsl.gawron.marcel.rplaceServer.repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -8,15 +7,12 @@ import org.springframework.stereotype.Component;
 import pl.polsl.gawron.marcel.rplaceData.models.Color;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 
-import java.sql.JDBCType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * In-memory database of pixel changes
@@ -56,9 +52,9 @@ public class HistoryEntryRepository {
      */
     public void addHistoryEntry(HistoryEntry entry) {
         template.update("INSERT INTO historyEntries(x,y,red,green,blue,userId,timeOfModification)" +
-                " VALUES (?,?,?,?,?,?,?)",
-                entry.getX(),entry.getY(),
-                entry.getColor().getRed(),entry.getColor().getGreen(), entry.getColor().getBlue(),
+                        " VALUES (?,?,?,?,?,?,?)",
+                entry.getX(), entry.getY(),
+                entry.getColor().getRed(), entry.getColor().getGreen(), entry.getColor().getBlue(),
                 entry.getUserWhoModifiedPixel().getId(), entry.getTimeOfModification().atZone(ZoneId.systemDefault()).toEpochSecond());
     }
 
@@ -71,18 +67,18 @@ public class HistoryEntryRepository {
     public HistoryEntry getHistoryEntry(int id) {
         HistoryEntry historyEntry = null;
         try {
-            historyEntry = template.queryForObject("SELECT * FROM historyEntries WHERE id = ?", new Object[]{id}, new HistoryEntryRowMapper() );
-        } catch (EmptyResultDataAccessException e){
+            historyEntry = template.queryForObject("SELECT * FROM historyEntries WHERE id = ?", new Object[]{id}, new HistoryEntryRowMapper());
+        } catch (EmptyResultDataAccessException e) {
             historyEntry = null;
         }
         return historyEntry;
     }
 
-    public List<HistoryEntry> getHistoryEntries(){
+    public List<HistoryEntry> getHistoryEntries() {
         List<HistoryEntry> historyEntries = null;
         try {
             historyEntries = template.query("SELECT * FROM historyEntries", new HistoryEntryRowMapper());
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             historyEntries = null;
         }
         return historyEntries;
@@ -101,7 +97,7 @@ public class HistoryEntryRepository {
                     resultSet.getInt("blue")
             ));
             historyEntry.setUserWhoModifiedPixel(userRepository.findUser(resultSet.getInt("userId")));
-            historyEntry.setTimeOfModification(LocalDateTime.ofEpochSecond(resultSet.getInt("timeOfModification"),0, ZoneOffset.UTC));
+            historyEntry.setTimeOfModification(LocalDateTime.ofEpochSecond(resultSet.getInt("timeOfModification"), 0, ZoneOffset.UTC));
             return historyEntry;
         }
     }

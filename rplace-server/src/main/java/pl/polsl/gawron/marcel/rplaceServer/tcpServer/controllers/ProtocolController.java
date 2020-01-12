@@ -24,8 +24,9 @@ public class ProtocolController {
 
     /**
      * Constructor for handling request of custom TCP protocol
+     *
      * @param handler manages responding to the clients
-     * @param image in memory bitmap model
+     * @param image   in memory bitmap model
      */
     public ProtocolController(PacketHandler handler, Image image) {
         this.image = image;

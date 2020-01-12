@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    <th:block th:each="entry : ${historyEntries}">
-        <p>
+<th:block th:each="entry : ${historyEntries}">
+    <p>
         <b style="color: red" th:text="${entry.color.red}"></b>
         <b style="color: green" th:text="${entry.color.green}"></b>
         <b style="color: blue" th:text="${entry.color.blue}"></b>
@@ -14,7 +14,7 @@
         <u th:text="${entry.userWhoModifiedPixel.name}"></u>
         <b th:text="${entry.x}"></b>
         <b th:text="${entry.y}"></b>
-        </p>
-    </th:block>
+    </p>
+</th:block>
 </body>
 </html>

@@ -37,9 +37,10 @@ public class LoginController {
 
     /**
      * Reponds to HTTP GET requests with stats page
-     * @param model in memory bitmap model
+     *
+     * @param model    in memory bitmap model
      * @param username cookie with name of logged in user
-     * @param token cookie with token of logged in user
+     * @param token    cookie with token of logged in user
      * @return name of the template to render
      */
     @RequestMapping(path = "/profilePage", method = RequestMethod.GET)
@@ -67,7 +68,7 @@ public class LoginController {
     /**
      * Responds to HTTP GET requests with login page
      *
-     * @param model object containing attributes for rendering views
+     * @param model   object containing attributes for rendering views
      * @param request request sent by client
      * @return name of the template to render
      */
@@ -79,8 +80,7 @@ public class LoginController {
         Cookie[] cookies = request.getCookies();
         String username = null;
         String token = null;
-        if(cookies != null)
-        {
+        if (cookies != null) {
             for (var cookie : cookies) {
                 if (cookie.getName().equals("username")) {
                     username = cookie.getValue();

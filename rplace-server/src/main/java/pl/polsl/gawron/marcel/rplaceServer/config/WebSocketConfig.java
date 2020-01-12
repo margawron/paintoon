@@ -8,6 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 /**
  * Config for WebSockets
+ *
  * @author Marcel Gawron
  * @version 1.0
  */

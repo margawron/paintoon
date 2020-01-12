@@ -50,8 +50,9 @@ public class ImageController {
 
     /**
      * Controller responsible for image manipulation
-     * @param image in memory bitmap model
-     * @param userRepository repository handling user data/database
+     *
+     * @param image                 in memory bitmap model
+     * @param userRepository        repository handling user data/database
      * @param simpMessagingTemplate webSocket messaging template
      */
     public ImageController(Image image, UserRepository userRepository, SimpMessagingTemplate simpMessagingTemplate, HistoryEntryRepository historyEntryRepository) {
@@ -95,7 +96,7 @@ public class ImageController {
         Cookie[] cookies = request.getCookies();
         String username = null;
         String token = null;
-        if(cookies == null) {
+        if (cookies == null) {
             response.sendError(403, "Auth error!");
             return null;
         }
@@ -123,7 +124,7 @@ public class ImageController {
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setX(payload.getX());
         historyEntry.setY(payload.getY());
-        historyEntry.setColor(new Color(payload.getRed(), payload.getGreen(),payload.getBlue()));
+        historyEntry.setColor(new Color(payload.getRed(), payload.getGreen(), payload.getBlue()));
         historyEntry.setUserWhoModifiedPixel(user);
         historyEntry.setTimeOfModification(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
         historyEntryRepository.addHistoryEntry(historyEntry);
@@ -144,8 +145,8 @@ public class ImageController {
      * Send message by WebSocket informing that the pixel has changed
      *
      * @param message message to send
-     * // @SendTo("/topic/broadcast") Not enough to send message automatically
-     * // (Not enough for Spring to know that it needs to send a message)
+     *                // @SendTo("/topic/broadcast") Not enough to send message automatically
+     *                // (Not enough for Spring to know that it needs to send a message)
      */
     public void fireWebSocketBroadcastEvent(Message message) {
         this.template.convertAndSend("/topic/broadcast", message);

@@ -27,8 +27,8 @@ function initPage() {
         greenColorPicker = $('#greenComponent');
         blueColorPicker = $('#blueComponent');
         colorToBeSet = JSON.parse(localStorage.getItem("colors"));
-        if(colorToBeSet == null){
-            colorToBeSet = ["ff","00","ff"];
+        if (colorToBeSet == null) {
+            colorToBeSet = ["ff", "00", "ff"];
         }
         redColorPicker.val(colorToBeSet[0]);
         greenColorPicker.val(colorToBeSet[1]);
@@ -43,7 +43,7 @@ function initPage() {
             onColorPickerChange();
         });
 
-       setColor(colorToBeSet[0],colorToBeSet[1],colorToBeSet[2]);
+        setColor(colorToBeSet[0], colorToBeSet[1], colorToBeSet[2]);
     })
 
 }
@@ -53,9 +53,9 @@ function sendPixelToServer(canvas, event) {
     var serverMessage = {
         "x": position.x,
         "y": position.y,
-        "red": parseInt(colorToBeSet[0],16),
-        "green": parseInt(colorToBeSet[1],16),
-        "blue": parseInt(colorToBeSet[2],16)
+        "red": parseInt(colorToBeSet[0], 16),
+        "green": parseInt(colorToBeSet[1], 16),
+        "blue": parseInt(colorToBeSet[2], 16)
     };
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
@@ -139,17 +139,17 @@ function putPixel(ctx, x, y, r, g, b) {
 
 function reloadHistory(payload) {
     var historyFrame = $("#historyFrame");
-    if(activeSessionHistory.length >= 17){
+    if (activeSessionHistory.length >= 17) {
         activeSessionHistory.pop();
         // Needs double remove (for <span> tag and for <br /> tag)
         historyFrame.contents().last().remove();
         historyFrame.contents().last().remove();
     }
     activeSessionHistory.unshift(payload);
-    var hexedColor = '#'+hex(payload.red)+hex(payload.green)+hex(payload.blue);
+    var hexedColor = '#' + hex(payload.red) + hex(payload.green) + hex(payload.blue);
     console.log(historyFrame.contents());
     historyFrame.prepend(
-        '<span style="color:'+hexedColor+'">'+ payload.username + ': '+ payload.x + 'px '+ payload.y+ 'px</span><br />'
+        '<span style="color:' + hexedColor + '">' + payload.username + ': ' + payload.x + 'px ' + payload.y + 'px</span><br />'
     );
 }
 
@@ -178,7 +178,7 @@ function onColorPickerChange() {
     var red = redColorPicker.val().length === 2 ? redColorPicker.val() : "ff";
     var green = greenColorPicker.val().length === 2 ? greenColorPicker.val() : "ff";
     var blue = blueColorPicker.val().length === 2 ? blueColorPicker.val() : "ff";
-    setColor(red,green,blue);
+    setColor(red, green, blue);
 }
 
 function setColor(red, green, blue) {
@@ -188,9 +188,11 @@ function setColor(red, green, blue) {
         b = (255 - parseInt(blue, 16)).toString(16);
     var textColor = padZero(r) + padZero(g) + padZero(b);
     colorToBeSet = [red, green, blue];
-    localStorage.setItem("colors",JSON.stringify(colorToBeSet));
-    $('body').css({'background-color' : '#' + bodyColor,
-        'color': '#' + textColor});
+    localStorage.setItem("colors", JSON.stringify(colorToBeSet));
+    $('body').css({
+        'background-color': '#' + bodyColor,
+        'color': '#' + textColor
+    });
 }
 
 function padZero(str, len) {

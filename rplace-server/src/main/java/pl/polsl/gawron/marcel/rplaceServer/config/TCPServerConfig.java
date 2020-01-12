@@ -18,7 +18,7 @@ public class TCPServerConfig {
     int port;
 
     @Bean
-    public TCPServer makeTCPServer(ProtocolController protocolController, Image image){
+    public TCPServer makeTCPServer(ProtocolController protocolController, Image image) {
         return new TCPServer(protocolController, image, port);
     }
 }
