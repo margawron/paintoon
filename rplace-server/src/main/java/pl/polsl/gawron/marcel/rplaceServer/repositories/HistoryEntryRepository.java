@@ -42,7 +42,8 @@ public class HistoryEntryRepository {
                 "green INTEGER NOT NULL," +
                 "blue INTEGER NOT NULL," +
                 "userId INTEGER NOT NULL ," +
-                "timeOfModification INTEGER NOT NULL)");
+                "timeOfModification INTEGER NOT NULL," +
+                "FOREIGN KEY (userId) REFERENCES users(id))");
     }
 
     /**
