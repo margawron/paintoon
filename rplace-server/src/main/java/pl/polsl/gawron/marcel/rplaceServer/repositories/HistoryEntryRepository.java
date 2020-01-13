@@ -79,6 +79,11 @@ public class HistoryEntryRepository {
         return historyEntry;
     }
 
+    /**
+     * Query for number of pixel changes of a user
+     * @param userId user id
+     * @return count of bitmap changes
+     */
     public long getCountOfUserPixelChanges(long userId){
         Long userPixelChangesCount = 0l;
         try{
