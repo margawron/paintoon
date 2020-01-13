@@ -79,6 +79,19 @@ public class HistoryEntryRepository {
         return historyEntry;
     }
 
+    public long getCountOfUserPixelChanges(long userId){
+        Long userPixelChangesCount = 0l;
+        try{
+            userPixelChangesCount = template.queryForObject("SELECT COUNT(*) FROM historyEntries WHERE userId = ?", new Object[]{userId}, Long.class);
+        } catch (EmptyResultDataAccessException e){
+            userPixelChangesCount = 0l;
+        }
+        if(userPixelChangesCount == null){
+            userPixelChangesCount = 0l;
+        }
+        return userPixelChangesCount;
+    }
+
     /**
      * Gets all of the history entries in the database
      *

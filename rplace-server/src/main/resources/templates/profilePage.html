@@ -10,6 +10,6 @@
     <b th:if="${isTokenValid}">Yes</b>
     <b th:if="${!isTokenValid}">No</b>
 </p>
-<p>Number of pixels set: <b>Placeholder</b></p>
+<p>Number of pixels set: <b th:text="${numberOfPixels}">Placeholder</b></p>
 </body>
 </html>

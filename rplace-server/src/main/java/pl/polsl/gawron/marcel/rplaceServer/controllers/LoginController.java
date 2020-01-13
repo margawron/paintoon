@@ -1,5 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceServer.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.polsl.gawron.marcel.rplaceData.models.User;
 import pl.polsl.gawron.marcel.rplaceServer.models.LoginForm;
+import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
 import javax.servlet.http.Cookie;
@@ -24,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
 
     private UserRepository userRepository;
+    @Autowired
+    private HistoryEntryRepository historyEntryRepository;
 
     /**
      * Constructor for login controller
@@ -59,6 +63,7 @@ public class LoginController {
             return "redirect:/login";
         }
 
+        model.addAttribute("numberOfPixels", historyEntryRepository.getCountOfUserPixelChanges(user.getId()) );
         model.addAttribute("username", username);
         model.addAttribute("isTokenValid", user.isTokenValid(token));
 
