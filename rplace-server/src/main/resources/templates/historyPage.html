@@ -5,6 +5,7 @@
     <title>History entry printout</title>
 </head>
 <body>
+<h1>All pixel changes</h1>
 <th:block th:each="entry : ${historyEntries}">
     <p style="margin: auto">
         <b style="color: red" th:text="${entry.color.red}"></b>
@@ -14,6 +15,18 @@
         <u th:text="${entry.userWhoModifiedPixel.name}"></u>
         <b th:text="${entry.x}"></b>
         <b th:text="${entry.y}"></b>
+    </p>
+</th:block>
+<h1>Every pixel latest change</h1>
+<th:block th:each="change : ${foreachLatest}">
+    <p style="margin: auto">
+        <b style="color: red" th:text="${change.color.red}"></b>
+        <b style="color: green" th:text="${change.color.green}"></b>
+        <b style="color: blue" th:text="${change.color.blue}"></b>
+        <i th:text="${change.timeOfModification}"></i>
+        <u th:text="${change.userWhoModifiedPixel.name}"></u>
+        <b th:text="${change.x}"></b>
+        <b th:text="${change.y}"></b>
     </p>
 </th:block>
 </body>

@@ -51,7 +51,7 @@ public class DataPrinterController {
     public String historyEntryPage(Model model) {
 
         model.addAttribute("historyEntries", historyEntryRepository.getHistoryEntries());
-
+        model.addAttribute("foreachLatest", historyEntryRepository.getLatestPixelChangeForEachPixel());
         return "historyPage";
     }
 }

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,6 +89,17 @@ public class HistoryEntryRepository {
             historyEntries = template.query("SELECT * FROM historyEntries", new HistoryEntryRowMapper());
         } catch (EmptyResultDataAccessException e) {
             historyEntries = null;
+        }
+        return historyEntries;
+    }
+    public List<HistoryEntry> getLatestPixelChangeForEachPixel(){
+        List<HistoryEntry> historyEntries = null;
+        try{
+            historyEntries = template.query("SELECT * from historyEntries h1 INNER JOIN " +
+                    "(SELECT x,y, MAX(id) as highest from historyEntries GROUP BY x, y ) AS h2 " +
+                    "ON h1.x = h2.x AND h1.y = h2.y AND h1.id = h2.highest",new HistoryEntryRowMapper());
+        }catch (EmptyResultDataAccessException e){
+            historyEntries = new ArrayList(0);
         }
         return historyEntries;
     }
