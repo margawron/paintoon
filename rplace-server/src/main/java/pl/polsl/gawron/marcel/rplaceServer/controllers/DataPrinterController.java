@@ -1,6 +1,5 @@
 package pl.polsl.gawron.marcel.rplaceServer.controllers;
 
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,8 @@ public class DataPrinterController {
 
     /**
      * Initializes controller class
-     * @param userRepository class managing database user table
+     *
+     * @param userRepository         class managing database user table
      * @param historyEntryRepository class managing database history entry table
      */
     public DataPrinterController(UserRepository userRepository, HistoryEntryRepository historyEntryRepository) {
@@ -31,6 +31,7 @@ public class DataPrinterController {
 
     /**
      * Function responsible for responding with page of users
+     *
      * @param model model object containing attributes for rendering views
      * @return name of the template to render
      */
@@ -44,6 +45,7 @@ public class DataPrinterController {
 
     /**
      * Function reponsible for responding with page of history entries
+     *
      * @param model model object containing attributes for rendering views
      * @return name of the template to render
      */

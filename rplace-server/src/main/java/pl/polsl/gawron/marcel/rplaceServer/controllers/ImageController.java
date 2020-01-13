@@ -51,9 +51,9 @@ public class ImageController {
     /**
      * Controller responsible for image manipulation
      *
-     * @param image                 in memory bitmap model
-     * @param userRepository        repository handling user data/database
-     * @param simpMessagingTemplate webSocket messaging template
+     * @param image                  in memory bitmap model
+     * @param userRepository         repository handling user data/database
+     * @param simpMessagingTemplate  webSocket messaging template
      * @param historyEntryRepository class managing database user table modifications
      */
     public ImageController(Image image, UserRepository userRepository, SimpMessagingTemplate simpMessagingTemplate, HistoryEntryRepository historyEntryRepository) {

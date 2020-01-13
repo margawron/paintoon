@@ -1,9 +1,7 @@
 package pl.polsl.gawron.marcel.rplaceServer.repositories;
 
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -29,6 +27,7 @@ public class UserRepository {
 
     /**
      * Default constructor
+     *
      * @param template jdbc connection template - filled by spring context
      */
     public UserRepository(JdbcTemplate template) {
@@ -76,6 +75,7 @@ public class UserRepository {
 
     /**
      * Query for user with specific id
+     *
      * @param id id of a user to query for
      * @return User data from database
      */
@@ -100,7 +100,7 @@ public class UserRepository {
             template.update("UPDATE users SET name = ?, password = ?, token = ?, tokenExpiryServerTime = ? WHERE id = ?",
                     user.getName(), user.getPassword(), user.getToken(), user.getTokenExpiryServerTime().atZone(ZoneId.systemDefault()).toEpochSecond(), user.getId());
             return true;
-        }catch (DataAccessException e){
+        } catch (DataAccessException e) {
             return false;
         }
     }

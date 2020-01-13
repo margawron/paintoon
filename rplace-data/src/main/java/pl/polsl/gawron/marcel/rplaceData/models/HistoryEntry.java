@@ -24,6 +24,7 @@ public class HistoryEntry {
 
     /**
      * Getter for id field
+     *
      * @return id field of an object
      */
     public long getId() {
@@ -32,6 +33,7 @@ public class HistoryEntry {
 
     /**
      * Setter for the id field
+     *
      * @param id id that should be set
      */
     public void setId(long id) {

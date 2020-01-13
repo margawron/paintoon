@@ -1,6 +1,5 @@
 package pl.polsl.gawron.marcel.rplaceServer.repositories;
 
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,7 +29,8 @@ public class HistoryEntryRepository {
 
     /**
      * Creates table for history entries
-     * @param template jdbc connection template - filled by spring context
+     *
+     * @param template       jdbc connection template - filled by spring context
      * @param userRepository user database connection class - filled by spring context
      */
     public HistoryEntryRepository(JdbcTemplate template, UserRepository userRepository) {
@@ -81,6 +81,7 @@ public class HistoryEntryRepository {
 
     /**
      * Gets all of the history entries in the database
+     *
      * @return List of history entries
      */
     public List<HistoryEntry> getHistoryEntries() {
@@ -92,13 +93,14 @@ public class HistoryEntryRepository {
         }
         return historyEntries;
     }
-    public List<HistoryEntry> getLatestPixelChangeForEachPixel(){
+
+    public List<HistoryEntry> getLatestPixelChangeForEachPixel() {
         List<HistoryEntry> historyEntries = null;
-        try{
+        try {
             historyEntries = template.query("SELECT * from historyEntries h1 INNER JOIN " +
                     "(SELECT x,y, MAX(id) as highest from historyEntries GROUP BY x, y ) AS h2 " +
-                    "ON h1.x = h2.x AND h1.y = h2.y AND h1.id = h2.highest",new HistoryEntryRowMapper());
-        }catch (EmptyResultDataAccessException e){
+                    "ON h1.x = h2.x AND h1.y = h2.y AND h1.id = h2.highest", new HistoryEntryRowMapper());
+        } catch (EmptyResultDataAccessException e) {
             historyEntries = new ArrayList(0);
         }
         return historyEntries;
