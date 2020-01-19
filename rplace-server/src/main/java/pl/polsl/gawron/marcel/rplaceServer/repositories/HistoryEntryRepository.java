@@ -85,14 +85,14 @@ public class HistoryEntryRepository {
      * @return count of bitmap changes
      */
     public long getCountOfUserPixelChanges(long userId){
-        Long userPixelChangesCount = 0l;
+        Long userPixelChangesCount;
         try{
             userPixelChangesCount = template.queryForObject("SELECT COUNT(*) FROM historyEntries WHERE userId = ?", new Object[]{userId}, Long.class);
         } catch (EmptyResultDataAccessException e){
-            userPixelChangesCount = 0l;
+            userPixelChangesCount = 0L;
         }
         if(userPixelChangesCount == null){
-            userPixelChangesCount = 0l;
+            userPixelChangesCount = 0L;
         }
         return userPixelChangesCount;
     }
