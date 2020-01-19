@@ -38,7 +38,7 @@ public class DataPrinterController {
     @RequestMapping({"/db_users"})
     public String usersPage(Model model) {
 
-        model.addAttribute("users", userRepository.getAllUsers());
+        model.addAttribute("users", userRepository.findAll());
 
         return "usersPage";
     }
@@ -52,7 +52,7 @@ public class DataPrinterController {
     @RequestMapping({"/db_history"})
     public String historyEntryPage(Model model) {
 
-        model.addAttribute("historyEntries", historyEntryRepository.getHistoryEntries());
+        model.addAttribute("historyEntries", historyEntryRepository.findAll());
         model.addAttribute("foreachLatest", historyEntryRepository.getLatestPixelChangeForEachPixel());
         return "historyPage";
     }

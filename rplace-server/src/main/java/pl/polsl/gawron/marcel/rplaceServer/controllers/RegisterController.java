@@ -57,7 +57,7 @@ public class RegisterController {
             }
             // Check if user is already logged and if he is, redirect him to login page
             if (username != null && token != null) {
-                User user = userRepository.findUser(username);
+                User user = userRepository.findUserByName(username);
                 if (user != null && user.isTokenValid(token)) {
                     return "redirect:/loggedIn";
                 }
@@ -92,7 +92,10 @@ public class RegisterController {
             model.addAttribute("message", "Passwords dont match");
             return "authMessage";
         }
-        userRepository.addUser(formModel.getName(), formModel.getPasswordFirst());
+        User userToAdd = new User();
+        userToAdd.setName(formModel.getName());
+        userToAdd.setPassword(formModel.getPasswordFirst());
+        userRepository.save(userToAdd);
         model.addAttribute("message", "Now please login!");
         model.addAttribute("shouldRedirectToRegister", false); // Show login page button
         return "authMessage";

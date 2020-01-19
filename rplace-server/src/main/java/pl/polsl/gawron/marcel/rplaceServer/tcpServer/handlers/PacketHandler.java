@@ -153,10 +153,13 @@ public class PacketHandler {
         if (request.getName() == null || request.getPassword() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        boolean wasAdded = userRepository.addUser(request.getName(), request.getPassword());
+        User userToAdd = new User();
+        userToAdd.setName(request.getName());
+        userToAdd.setPassword(request.getPassword());
+        User wasAdded = userRepository.save(userToAdd);
 
         ResponseRegister response = new ResponseRegister();
-        response.setRegistrationSuccessful(wasAdded);
+        response.setRegistrationSuccessful(wasAdded != null);
 
         stringBuilder.append(PacketType.RESPONSE_REGISTER.getValue());
         stringBuilder.append(" ");
@@ -188,7 +191,7 @@ public class PacketHandler {
         if (request.getName() == null || request.getPassword() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        User user = userRepository.findUser(request.getName());
+        User user = userRepository.findUserByName(request.getName());
         if (user == null) {
             return handleInvalidRequest("User with that name does not exist");
         }
@@ -204,7 +207,7 @@ public class PacketHandler {
         stringBuilder.append(PacketType.RESPONSE_LOGIN.getValue());
         stringBuilder.append(" ");
         stringBuilder.append(response.serialize());
-        userRepository.updateUser(user);
+        userRepository.save(user);
         return stringBuilder.toString();
     }
 
@@ -263,7 +266,7 @@ public class PacketHandler {
                 request.getUserToken() == null || request.getUserName() == null) {
             return handleInvalidRequest("Invalid packet body");
         }
-        User user = userRepository.findUser(request.getUserName());
+        User user = userRepository.findUserByName(request.getUserName());
         if (user == null) {
             return handleInvalidRequest("User not found");
         }
@@ -308,7 +311,7 @@ public class PacketHandler {
         historyEntry.setUserWhoModifiedPixel(user);
         historyEntry.setTimeOfModification(currentDate);
         user.getUserPixelModificationHistory().add(historyEntry);
-        historyEntryRepository.addHistoryEntry(historyEntry);
+        historyEntryRepository.save(historyEntry);
 
         response.setErrorMessage("Pixel set");
         response.setRequestAccepted(true);
@@ -354,10 +357,10 @@ public class PacketHandler {
         }
         ResponsePixelHistory response = new ResponsePixelHistory();
         List<HistoryEntry> historyList = new ArrayList<>();
-        for (int i = request.getFromOldestPixelNumber(); i < request.getToYoungestPixelNumber(); i++) {
-            HistoryEntry historyEntry = historyEntryRepository.getHistoryEntry(i);
-            if (historyEntry != null) {
-                historyList.add(historyEntry);
+        for (long i = request.getFromOldestPixelNumber(); i < request.getToYoungestPixelNumber(); i++) {
+            var historyEntry = historyEntryRepository.findById(i);
+            if (historyEntry.isPresent()) {
+                historyList.add(historyEntry.get());
             }
         }
         response.setHistoryEntryList(historyList);

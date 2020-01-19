@@ -55,7 +55,7 @@ public class LoginController {
         if (username == null || token == null) {
             return "redirect:/login";
         }
-        User user = userRepository.findUser(username);
+        User user = userRepository.findUserByName(username);
         if (user == null) {
             return "redirect:/login";
         }
@@ -96,7 +96,7 @@ public class LoginController {
             }
             // Check if user is already logged and if he is, redirect him to login page
             if (username != null && token != null) {
-                User user = userRepository.findUser(username);
+                User user = userRepository.findUserByName(username);
                 if (user != null && user.isTokenValid(token)) {
                     return "redirect:/profilePage";
                 }
@@ -122,7 +122,7 @@ public class LoginController {
             model.addAttribute("message", "Username is not valid length");
             return "authMessage";
         }
-        User user = userRepository.findUser(formModel.getName());
+        User user = userRepository.findUserByName(formModel.getName());
         if (user == null) {
             model.addAttribute("message", "User does not exist");
             return "authMessage";
@@ -141,8 +141,7 @@ public class LoginController {
 //        tokenCookie.setSecure(true);
         usernameCookie.setHttpOnly(true);
         tokenCookie.setHttpOnly(true);
-        //
-        userRepository.updateUser(user);
+        userRepository.save(user);
         response.addCookie(usernameCookie);
         response.addCookie(tokenCookie);
         return "redirect:/profilePage";

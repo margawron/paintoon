@@ -1,5 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceServer.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.UserRepository;
 
 import javax.imageio.ImageIO;
+import javax.persistence.EntityManager;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,6 +49,9 @@ public class ImageController {
     // SentTo annotation is not enough to trigger
     // WebSocket refresh
     private SimpMessagingTemplate template;
+
+    @Autowired
+    private EntityManager em;
 
     /**
      * Controller responsible for image manipulation
@@ -113,7 +118,7 @@ public class ImageController {
             response.sendError(403);
             return null;
         }
-        User user = userRepository.findUser(username);
+        User user = userRepository.findUserByName(username);
         if (user == null || !user.isTokenValid(token)) {
             response.sendError(403);
             return null;
@@ -130,7 +135,7 @@ public class ImageController {
         historyEntry.setBlueComponent(payload.getBlue());
         historyEntry.setUserWhoModifiedPixel(user);
         historyEntry.setTimeOfModification(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
-        historyEntryRepository.addHistoryEntry(historyEntry);
+        historyEntryRepository.save(historyEntry);
         image.setPixel(payload.getX(), payload.getY(), new Color(payload.getRed(), payload.getGreen(), payload.getBlue()));
         response.setStatus(200);
         Message broadcastMessage = new Message();
