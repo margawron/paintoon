@@ -302,7 +302,9 @@ public class PacketHandler {
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setX(request.getxPos());
         historyEntry.setY(request.getyPos());
-        historyEntry.setColor(request.getColor());
+        historyEntry.setRedComponent(request.getColor().getRed());
+        historyEntry.setGreenComponent(request.getColor().getGreen());
+        historyEntry.setBlueComponent(request.getColor().getBlue());
         historyEntry.setUserWhoModifiedPixel(user);
         historyEntry.setTimeOfModification(currentDate);
         user.getUserPixelModificationHistory().add(historyEntry);

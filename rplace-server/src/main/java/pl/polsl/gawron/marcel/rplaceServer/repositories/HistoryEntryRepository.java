@@ -4,7 +4,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import pl.polsl.gawron.marcel.rplaceData.models.Color;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 
 import java.sql.ResultSet;
@@ -59,7 +58,7 @@ public class HistoryEntryRepository {
         template.update("INSERT INTO historyEntries(x,y,red,green,blue,userId,timeOfModification)" +
                         " VALUES (?,?,?,?,?,?,?)",
                 entry.getX(), entry.getY(),
-                entry.getColor().getRed(), entry.getColor().getGreen(), entry.getColor().getBlue(),
+                entry.getRedComponent(), entry.getGreenComponent(), entry.getGreenComponent(),
                 entry.getUserWhoModifiedPixel().getId(), entry.getTimeOfModification().atZone(ZoneId.systemDefault()).toEpochSecond());
     }
 
@@ -81,17 +80,18 @@ public class HistoryEntryRepository {
 
     /**
      * Query for number of pixel changes of a user
+     *
      * @param userId user id
      * @return count of bitmap changes
      */
-    public long getCountOfUserPixelChanges(long userId){
+    public long getCountOfUserPixelChanges(long userId) {
         Long userPixelChangesCount;
-        try{
+        try {
             userPixelChangesCount = template.queryForObject("SELECT COUNT(*) FROM historyEntries WHERE userId = ?", new Object[]{userId}, Long.class);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             userPixelChangesCount = 0L;
         }
-        if(userPixelChangesCount == null){
+        if (userPixelChangesCount == null) {
             userPixelChangesCount = 0L;
         }
         return userPixelChangesCount;
@@ -138,14 +138,20 @@ public class HistoryEntryRepository {
             historyEntry.setId(resultSet.getLong("id"));
             historyEntry.setX(resultSet.getInt("x"));
             historyEntry.setY(resultSet.getInt("y"));
-            historyEntry.setColor(new Color(
-                    resultSet.getInt("red"),
-                    resultSet.getInt("green"),
-                    resultSet.getInt("blue")
-            ));
+            historyEntry.setRedComponent(resultSet.getInt("red"));
+            historyEntry.setGreenComponent(resultSet.getInt("green"));
+            historyEntry.setBlueComponent(resultSet.getInt("blue"));
             historyEntry.setUserWhoModifiedPixel(userRepository.findUser(resultSet.getInt("userId")));
             historyEntry.setTimeOfModification(LocalDateTime.ofEpochSecond(resultSet.getInt("timeOfModification"), 0, ZoneOffset.UTC));
             return historyEntry;
         }
     }
 }
+/*
+    public List<HistoryEntry> getLatestPixelChangeForEachPixel() {
+    public List<HistoryEntry> getHistoryEntries() {
+    public long getCountOfUserPixelChanges(long userId){
+    public HistoryEntry getHistoryEntry(int id) {
+    public void addHistoryEntry(HistoryEntry entry) {
+
+*/

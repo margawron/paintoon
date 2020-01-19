@@ -2,6 +2,7 @@ package pl.polsl.gawron.marcel.rplaceServer.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.polsl.gawron.marcel.rplaceData.models.Color;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 import pl.polsl.gawron.marcel.rplaceData.models.Image;
 import pl.polsl.gawron.marcel.rplaceServer.repositories.HistoryEntryRepository;
@@ -67,7 +68,7 @@ public class ImageSizeConfig {
         public void reloadImageHistory(Image image, HistoryEntryRepository historyEntryRepository) {
             List<HistoryEntry> historyEntries = historyEntryRepository.getLatestPixelChangeForEachPixel();
             for (var entry : historyEntries) {
-                image.setPixel(entry.getX(), entry.getY(), entry.getColor());
+                image.setPixel(entry.getX(), entry.getY(), new Color(entry.getRedComponent(), entry.getGreenComponent(), entry.getBlueComponent()));
             }
             System.out.println("Pixels were restored");
         }

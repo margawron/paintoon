@@ -63,7 +63,7 @@ public class LoginController {
             return "redirect:/login";
         }
 
-        model.addAttribute("numberOfPixels", historyEntryRepository.getCountOfUserPixelChanges(user.getId()) );
+        model.addAttribute("numberOfPixels", historyEntryRepository.getCountOfUserPixelChanges(user.getId()));
         model.addAttribute("username", username);
         model.addAttribute("isTokenValid", user.isTokenValid(token));
 

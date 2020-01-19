@@ -125,7 +125,9 @@ public class ImageController {
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setX(payload.getX());
         historyEntry.setY(payload.getY());
-        historyEntry.setColor(new Color(payload.getRed(), payload.getGreen(), payload.getBlue()));
+        historyEntry.setRedComponent(payload.getRed());
+        historyEntry.setGreenComponent(payload.getGreen());
+        historyEntry.setBlueComponent(payload.getBlue());
         historyEntry.setUserWhoModifiedPixel(user);
         historyEntry.setTimeOfModification(LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC));
         historyEntryRepository.addHistoryEntry(historyEntry);
