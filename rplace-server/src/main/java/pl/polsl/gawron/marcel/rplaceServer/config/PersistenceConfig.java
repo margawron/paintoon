@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories("pl.polsl.gawron.marcel.rplaceServer.repositories")
 @EnableConfigurationProperties
 public class PersistenceConfig {
 
