@@ -14,19 +14,19 @@ import java.time.LocalDateTime;
 @Table(name = "historyEntries", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"id", "timeOfModification"})
 })
-public class HistoryEntry implements Serializable {
+public class HistoryEntry {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(insertable = false, updatable = false)
     private long id;
     private int x;
     private int y;
     @Column(name = "red")
-    private byte redComponent;
+    private int redComponent;
     @Column(name = "green")
-    private byte greenComponent;
+    private int greenComponent;
     @Column(name = "blue")
-    private byte blueComponent;
+    private int blueComponent;
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User userWhoModifiedPixel;
@@ -98,7 +98,7 @@ public class HistoryEntry implements Serializable {
      * @return red component of a pixel
      */
     public byte getRedComponent() {
-        return redComponent;
+        return (byte) redComponent;
     }
 
     /**
@@ -116,7 +116,7 @@ public class HistoryEntry implements Serializable {
      * @return green component of a pixel
      */
     public byte getGreenComponent() {
-        return greenComponent;
+        return (byte) greenComponent;
     }
 
     /**
@@ -134,7 +134,7 @@ public class HistoryEntry implements Serializable {
      * @return blue component of a pixel
      */
     public byte getBlueComponent() {
-        return blueComponent;
+        return (byte) blueComponent;
     }
 
     /**

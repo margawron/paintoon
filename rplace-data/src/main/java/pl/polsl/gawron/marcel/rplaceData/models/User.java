@@ -21,9 +21,9 @@ import java.util.Random;
         @UniqueConstraint(columnNames = "id"),
         @UniqueConstraint(columnNames = "name")
 })
-public class User implements Serializable {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private long id;
     @Column(name = "name")
