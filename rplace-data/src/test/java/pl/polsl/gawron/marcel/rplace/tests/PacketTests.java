@@ -1,7 +1,6 @@
 package pl.polsl.gawron.marcel.rplace.tests;
 
 import org.junit.jupiter.api.Test;
-import pl.polsl.gawron.marcel.rplaceData.models.Color;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 import pl.polsl.gawron.marcel.rplaceData.protocol.packets.requests.RequestImageByteArray;
 import pl.polsl.gawron.marcel.rplaceData.protocol.packets.responses.ResponsePixelHistory;
@@ -49,7 +48,9 @@ public class PacketTests {
         HistoryEntry entry1 = new HistoryEntry();
         entry1.setX(3);
         entry1.setY(5);
-        entry1.setColor(new Color(0, 0, 255));
+        entry1.setRedComponent(0);
+        entry1.setGreenComponent(0);
+        entry1.setBlueComponent(255);
         Instant now = Instant.now();
         entry1.setTimeOfModification(LocalDateTime.ofInstant(now, ZoneId.systemDefault()));
         // Entry 1
@@ -58,7 +59,9 @@ public class PacketTests {
         HistoryEntry entry2 = new HistoryEntry();
         entry2.setX(3);
         entry2.setY(5);
-        entry2.setColor(new Color(0, 0, 255));
+        entry2.setRedComponent(0);
+        entry2.setGreenComponent(0);
+        entry2.setBlueComponent(255);
         Instant now2 = Instant.now();
         entry2.setTimeOfModification(LocalDateTime.ofInstant(now2, ZoneId.systemDefault()));
         // Entry 2

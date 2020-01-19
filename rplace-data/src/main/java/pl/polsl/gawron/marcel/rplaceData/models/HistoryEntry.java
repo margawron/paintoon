@@ -1,5 +1,7 @@
 package pl.polsl.gawron.marcel.rplaceData.models;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -8,11 +10,25 @@ import java.time.LocalDateTime;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class HistoryEntry {
+@Entity
+@Table(name = "historyEntries", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"id", "timeOfModification"})
+})
+public class HistoryEntry implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(insertable = false, updatable = false)
     private long id;
     private int x;
     private int y;
-    private Color color;
+    @Column(name = "red")
+    private byte redComponent;
+    @Column(name = "green")
+    private byte greenComponent;
+    @Column(name = "blue")
+    private byte blueComponent;
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
     private User userWhoModifiedPixel;
     private LocalDateTime timeOfModification;
 
@@ -77,21 +93,57 @@ public class HistoryEntry {
     }
 
     /**
-     * Getter of pixel color
+     * Getter for the red component of a pixel
      *
-     * @return color of pixel
+     * @return red component of a pixel
      */
-    public Color getColor() {
-        return color;
+    public byte getRedComponent() {
+        return redComponent;
     }
 
     /**
-     * Setter for pixel color
+     * Setter for the red component of a pixel
      *
-     * @param color new pixel color
+     * @param redComponent new red component
      */
-    public void setColor(Color color) {
-        this.color = color;
+    public void setRedComponent(int redComponent) {
+        this.redComponent = (byte) redComponent;
+    }
+
+    /**
+     * Getter for the green component of a pixel
+     *
+     * @return green component of a pixel
+     */
+    public byte getGreenComponent() {
+        return greenComponent;
+    }
+
+    /**
+     * Setter for the green component of a pixel
+     *
+     * @param greenComponent new green component
+     */
+    public void setGreenComponent(int greenComponent) {
+        this.greenComponent = (byte) greenComponent;
+    }
+
+    /**
+     * Getter for the blue component of a pixel
+     *
+     * @return blue component of a pixel
+     */
+    public byte getBlueComponent() {
+        return blueComponent;
+    }
+
+    /**
+     * Setter for the blue component of a pixel
+     *
+     * @param blueComponent new blue component
+     */
+    public void setBlueComponent(int blueComponent) {
+        this.blueComponent = (byte) blueComponent;
     }
 
     /**
@@ -129,4 +181,5 @@ public class HistoryEntry {
     public void setTimeOfModification(LocalDateTime timeOfModification) {
         this.timeOfModification = timeOfModification;
     }
+
 }

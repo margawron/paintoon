@@ -2,6 +2,8 @@ package pl.polsl.gawron.marcel.rplaceData.models;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -14,12 +16,25 @@ import java.util.Random;
  * @author Marcel Gawron
  * @version 1.0
  */
-public class User {
-    private Long id;
+@Entity
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "id"),
+        @UniqueConstraint(columnNames = "name")
+})
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", insertable = false, updatable = false)
+    private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "password")
     private String password;
+    @Column(name = "token")
     private String token;
+    @Column(name = "tokenExpiryServerTime")
     private LocalDateTime tokenExpiryServerTime;
+    @OneToMany(mappedBy = "userWhoModifiedPixel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HistoryEntry> userPixelModificationHistory;
 
 
@@ -66,6 +81,7 @@ public class User {
      *
      * @return username
      */
+
     public String getName() {
         return name;
     }
