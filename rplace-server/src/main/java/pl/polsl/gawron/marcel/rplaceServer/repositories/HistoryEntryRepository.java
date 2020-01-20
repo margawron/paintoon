@@ -50,6 +50,4 @@ public interface HistoryEntryRepository extends CrudRepository<HistoryEntry, Lon
      * @return all history pixel changes
      */
     List<HistoryEntry> findAll();
-
-
 }

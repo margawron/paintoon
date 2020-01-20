@@ -8,9 +8,9 @@
 <h1>All pixel changes</h1>
 <th:block th:each="entry : ${historyEntries}">
     <p style="margin: auto">
-        <b style="color: red" th:text="${entry.color.red}"></b>
-        <b style="color: green" th:text="${entry.color.green}"></b>
-        <b style="color: blue" th:text="${entry.color.blue}"></b>
+        <b style="color: red" th:text="${entry.redComponent}"></b>
+        <b style="color: green" th:text="${entry.greenComponent}"></b>
+        <b style="color: blue" th:text="${entry.blueComponent}"></b>
         <i th:text="${entry.timeOfModification}"></i>
         <u th:text="${entry.userWhoModifiedPixel.name}"></u>
         <b th:text="${entry.x}"></b>
@@ -20,9 +20,9 @@
 <h1>Every pixel latest change</h1>
 <th:block th:each="change : ${foreachLatest}">
     <p style="margin: auto">
-        <b style="color: red" th:text="${change.color.red}"></b>
-        <b style="color: green" th:text="${change.color.green}"></b>
-        <b style="color: blue" th:text="${change.color.blue}"></b>
+        <b style="color: red" th:text="${change.redComponent}"></b>
+        <b style="color: green" th:text="${change.greenComponent}"></b>
+        <b style="color: blue" th:text="${change.blueComponent}"></b>
         <i th:text="${change.timeOfModification}"></i>
         <u th:text="${change.userWhoModifiedPixel.name}"></u>
         <b th:text="${change.x}"></b>
