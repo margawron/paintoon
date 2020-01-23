@@ -14,15 +14,17 @@ public class UserResponseModel {
 
     /**
      * Constructor for UserResponseModel
+     *
      * @param user user from which to copy the data
      */
-    public UserResponseModel(User user){
+    public UserResponseModel(User user) {
         this.id = user.getId();
         this.name = user.getName();
     }
 
     /**
      * Getter for the id field
+     *
      * @return id field
      */
     public long getId() {
@@ -31,6 +33,7 @@ public class UserResponseModel {
 
     /**
      * Setter for the id field
+     *
      * @param id new id field
      */
     public void setId(long id) {
@@ -39,6 +42,7 @@ public class UserResponseModel {
 
     /**
      * Getter for the name field
+     *
      * @return name field
      */
     public String getName() {
@@ -47,6 +51,7 @@ public class UserResponseModel {
 
     /**
      * Setter for the name field
+     *
      * @param name new name field
      */
     public void setName(String name) {

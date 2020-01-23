@@ -1,7 +1,6 @@
 package pl.polsl.gawron.marcel.rplaceData.models;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**

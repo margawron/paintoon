@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.polsl.gawron.marcel.rplaceData.models.HistoryEntry;
 
-
 import java.util.List;
 
 /**
@@ -28,6 +27,7 @@ public interface HistoryEntryRepository extends CrudRepository<HistoryEntry, Lon
 
     /**
      * Get count of all user pixel changes
+     *
      * @param userId user id
      * @return count of pixel user changes
      */
@@ -40,6 +40,7 @@ public interface HistoryEntryRepository extends CrudRepository<HistoryEntry, Lon
 
     /**
      * Get list of last change for each pixel
+     *
      * @return List of last changes for each pixel
      */
     @Query("Select h1, h2.x, h2.y, Max(h2.id) from HistoryEntry h1 inner join HistoryEntry h2 ON h1.x = h2.x WHERE h1.x = h2.x AND h1.y = h2.y AND h1.id = h2.id GROUP BY h2.x, h2.y")
@@ -47,6 +48,7 @@ public interface HistoryEntryRepository extends CrudRepository<HistoryEntry, Lon
 
     /**
      * Get all history pixel changes
+     *
      * @return all history pixel changes
      */
     List<HistoryEntry> findAll();

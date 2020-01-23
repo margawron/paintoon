@@ -3,7 +3,6 @@ package pl.polsl.gawron.marcel.rplaceData.models;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

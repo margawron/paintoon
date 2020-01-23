@@ -18,15 +18,15 @@ public class WebServiceController {
     private UserRepository userRepository;
     private HistoryEntryRepository historyEntryRepository;
 
-    public WebServiceController(UserRepository userRepository, HistoryEntryRepository historyEntryRepository){
+    public WebServiceController(UserRepository userRepository, HistoryEntryRepository historyEntryRepository) {
         this.userRepository = userRepository;
         this.historyEntryRepository = historyEntryRepository;
     }
 
     @GetMapping("/service/users")
-    public UserResponseModel getUser(@RequestParam(name = "id")Long id){
+    public UserResponseModel getUser(@RequestParam(name = "id") Long id) {
         var user = userRepository.findById(id);
-        if(!user.isPresent()){
+        if (!user.isPresent()) {
             return null;
         }
         UserResponseModel urm = new UserResponseModel(user.get());
@@ -34,9 +34,9 @@ public class WebServiceController {
     }
 
     @GetMapping("/service/history")
-    public HistoryEntryResponseModel getHistoryEntry(@RequestParam(name = "id")Long id){
+    public HistoryEntryResponseModel getHistoryEntry(@RequestParam(name = "id") Long id) {
         var historEntry = historyEntryRepository.findById(id);
-        if(!historEntry.isPresent()){
+        if (!historEntry.isPresent()) {
             return null;
         }
         HistoryEntryResponseModel herm = new HistoryEntryResponseModel(historEntry.get());

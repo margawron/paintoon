@@ -28,7 +28,7 @@ public class HistoryEntryResponseModel {
      *
      * @param historyEntry the history entry
      */
-    public HistoryEntryResponseModel(HistoryEntry historyEntry){
+    public HistoryEntryResponseModel(HistoryEntry historyEntry) {
         this.id = historyEntry.getId();
         this.x = historyEntry.getX();
         this.y = historyEntry.getY();

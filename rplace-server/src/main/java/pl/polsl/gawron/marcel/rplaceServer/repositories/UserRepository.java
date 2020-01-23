@@ -18,6 +18,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * Get user by user name
+     *
      * @param name user name
      * @return user instance from database
      */
@@ -25,12 +26,14 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * Get all users from database
+     *
      * @return list of all users
      */
     List<User> findAll();
 
     /**
      * Save user to database
+     *
      * @param object user object
      * @return saved user object
      */
