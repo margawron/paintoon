@@ -22,7 +22,6 @@ public class ConnectionHandler {
 
     private String host;
     private int port;
-    private Socket clientSocket;
     private BufferedReader input;
     private PrintWriter output;
 
@@ -50,7 +49,7 @@ public class ConnectionHandler {
      */
     public void connect() {
         try {
-            clientSocket = new Socket(host, port);
+            Socket clientSocket = new Socket(host, port);
             input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             output = new PrintWriter(new BufferedWriter(
                     new OutputStreamWriter(clientSocket.getOutputStream())), true);
@@ -127,14 +126,13 @@ public class ConnectionHandler {
      * @throws Exception when cannot read or write
      */
     public ResponseImageByteArray requestImageByteArray() throws Exception {
-        StringBuilder stringBuilder = new StringBuilder();
 
         RequestImageByteArray request = new RequestImageByteArray();
 
-        stringBuilder.append(PacketType.REQUEST_IMAGE_BYTE_ARRAY.getValue());
-        stringBuilder.append(" ");
-        stringBuilder.append(request.serialize());
-        output.println(stringBuilder.toString());
+        String stringBuilder = PacketType.REQUEST_IMAGE_BYTE_ARRAY.getValue() +
+                " " +
+                request.serialize();
+        output.println(stringBuilder);
 
         String[] responseStrings = splitInput(input.readLine());
         int packetCode = Integer.parseInt(responseStrings[0]);

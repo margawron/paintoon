@@ -22,7 +22,6 @@ import java.util.Scanner;
  */
 public class UserInteractionHandler {
 
-    private String[] args;
     private boolean isRegistered;
     private boolean isLoggedIn;
     private String username;
@@ -35,7 +34,6 @@ public class UserInteractionHandler {
      * @param args arguments will be forwarded to ArgumentParser
      */
     public UserInteractionHandler(String[] args) {
-        this.args = args;
 
     }
 

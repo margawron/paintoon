@@ -10,8 +10,8 @@ import pl.polsl.gawron.marcel.paintoonData.protocol.Serializable;
  * @version 1.0
  */
 public class RequestImageByteArray implements Serializable {
-    /**
-     *  Body not needed
+    /*
+       Body not needed
      */
 
     /**

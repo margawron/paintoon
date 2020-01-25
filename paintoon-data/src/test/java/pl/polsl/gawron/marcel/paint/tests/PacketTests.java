@@ -22,12 +22,12 @@ public class PacketTests {
 
     @Test
     public void RequestImageByteArraySerialization() {
-        /**
-         * Given
+        /*
+          Given
          */
         RequestImageByteArray request = new RequestImageByteArray();
-        /**
-         * When
+        /*
+          When
          */
         String serialized = request.serialize();
         // Then
@@ -39,8 +39,8 @@ public class PacketTests {
      */
     @Test
     public void ResponsePixelHistorySerializationTest() {
-        /**
-         * Given
+        /*
+          Given
          */
         ResponsePixelHistory response = new ResponsePixelHistory();
         List<HistoryEntry> historyEntries = new ArrayList<>();
@@ -68,17 +68,17 @@ public class PacketTests {
         historyEntries.add(entry2);
         // Set list
         response.setHistoryEntryList(historyEntries);
-        /**
-         * When
+        /*
+          When
          */
         String serialized = response.serialize();
         ResponsePixelHistory deserialized = null;
         try {
-            deserialized = (ResponsePixelHistory) response.deserialize(serialized);
+            deserialized = response.deserialize(serialized);
         } catch (Exception e) {
         }
-        /**
-         * Then
+        /*
+          Then
          */
         assertNotNull(deserialized, "Deserialized data should not be empty");
         assertEquals(response.getHistoryEntryList().get(0).getX(), deserialized.getHistoryEntryList().get(0).getX(), "Elements of array should be equal (x coordinate)");

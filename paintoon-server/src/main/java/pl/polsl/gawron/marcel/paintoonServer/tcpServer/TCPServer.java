@@ -16,8 +16,6 @@ import java.net.Socket;
  * @version 1.0
  */
 public class TCPServer extends Thread implements Closeable {
-    // Network
-    private Thread thread;
     private int port;
     private ServerSocket serverSocket;
     private ProtocolController protocolController;
@@ -32,8 +30,9 @@ public class TCPServer extends Thread implements Closeable {
     public TCPServer(ProtocolController controller, Image image, int port) {
         protocolController = controller;
         this.port = port;
-        this.thread = new Thread(this);
-        this.thread.start();
+        // Network
+        Thread thread = new Thread(this);
+        thread.start();
     }
 
     /**

@@ -40,7 +40,7 @@ public enum PacketType {
 
     public static PacketType fromInteger(int value) {
         switch (value) {
-            /** Client-side requests **/
+            /* Client-side requests **/
             case 0:
                 return REQUEST_REGISTER;
             case 1:
@@ -51,7 +51,7 @@ public enum PacketType {
                 return REQUEST_SET_PIXEL;
             case 4:
                 return REQUEST_PIXEL_HISTORY;
-            /** Server-side responses **/
+            /* Server-side responses **/
             case 100:
                 return RESPONSE_REGISTER;
             case 101:
@@ -62,7 +62,7 @@ public enum PacketType {
                 return RESPONSE_SET_PIXEL;
             case 104:
                 return RESPONSE_PIXEL_HISTORY;
-            /** Unhandled message type **/
+            /* Unhandled message type **/
             default:
                 return INVALID_REQUEST;
         }

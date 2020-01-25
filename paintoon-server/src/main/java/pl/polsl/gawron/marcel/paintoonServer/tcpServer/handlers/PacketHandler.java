@@ -359,9 +359,7 @@ public class PacketHandler {
         List<HistoryEntry> historyList = new ArrayList<>();
         for (long i = request.getFromOldestPixelNumber(); i < request.getToYoungestPixelNumber(); i++) {
             var historyEntry = historyEntryRepository.findById(i);
-            if (historyEntry.isPresent()) {
-                historyList.add(historyEntry.get());
-            }
+            historyEntry.ifPresent(historyList::add);
         }
         response.setHistoryEntryList(historyList);
 

@@ -29,8 +29,7 @@ public class WebServiceController {
         if (!user.isPresent()) {
             return null;
         }
-        UserResponseModel urm = new UserResponseModel(user.get());
-        return urm;
+        return new UserResponseModel(user.get());
     }
 
     @GetMapping("/service/history")
@@ -39,7 +38,6 @@ public class WebServiceController {
         if (!historEntry.isPresent()) {
             return null;
         }
-        HistoryEntryResponseModel herm = new HistoryEntryResponseModel(historEntry.get());
-        return herm;
+        return new HistoryEntryResponseModel(historEntry.get());
     }
 }

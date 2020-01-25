@@ -2,7 +2,6 @@ package pl.polsl.gawron.marcel.paintoonServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Main class of a program
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @version 1.0
  */
 @SpringBootApplication
-@ComponentScan({"pl.polsl.gawron.marcel.paintData", "pl.polsl.gawron.marcel.paintoonServer"})
 public class Main {
 
     /**

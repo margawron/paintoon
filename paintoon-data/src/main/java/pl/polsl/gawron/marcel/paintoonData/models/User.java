@@ -150,8 +150,7 @@ public class User {
      */
     public void setExpiryDateWeekFromNow() {
         Instant now = Instant.now();
-        LocalDateTime expiryDate = LocalDateTime.ofInstant(now, ZoneOffset.UTC).plusWeeks(1);
-        this.tokenExpiryServerTime = expiryDate;
+        this.tokenExpiryServerTime = LocalDateTime.ofInstant(now, ZoneOffset.UTC).plusWeeks(1);
     }
 
     /**
